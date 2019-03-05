@@ -1,18 +1,92 @@
-import React from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import {Col, Row} from 'react-bootstrap'
 
-/**
- * COMPONENT
- */
-export const UserHome = props => {
-  const {email} = props
+class UserHome extends Component {
+  constructor() {
+    super()
+    this.state = {
+      keyword: '',
+      zipcode: ''
+    }
+    this.handleTermChange = this.handleTermChange.bind(this)
+    this.handleZipChange = this.handleZipChange.bind(this)
+    this.handleSearchClick = this.handleSearchClick.bind(this)
+    this.handleAdvancedClick = this.handleAdvancedClick.bind(this)
+  }
 
-  return (
-    <div>
-      <h3>Welcome, {email}</h3>
-    </div>
-  )
+  handleTermChange(event) {
+    const name = event.target.name
+    this.setState({[name]: event.target.value})
+  }
+
+  handleZipChange(event) {
+    const name = event.target.name
+    this.setState({[name]: event.target.value})
+  }
+
+  handleSearchClick(event) {
+    console.log(this.state.keyword, this.state.zipcode)
+    event.preventDefault()
+    this.setState({keyword: '', zipcode: ''})
+  }
+
+  handleAdvancedClick(event) {
+    console.log('advanced search', event.target)
+  }
+  render() {
+    return (
+      <div id="user-container">
+        <Row>
+          <Col xs={12}>
+            <h2>Find something beautiful</h2>
+          </Col>
+        </Row>
+        <form onSubmit={this.handleSearchClick}>
+          <Row>
+            <Col xs={12}>
+              <label>
+                <small>Keyword</small>
+
+                <input
+                  name="keyword"
+                  type="text"
+                  onChange={this.handleTermChange}
+                  value={this.state.keyword}
+                />
+              </label>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={12}>
+              <label>
+                <small>Zip code</small>
+              </label>
+              <input
+                name="zipcode"
+                type="text"
+                value={this.state.zipcode}
+                onChange={this.handleZipChange}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={12}>
+              <input type="submit" value="Submit" />
+            </Col>
+          </Row>
+        </form>
+        <Row>
+          {/* <Col xs={12}>
+              <button type="text" onClick={this.handleAdvancedClick}>
+                Advanced Search
+              </button>
+            </Col> */}
+        </Row>
+      </div>
+    )
+  }
 }
 
 /**
@@ -20,7 +94,7 @@ export const UserHome = props => {
  */
 const mapState = state => {
   return {
-    email: state.user.email
+    // email: state.user.email
   }
 }
 
@@ -30,5 +104,5 @@ export default connect(mapState)(UserHome)
  * PROP TYPES
  */
 UserHome.propTypes = {
-  email: PropTypes.string
+  // email: PropTypes.string
 }

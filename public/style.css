@@ -1,3 +1,12 @@
+@font-face {
+  font-family: 'Braggadocio';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Braggadocio'), url('bragga.woff') format('woff');
+}
+
+/* body */
+
 body {
   font-family: sans-serif;
 }
@@ -18,4 +27,21 @@ nav a {
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+/* navbar */
+nav {
+  border: none;
+}
+
+nav #logo {
+  font-size: 32px;
+  color: rgb(209, 12, 209);
+  font-family: 'Braggadocio';
+}
+
+#user-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
