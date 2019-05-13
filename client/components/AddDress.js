@@ -26,17 +26,20 @@ class AddDress extends Component {
   render() {
     return (
       <div>
-        adding a dress here!
-        <label>
-          <small>Item name</small>
+        blah blah!
+        <form>
+          <label>
+            <small>item</small>
 
-          <input
-            name="dressName"
-            type="text"
-            onChange={this.handleDressName}
-            value={this.state.dressName}
-          />
-        </label>
+            <input
+              name="dressName"
+              type="text"
+              onChange={this.handleDressName}
+              value={this.state.dressName}
+            />
+          </label>
+          <input type="submit" value="submit" color="red" />
+        </form>
       </div>
     )
   }

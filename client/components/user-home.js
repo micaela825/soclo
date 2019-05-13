@@ -47,7 +47,7 @@ class UserHome extends Component {
           <Row>
             <Col xs={12}>
               <label>
-                <small>Keyword</small>
+                <small>blahhh</small>
 
                 <input
                   name="keyword"
