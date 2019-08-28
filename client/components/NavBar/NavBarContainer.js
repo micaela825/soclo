@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {logout} from '../store'
+import {logout} from '../../store'
 
-const Navbar = ({handleClick, isLoggedIn}) => (
+const NavBar = ({handleClick, isLoggedIn}) => (
   <div className="navBar">
     <nav>
       <div>
@@ -39,12 +39,12 @@ const mapDispatch = dispatch => {
   }
 }
 
-export default connect(mapState, mapDispatch)(Navbar)
+export default connect(mapState, mapDispatch)(NavBar)
 
 /**
  * PROP TYPES
  */
-Navbar.propTypes = {
+NavBar.propTypes = {
   handleClick: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
 }

@@ -5,10 +5,12 @@ import PropTypes from 'prop-types'
 import {
   Login,
   Signup,
-  UserHome,
-  UserSearch,
-  UserCloset,
-  UserAccount
+  UserHomeContainer,
+  SearchContainer,
+  ClosetContainer,
+  AccountContainer,
+  AddContainer,
+  AddSuccess
 } from './components'
 import {me} from './store'
 
@@ -25,10 +27,12 @@ class Routes extends Component {
 
     return (
       <div>
-        <Route path="/home" component={UserHome} />
-        <Route path="/search" component={UserHome} />
-        <Route path="/closet" component={UserCloset} />
-        <Route path="/account" component={UserAccount} />
+        <Route path="/home" component={UserHomeContainer} />
+        <Route path="/search" component={SearchContainer} />
+        <Route path="/closet" component={ClosetContainer} />
+        <Route path="/account" component={AccountContainer} />
+        <Route path="/add" component={AddContainer} />
+        <Route path="/success" component={AddSuccess} />
       </div>
     )
   }
@@ -61,8 +65,8 @@ export default withRouter(connect(mapState, mapDispatch)(Routes))
  * PROP TYPES
  */
 Routes.propTypes = {
-  loadInitialData: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
+  loadInitialData: PropTypes.func.isRequired
+  // isLoggedIn: PropTypes.bool.isRequired
 }
 
 // <Switch>

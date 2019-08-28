@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {Col, Row} from 'react-bootstrap'
+import {Table, Header, Input, SubmitBtn} from './UserHome.style'
 
-class UserHome extends Component {
+class UserHomeContainer extends Component {
   constructor() {
     super()
     this.state = {
@@ -37,53 +37,42 @@ class UserHome extends Component {
   }
   render() {
     return (
-      <div id="user-container">
-        <Row>
-          <Col xs={12}>
-            <h2>Find something beautiful</h2>
-          </Col>
-        </Row>
-        <form onSubmit={this.handleSearchClick}>
-          <Row>
-            <Col xs={12}>
-              <label>
-                <small>blahhh</small>
-
-                <input
-                  name="keyword"
-                  type="text"
-                  onChange={this.handleTermChange}
-                  value={this.state.keyword}
-                />
-              </label>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12}>
-              <label>
-                <small>Zip code</small>
-              </label>
+      <div>
+        <Header>Find something beautiful</Header>
+        <Table onSubmit={this.handleSearchClick}>
+          <Input>
+            <label>
+              <small>keyword</small>
               <input
-                name="zipcode"
+                name="keyword"
+                placeholder="little black dress"
                 type="text"
-                value={this.state.zipcode}
-                onChange={this.handleZipChange}
+                onChange={this.handleTermChange}
+                value={this.state.keyword}
               />
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12}>
-              <input type="submit" value="Submit" />
-            </Col>
-          </Row>
-        </form>
-        <Row>
+            </label>
+          </Input>
+          <Input>
+            <label>
+              <small>Zip code</small>
+            </label>
+            <input
+              name="zipcode"
+              type="text"
+              value={this.state.zipcode}
+              onChange={this.handleZipChange}
+            />
+          </Input>
+          <Input>
+            <input type="submit" value="Submit" />
+          </Input>
+          {/* </form> */}
           {/* <Col xs={12}>
               <button type="text" onClick={this.handleAdvancedClick}>
                 Advanced Search
               </button>
             </Col> */}
-        </Row>
+        </Table>
       </div>
     )
   }
@@ -98,11 +87,11 @@ const mapState = state => {
   }
 }
 
-export default connect(mapState)(UserHome)
+export default connect(mapState)(UserHomeContainer)
 
 /**
  * PROP TYPES
  */
-UserHome.propTypes = {
+UserHomeContainer.propTypes = {
   // email: PropTypes.string
 }

@@ -11,32 +11,39 @@
 
 /* body */
 
+#container {
+  background-color: #ffffff;
+  color: #222222;
+}
+
 body {
-  font-family: Georgia, 'Times New Roman', Times, serif, sans-serif;
+  font-family: 'EB Garamond', serif;
   display: block;
   position: relative;
   width: 100vw;
-  background-color: rgb(247, 245, 244);
+  background-color: white;
   margin: 0px;
   padding: 0px;
   z-index: 4;
+  line-height: 26px;
+  /* font-size: 16px; */
+  min-width: 320px;
+  height: 100%;
+  text-rendering: optimizeLegibility;
 }
 
 /* navbar */
 nav {
   background-attachment: scroll;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
-    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  color: black;
+  font-family: 'Lato', sans-serif;
   margin-left: 5vw;
   margin-right: 5vw;
   display: flex;
   justify-content: flex-start;
-  /* height: 4vh; */
-  width: 100vw;
   padding-left: 20px;
   padding-top: 10px;
   font-size: 1.25em;
+  border: none;
 }
 
 a {
@@ -50,6 +57,8 @@ label {
 nav a {
   display: inline-block;
   margin: 1em;
+  color: grey;
+  text-transform: lowercase;
 }
 
 form div {
@@ -57,15 +66,11 @@ form div {
   display: inline-block;
 }
 
-/* navbar */
-nav {
-  border: none;
-}
-
 nav #logo {
   font-size: 2em;
-  color: rgb(233, 104, 233);
+  color: pink;
   font-family: 'Braggadocio';
+  text-transform: uppercase;
 }
 
 #user-container {

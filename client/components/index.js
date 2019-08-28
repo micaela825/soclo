@@ -1,9 +1,13 @@
 /**
  * `components/index.js` exists simply as a 'central export' for our components.
  */
-export {default as Navbar} from './navbar'
-export {default as UserHome} from './user-home'
-export {default as UserSearch} from './usersearch'
-export {default as UserAccount} from './useraccount'
-export {default as UserCloset} from './usercloset'
+
+export {NavBar} from './NavBar'
+export {UserHomeContainer} from './Home'
+export {SearchContainer} from './Search'
+export {AccountContainer} from './Account'
+export {ClosetContainer} from './Closet'
 export {Login, Signup} from './auth-form'
+export {ArticleContainer} from './Article'
+export {AddContainer} from './Add'
+export {AddSuccess} from './AddSuccess'
