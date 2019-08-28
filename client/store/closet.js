@@ -27,11 +27,9 @@ const gotAddedDress = dress => ({type: ADDED_DRESS, dress})
  */
 
 export const getDresses = () => {
-  console.log('in get Dresses')
   return async (dispatch, getState) => {
     try {
       const res = await axios.get(`/api/dresses`)
-
       dispatch(gotDresses(res.data))
     } catch (err) {
       console.error(err)
@@ -40,7 +38,6 @@ export const getDresses = () => {
 }
 
 export const addDress = dress => {
-  console.log('DRESS', dress)
   return async (dispatch, getState) => {
     try {
       const {data} = await axios.post(`/api/dresses`, dress)

@@ -129,8 +129,6 @@ const mapDispatch = dispatch => {
 export default connect(mapState, mapDispatch)(AddContainer)
 
 // ** TODO:
-// add redirect to success page so it's not on add ? or another way to refresh when the 'add another' button is hit
-// if wanted to make single-page application, have to add an 'addDress' to render in real-time on front end
 // add cloudinary functionality to local state
 // add remove dress functionality
 // add update dress

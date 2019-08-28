@@ -5,7 +5,7 @@ module.exports = router
 router.get('/', async (req, res, next) => {
   try {
     const dresses = await Closet.findAll({
-      attributes: ['imageURL', 'name', 'description']
+      attributes: ['id', 'imageURL', 'name', 'description']
     })
     res.json(dresses)
   } catch (err) {
@@ -22,10 +22,11 @@ router.post('/', async (req, res, next) => {
 })
 
 router.delete('/:dressId', async (req, res, next) => {
+  console.log('dressId', req.params.dressId)
   try {
     Closet.destroy({
       where: {
-        name: req.params.dressId
+        id: req.params.dressId
       }
     })
   } catch (err) {
