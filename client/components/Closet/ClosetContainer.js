@@ -16,20 +16,22 @@ import {
 } from './Closet.style'
 
 class ClosetContainer extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = store.getState()
     this.removeDress = this.removeDress.bind(this)
   }
 
-  removeDress(dressId) {
-    axios.delete(`api/dresses/${dressId}`)
-    this.setState({
-      dresses: this.state.closet.dresses.filter(dress => dress.id !== dressId)
-    })
+  async removeDress(dressId) {
+    // before onClick, have confirmation pop-up - ask if want to remove dress. if no, route back to /closet, if yes, continue with delete dress
+    await axios.delete(`api/closet/${dressId}`).then(
+      this.setState({
+        dresses: this.state.closet.dresses.filter(dress => dress.id !== dressId)
+      })
+    )
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     store.dispatch(getDresses())
     this.unsubscribe = store.subscribe(() => this.setState(store.getState))
   }
@@ -44,18 +46,17 @@ class ClosetContainer extends Component {
         <Link to="/add">Add An Item</Link>
         <h1>user closet</h1>
         <Table>
-          {this.props.dresses
-            ? this.props.dresses.map((dress, i) => (
+          {this.state.closet.dresses
+            ? this.state.closet.dresses.map((dress, i) => (
                 <Item>
-                  <NameBody>{dress.name}</NameBody>
-                  <ImageBody>
-                    <img src={dress.imageURL} height="200" width="150" />
-                  </ImageBody>
-                  <DescBody>{dress.description}</DescBody>
+                  <Link to={`/closet/${dress.id}`}>
+                    <NameBody>{dress.name}</NameBody>
+                    <ImageBody>
+                      <img src={dress.imageURL} height="200" width="150" />
+                    </ImageBody>
+                  </Link>
                   <Buttons>
-                    <EditButton onClick={() => this.removeDress(dress.id)}>
-                      edit
-                    </EditButton>
+                    <Link to="/edit">edit</Link>
                     <RemoveButton onClick={() => this.removeDress(dress.id)}>
                       remove
                     </RemoveButton>
@@ -82,3 +83,6 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapState, mapDispatchToProps)(ClosetContainer)
+
+// TODO:
+// remove dress - confirm pop up, redirect to closet on confirmation

@@ -10,7 +10,9 @@ import {
   ClosetContainer,
   AccountContainer,
   AddContainer,
-  AddSuccess
+  ArticleContainer,
+  AddSuccess,
+  UpdateContainer
 } from './components'
 import {me} from './store'
 
@@ -29,10 +31,11 @@ class Routes extends Component {
       <div>
         <Route path="/home" component={UserHomeContainer} />
         <Route path="/search" component={SearchContainer} />
-        <Route path="/closet" component={ClosetContainer} />
+        <Route exact path="/closet" component={ClosetContainer} />
         <Route path="/account" component={AccountContainer} />
         <Route path="/add" component={AddContainer} />
         <Route path="/success" component={AddSuccess} />
+        <Route exact path="/closet/:dressId" component={ArticleContainer} />
       </div>
     )
   }

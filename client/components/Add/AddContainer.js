@@ -41,15 +41,14 @@ class AddContainer extends Component {
   }
 
   checkUploadResult = resultEvent => {
-    // if (resultEvent.event === 'success') {
-    //   console.log(this.PaymentResponse.currentUser.id)
-    //   this.PaymentResponse.postPhoto({
-    //     user_id: this.props.currentUser.id,
-    //     caption: '',
-    //     url: resultEvent.info.secure_url
-    //   }).then(this.props.history.push(`/profile`))
-    // }
-    //console.log('result event ****', resultEvent)
+    if (resultEvent.event === 'success') {
+      console.log(this.PaymentResponse.currentUser.id)
+      this.PaymentResponse.postPhoto({
+        user_id: this.props.currentUser.id,
+        caption: '',
+        url: resultEvent.info.secure_url
+      }).then(this.props.history.push(`/profile`))
+    }
   }
 
   render() {
@@ -61,10 +60,12 @@ class AddContainer extends Component {
       (error, result) => {
         if (!error && result && result.event === 'success') {
           console.log('Done! Here is the image info: ', result.info)
+          this.setState({
+            imageURL: result.info.url
+          })
         }
       }
     )
-    console.log('this.state.submitted', this.state.submitted)
     return (
       <div id="add_container">
         {this.state.submitted ? (
@@ -73,7 +74,7 @@ class AddContainer extends Component {
           <Body>
             add a dress
             <form onSubmit={this.handleSubmit}>
-              <label>
+              {/* <label>
                 <small>url image</small>
                 <input
                   name="imageURL"
@@ -81,7 +82,7 @@ class AddContainer extends Component {
                   value={this.state.imageURL}
                   onChange={this.handleChange}
                 />
-              </label>
+              </label> */}
 
               <label>
                 <small>dress name</small>
@@ -127,8 +128,3 @@ const mapDispatch = dispatch => {
 }
 
 export default connect(mapState, mapDispatch)(AddContainer)
-
-// ** TODO:
-// add cloudinary functionality to local state
-// add remove dress functionality
-// add update dress

@@ -1,88 +1,42 @@
-// import React, {Component} from 'react'
-// import {connect} from 'react-redux'
-// import {addDress} from '../../store/closet'
+import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
+import axios from 'axios'
+import store from '../../store'
+import {getSingleDress} from '../../store/closet'
 
-// class ArticleContainer extends Component {
-//   constructor() {
-//     super()
-//     this.state = {
-//       imageURL: '',
-//       name: '',
-//       description: ''
-//     }
-//     this.handleChange = this.handleChange.bind(this)
-//     this.handleSubmit = this.handleSubmit.bind(this)
-//   }
+export default class ArticleContainer extends Component {
+  constructor() {
+    super()
+    this.state = store.getState()
+  }
 
-//   handleChange(event) {
-//     this.setState({
-//       [event.target.name]: event.target.value
-//     })
-//   }
+  async componentDidMount() {
+    const dressId = this.props.match.params.dressId
+    store.dispatch(getSingleDress(dressId))
+    this.unsubscribe = store.subscribe(() => this.setState(store.getState))
+  }
 
-//   handleSubmit(event) {
-//     event.preventDefault()
-//     this.props.addDress(this.state)
-//     this.props.addingDress(this.state)
+  componentWillUnmount() {
+    this.unsubscribe()
+  }
 
-//     this.setState({
-//       imageURL: '',
-//       name: '',
-//       description: ''
-//     })
-//   }
+  render() {
+    const dress = this.state.closet.dress[0]
 
-//   render() {
-//     // console.log('this.state in addDress render', this.state)
-//     return (
-//       <div>
-//         add a dress
-//         <form onSubmit={this.handleSubmit}>
-//           <label>
-//             <small>url image</small>
-//             <input
-//               name="imageURL"
-//               type="text"
-//               value={this.state.imageURL}
-//               onChange={this.handleChange}
-//             />
-//           </label>
-
-//           <label>
-//             <small>dress name</small>
-//             <input
-//               name="name"
-//               type="text"
-//               value={this.state.name}
-//               onChange={this.handleChange}
-//             />
-//           </label>
-
-//           <label>
-//             <small>description</small>
-//             <input
-//               name="description"
-//               type="text"
-//               onChange={this.handleChange}
-//               value={this.state.description}
-//             />
-//           </label>
-//           <button type="submit">Submit</button>
-//         </form>
-//       </div>
-//     )
-//   }
-// }
-
-// const mapState = state => {
-//   return {
-//     dress: state.dress
-//   }
-// }
-
-// const mapDispatch = dispatch => {
-//   return {
-//     addDress: dress => dispatch(addDress(dress))
-//   }
-// }
-// export default connect(mapState, mapDispatch)(ArticleContainer)
+    if (dress) {
+      return (
+        <div>
+          <div className="dress" key="dress.id" />
+          <div>
+            <h4>Name:</h4>
+            <h5>{dress.name}</h5>
+            <img src={dress.imageURL} height="200" width="150" />
+            <h5>{dress.description}</h5>
+          </div>
+        </div>
+      )
+    } else {
+      return <h1>Sorry no dress found</h1>
+    }
+  }
+}
