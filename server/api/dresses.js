@@ -4,8 +4,13 @@ module.exports = router
 
 router.get('/', async (req, res, next) => {
   try {
+    const userId = req.session.passport.user
     const dresses = await Closet.findAll({
-      attributes: ['id', 'imageURL', 'name', 'description']
+      where: {
+        userId: userId
+      },
+
+      attributes: ['id', 'imageURL', 'name', 'description', 'userId']
     })
     res.json(dresses)
   } catch (err) {

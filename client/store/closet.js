@@ -45,7 +45,6 @@ export const getSingleDress = dressId => {
   return async (dispatch, getState) => {
     try {
       const res = await axios.get(`/api/closet/${dressId}`)
-      console.log('res.data in GET DRESS', res.data)
       dispatch(gotDress(res.data))
     } catch (err) {
       console.error(err)
@@ -57,6 +56,7 @@ export const addDress = dress => {
   return async (dispatch, getState) => {
     try {
       const {data} = await axios.post(`/api/closet`, dress)
+
       dispatch(gotAddedDress(data))
     } catch (err) {
       console.error(err)

@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Table = styled.div`
   display: grid;
-  grid-template-columns: 33% 33% 33%;
+  grid-template-columns: repeat(300px, 1fr);
   grid-template-rows: auto;
   justify-items: center;
   margin: 0 150px;

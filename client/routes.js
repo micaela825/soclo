@@ -25,18 +25,28 @@ class Routes extends Component {
   }
 
   render() {
-    // const {isLoggedIn} = this.props
+    const {isLoggedIn} = this.props
 
     return (
-      <div>
-        <Route path="/home" component={UserHomeContainer} />
-        <Route path="/search" component={SearchContainer} />
-        <Route exact path="/closet" component={ClosetContainer} />
-        <Route path="/account" component={AccountContainer} />
-        <Route path="/add" component={AddContainer} />
-        <Route path="/success" component={AddSuccess} />
-        <Route exact path="/closet/:dressId" component={ArticleContainer} />
-      </div>
+      <Switch>
+        {/* Routes placed here are available to all visitors */}
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
+        {isLoggedIn && (
+          <Switch>
+            {/* Routes placed here are only available after logging in */}
+            <Route path="/home" component={UserHomeContainer} />
+            <Route path="/search" component={SearchContainer} />
+            <Route exact path="/closet" component={ClosetContainer} />
+            <Route path="/account" component={AccountContainer} />
+            <Route path="/add" component={AddContainer} />
+            <Route path="/success" component={AddSuccess} />
+            <Route exact path="/closet/:dressId" component={ArticleContainer} />
+          </Switch>
+        )}
+        {/* Displays our Login component as a fallback */}
+        <Route component={Login} />
+      </Switch>
     )
   }
 }
@@ -47,8 +57,7 @@ class Routes extends Component {
 const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
-    // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.user.id
   }
 }
 
@@ -68,20 +77,6 @@ export default withRouter(connect(mapState, mapDispatch)(Routes))
  * PROP TYPES
  */
 Routes.propTypes = {
-  loadInitialData: PropTypes.func.isRequired
-  // isLoggedIn: PropTypes.bool.isRequired
+  loadInitialData: PropTypes.func.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired
 }
-
-// <Switch>
-//         {/* Routes placed here are available to all visitors */}
-//         <Route path="/login" component={Login} />
-//         <Route path="/signup" component={Signup} />
-//         {isLoggedIn && (
-//           <Switch>
-//             {/* Routes placed here are only available after logging in */}
-//             <Route path="/home" component={UserHome} />
-//           </Switch>
-//         )}
-//         {/* Displays our Login component as a fallback */}
-//         <Route component={Login} />
-//       </Switch>

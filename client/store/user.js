@@ -12,7 +12,7 @@ const GOT_USERS = 'GOT_USERS'
  * INITIAL STATE
  */
 const initialState = {
-  defaultUser: {},
+  user: {},
   users: []
 }
 //const defaultUser = {}
@@ -30,7 +30,8 @@ const gotUsers = users => ({type: GOT_USERS, users})
 export const me = () => async dispatch => {
   try {
     const res = await axios.get('/auth/me')
-    dispatch(getUser(res.data || initialState.defaultUser))
+    // console.log('RES.DATA', res.data)
+    dispatch(getUser(res.data || initialState.user))
   } catch (err) {
     console.error(err)
   }
@@ -78,9 +79,9 @@ export const logout = () => async dispatch => {
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_USER:
-      return {...initialState, defaultUser: action.user}
+      return {...initialState, user: action.user}
     case REMOVE_USER:
-      return {...initialState, defaultUser: {}}
+      return {...initialState, user: {}}
     case GOT_USERS:
       return {...initialState, users: action.users}
     default:

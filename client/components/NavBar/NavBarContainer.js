@@ -7,17 +7,26 @@ import {logout} from '../../store'
 const NavBar = ({handleClick, isLoggedIn}) => (
   <div className="navBar">
     <nav>
-      <div>
-        <Link to="/home" id="logo">
-          SC
-        </Link>
-        <Link to="/search">Find A Dress</Link>
-        <Link to="/closet">My Closet</Link>
-        <Link to="/account">My Account</Link>
-        <a href="#" onClick={handleClick}>
-          Logout
-        </a>
-      </div>
+      {isLoggedIn ? (
+        <div>
+          <div>
+            <Link to="/home" id="logo">
+              SC
+            </Link>
+            <Link to="/search">Find A Dress</Link>
+            <Link to="/closet">My Closet</Link>
+            <Link to="/account">My Account</Link>
+            <a href="#" onClick={handleClick}>
+              Logout
+            </a>
+          </div>
+        </div>
+      ) : (
+        <div>
+          <Link to="/login">Login</Link>
+          <Link to="/signup">Sign Up</Link>
+        </div>
+      )}
     </nav>
   </div>
 )
@@ -26,8 +35,9 @@ const NavBar = ({handleClick, isLoggedIn}) => (
  * CONTAINER
  */
 const mapState = state => {
+  console.log('STATE IN NAV BAR', !!state.user.user.id)
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.user.id
   }
 }
 
@@ -48,20 +58,3 @@ NavBar.propTypes = {
   handleClick: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
 }
-
-// <nav>
-// {isLoggedIn ? (
-//    <div>
-
-//      <Link to="/home">Home</Link>
-//      <a href="#" onClick={handleClick}>
-//        Logout
-//      </a>
-//    </div>
-//  ) : (
-//  <div>
-//    <Link to="/login">Login</Link>
-//    <Link to="/signup">Sign Up</Link>
-//  </div>
-//   )}
-// </nav>
