@@ -62,8 +62,8 @@ nav a {
 }
 
 form div {
-  margin: 1em;
-  display: inline-block;
+  /* margin: 1em;
+  display: inline-block; */
 }
 
 nav #logo {
@@ -74,7 +74,7 @@ nav #logo {
 }
 
 #user-container {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; */
 }

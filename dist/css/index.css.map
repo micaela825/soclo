@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,KAAK,CAAC;EACJ,gBAAgB,EAAE,IAAI;CACvB",
+    "sources": [
+        "../../client/components/Closet/index.scss"
+    ],
+    "names": [],
+    "file": "index.css"
+}

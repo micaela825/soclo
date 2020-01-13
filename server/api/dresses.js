@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Closet} = require('../db/models')
+const {Closet, User} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -9,6 +9,7 @@ router.get('/', async (req, res, next) => {
       where: {
         userId: userId
       },
+      include: [{model: User}],
 
       attributes: ['id', 'imageURL', 'name', 'description', 'userId']
     })
@@ -35,6 +36,7 @@ router.get('/:dressId', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const newDress = await Closet.create(req.body)
+    console.log('DRESS CREATED *****', newDress)
   } catch (err) {
     console.error(err)
   }

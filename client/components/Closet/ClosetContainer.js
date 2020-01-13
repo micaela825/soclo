@@ -4,15 +4,20 @@ import {Link} from 'react-router-dom'
 import {getDresses} from '../../store/closet'
 import store from '../../store'
 import axios from 'axios'
+
 import {
+  Container,
   Table,
+  OptionBar,
+  PageTitle,
   Item,
   NameBody,
   ImageBody,
   DescBody,
   Buttons,
   RemoveButton,
-  EditButton
+  EditButton,
+  MenuButton
 } from './Closet.style'
 
 class ClosetContainer extends Component {
@@ -36,15 +41,32 @@ class ClosetContainer extends Component {
     this.unsubscribe = store.subscribe(() => this.setState(store.getState))
   }
 
+  async addWear(dress) {
+    console.log('dress !!', dress)
+  }
+
   componentWillUnmount() {
     this.unsubscribe()
   }
 
   render() {
     return (
-      <div id="user-container">
-        <Link to="/add">Add An Item</Link>
-        <h1>user closet</h1>
+      <Container>
+        <div className="test">
+          testingggg
+          <PageTitle>user closet</PageTitle>
+        </div>
+        <OptionBar>
+          <Link to="/add">
+            <MenuButton>filter</MenuButton>
+          </Link>
+          <Link to="/add">
+            <MenuButton>sort</MenuButton>
+          </Link>
+          <Link to="/add">
+            <MenuButton>add an item</MenuButton>
+          </Link>
+        </OptionBar>
         <Table>
           {this.state.closet.dresses
             ? this.state.closet.dresses.map((dress, i) => (
@@ -52,11 +74,14 @@ class ClosetContainer extends Component {
                   <Link to={`/closet/${dress.id}`}>
                     <NameBody>{dress.name}</NameBody>
                     <ImageBody>
-                      <img src={dress.imageURL} height="200" width="150" />
+                      <img src={dress.imageURL} height="240" width="160" />
                     </ImageBody>
                   </Link>
                   <Buttons>
                     <Link to="/edit">edit</Link>
+                    <button onClick={() => this.addWear(dress)}>
+                      add wear
+                    </button>
                     <RemoveButton onClick={() => this.removeDress(dress.id)}>
                       remove
                     </RemoveButton>
@@ -65,7 +90,7 @@ class ClosetContainer extends Component {
               ))
             : null}
         </Table>
-      </div>
+      </Container>
     )
   }
 }
