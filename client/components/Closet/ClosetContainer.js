@@ -4,21 +4,9 @@ import {Link} from 'react-router-dom'
 import {getDresses} from '../../store/closet'
 import store from '../../store'
 import axios from 'axios'
+import './index.scss'
 
-import {
-  Container,
-  Table,
-  OptionBar,
-  PageTitle,
-  Item,
-  NameBody,
-  ImageBody,
-  DescBody,
-  Buttons,
-  RemoveButton,
-  EditButton,
-  MenuButton
-} from './Closet.style'
+const baseClass = 'closet-container'
 
 class ClosetContainer extends Component {
   constructor(props) {
@@ -41,56 +29,55 @@ class ClosetContainer extends Component {
     this.unsubscribe = store.subscribe(() => this.setState(store.getState))
   }
 
-  async addWear(dress) {
-    console.log('dress !!', dress)
-  }
-
   componentWillUnmount() {
     this.unsubscribe()
   }
 
   render() {
     return (
-      <Container>
-        <div className="test">
-          testingggg
-          <PageTitle>user closet</PageTitle>
+      <div className={`${baseClass}`}>
+        <div className={`${baseClass}_title`}>user closet</div>
+
+        <div className={`${baseClass}_nav`}>
+          <Link to="/add">
+            <div className={`${baseClass}_menu-button`}>filter</div>
+          </Link>
+          <Link to="/add">
+            <div className={`${baseClass}_menu-button`}>sort</div>
+          </Link>
+          <Link to="/add">
+            <div className={`${baseClass}_menu-button`}>add an item </div>
+          </Link>
         </div>
-        <OptionBar>
-          <Link to="/add">
-            <MenuButton>filter</MenuButton>
-          </Link>
-          <Link to="/add">
-            <MenuButton>sort</MenuButton>
-          </Link>
-          <Link to="/add">
-            <MenuButton>add an item</MenuButton>
-          </Link>
-        </OptionBar>
-        <Table>
+        <div className={`${baseClass}_table`}>
           {this.state.closet.dresses
             ? this.state.closet.dresses.map((dress, i) => (
-                <Item>
+                <div className={`${baseClass}_item`}>
                   <Link to={`/closet/${dress.id}`}>
-                    <NameBody>{dress.name}</NameBody>
-                    <ImageBody>
+                    <div className={`${baseClass}_name-body`}>{dress.name}</div>
+                    <div className={`${baseClass}_image-body`}>
                       <img src={dress.imageURL} height="240" width="160" />
-                    </ImageBody>
+                    </div>
                   </Link>
-                  <Buttons>
+                  <div className={`${baseClass}_buttons`}>
                     <Link to="/edit">edit</Link>
                     <button onClick={() => this.addWear(dress)}>
+                      {/* <button onClick={() => setWearCount(wearCount + 1)}> */}
                       add wear
                     </button>
-                    <RemoveButton onClick={() => this.removeDress(dress.id)}>
+
+                    <div
+                      className={`${baseClass}_remove-button`}
+                      onClick={() => this.removeDress(dress.id)}
+                    >
                       remove
-                    </RemoveButton>
-                  </Buttons>
-                </Item>
+                    </div>
+                  </div>
+                </div>
               ))
             : null}
-        </Table>
-      </Container>
+        </div>
+      </div>
     )
   }
 }

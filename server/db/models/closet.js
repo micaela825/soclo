@@ -21,12 +21,6 @@ const Closet = db.define('closet', {
   //   type: Sequelize.INTEGER,
   //   value: User.id
   // }
-  // userIdd: {
-  //   type: Sequelize.INTEGER,
-  //   get() {
-  //     return () => Closet.prototype.getUser()
-  //   }
-  // }
 })
 
 // console.log('***********', this.getUser())

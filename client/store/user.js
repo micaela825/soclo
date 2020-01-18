@@ -30,7 +30,6 @@ const gotUsers = users => ({type: GOT_USERS, users})
 export const me = () => async dispatch => {
   try {
     const res = await axios.get('/auth/me')
-    // console.log('RES.DATA', res.data)
     dispatch(getUser(res.data || initialState.user))
   } catch (err) {
     console.error(err)

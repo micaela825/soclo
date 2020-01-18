@@ -18,21 +18,24 @@ async function seed() {
         'https://www.hautelookcdn.com/resizer/868x1300/products/262139/large/10329002.jpg',
       name: 'Black dress',
       description: 'a very pretty dress!',
-      userId: 1
+      userId: 1,
+      wearCount: 2
     }),
     Closet.create({
       imageURL:
         'https://fastly.hautelookcdn.com/products/FN04K93/large/10097318.jpg?height=350&width=228',
       name: 'Floral dress',
       description: 'Perfect for springtime',
-      userId: 2
+      userId: 2,
+      wearCount: 1
     }),
     Closet.create({
       imageURL:
         'https://www.hautelookcdn.com/resizer/434x650/products/K0024M/large/10174444.jpg',
       name: 'Penelope scallop hem dress',
       description: 'Illusion neck, short sleeves, scallop trip',
-      userId: 1
+      userId: 1,
+      wearCount: 2
     }),
     Closet.create({
       imageURL:
@@ -40,7 +43,8 @@ async function seed() {
       name: 'XSCAPE Floral Party Dress',
       description:
         'A bodice boasting geometric symmetry with a V-neck and mesh-inset cutouts at the waist tops a skirt featuring mirror-image floral patterning for a balanced dress that will skew all comments in your favor.',
-      userId: 2
+      userId: 2,
+      wearCount: 3
     }),
     Closet.create({
       imageURL:
@@ -48,7 +52,8 @@ async function seed() {
       name: 'Tyler Off-the-Shoulder Bow Front Dress',
       description:
         'Fit true to size. Sweetheart neck with bow detail. Off-the-shoulder short sleeves',
-      userId: 1
+      userId: 1,
+      wearCount: 3
     })
   ])
 

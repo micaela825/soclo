@@ -35,8 +35,21 @@ router.get('/:dressId', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    const newDress = await Closet.create(req.body)
-    console.log('DRESS CREATED *****', newDress)
+    const newDress = await Closet.create({
+      id: req.body.id,
+      imageURL: req.body.imageURL,
+      name: req.body.name,
+      description: req.body.description,
+      userId: req.session.passport.user
+    })
+    console.log(
+      'DRESS CREATED *****',
+      req.body,
+      '******',
+
+      'sessinon passport user',
+      req.session.passport.user
+    )
   } catch (err) {
     console.error(err)
   }
