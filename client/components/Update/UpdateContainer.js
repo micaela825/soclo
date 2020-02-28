@@ -1,18 +1,21 @@
 import React, {Component} from 'react'
-import {Link, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {updateDress} from '../../store/closet'
 import {Body} from '../Add/Add.style'
+import store from '../../store'
+import AddSuccess from '../AddSuccess/AddSuccess'
 
 // EDIT DRESS SHOULD RETURN DRESS FROM DB
 
 class UpdateContainer extends Component {
-  constructor(props) {
-    super(props)
+  constructor(dress) {
+    super(dress)
     this.state = {
       imageURL: '',
       name: '',
       description: '',
+      wearCount: '',
+      cost: '',
       submitted: false
     }
     this.handleChange = this.handleChange.bind(this)
@@ -27,17 +30,15 @@ class UpdateContainer extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    this.props.editDress(this.state)
+    const dressToEdit = this.props.location.state
+    const dressId = this.props.match.params.dressId
 
-    this.setState({
-      imageURL: '',
-      name: '',
-      description: '',
-      submitted: true
-    })
+    this.props.updateDress(dressToEdit, dressId)
   }
 
   render() {
+    const dressToEdit = this.props.location.state
+
     return (
       <div id="add_container">
         <Body>
@@ -60,6 +61,7 @@ class UpdateContainer extends Component {
                 type="text"
                 value={this.state.name}
                 onChange={this.handleChange}
+                placeholder={dressToEdit.name}
               />
             </label>
 
@@ -70,6 +72,7 @@ class UpdateContainer extends Component {
                 type="text"
                 onChange={this.handleChange}
                 value={this.state.description}
+                placeholder={dressToEdit.description}
               />
             </label>
             <button type="submit">Submit</button>
@@ -88,7 +91,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    updateDress: dress => dispatch(updateDress(dress))
+    updateDress: (dress, id) => dispatch(updateDress(dress, id))
   }
 }
 
@@ -97,4 +100,3 @@ export default connect(mapState, mapDispatch)(UpdateContainer)
 // ** TODO:
 // add cloudinary functionality to local state
 // add remove dress functionality
-// add update dress

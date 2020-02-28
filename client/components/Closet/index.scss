@@ -1,42 +1,43 @@
-.closet-container {
-  display: block;
-  margin: 10px;
+@import '../../assets/colors.scss';
 
-  &_page_title {
-    margin-left: 200px;
-    max-width: 200px;
+.closet-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 100px auto;
+  margin: 0 60px;
+
+  &_title {
+    grid-row: 1;
+    grid-column: 6 / span 2;
+    font-size: 28px;
   }
 
-  &_navbar {
-    margin-left: calc(100vw - 500px);
+  &_nav {
+    grid-column: 1 / span 1;
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
   }
 
   &_menu-button {
-    border-radius: 7px;
-    background-color: mistyrose;
-    padding: 7px;
-    margin: 10px 5px 10px 10px;
-    opacity: 0.8;
-    &:hover {
-      cursor: pointer;
-      opacity: 1;
-    }
+    @include button;
     text-transform: uppercase;
   }
 
   &_table {
+    grid-row: 2;
+    grid-column: 3 / span 8;
     display: grid;
-    grid-template-columns: repeat(6, 250px);
+    grid-template-columns: repeat(4, 25%);
     grid-template-rows: auto;
     justify-items: center;
-    margin: 100px 150px;
   }
 
   &_item {
-    width: 200px;
-    margin: 30px 50px;
-    animation: div 1s ease-in 2s 3 linear fill-mode;
-    border-bottom: grey 1px;
+    // width: 200px;
+    // margin: 30px 50px;
+    // animation: div 1s ease-in 2s 3 linear fill-mode;
+    // border-bottom: grey 1px;
 
     :hover {
       cursor: pointer;
@@ -87,9 +88,6 @@
   }
 
   &_remove-button {
-    border-radius: 15px;
-    background-color: mistyrose;
-    padding: 7px;
-    margin: 10px 10px 10px 5px;
+    @include button;
   }
 }

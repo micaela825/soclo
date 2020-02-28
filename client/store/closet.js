@@ -17,6 +17,7 @@ const GET_DRESSES = 'GET_DRESSES'
 const GET_SINGLE_DRESS = 'GET_SINGLE_DRESS'
 const ADDED_DRESS = 'ADDED_DRESS'
 const UPDATED_DRESS = 'UPDATED DRESS'
+const ADD_WEAR = 'ADD_WEAR'
 
 /**
  * ACTION CREATORS
@@ -25,6 +26,7 @@ const gotDresses = dresses => ({type: GET_DRESSES, dresses})
 const gotAddedDress = dress => ({type: ADDED_DRESS, dress})
 const gotDress = dress => ({type: GET_SINGLE_DRESS, dress})
 const gotUpdatedDress = dress => ({type: UPDATED_DRESS, dress})
+const gotDressToIncrement = dressId => ({type: ADD_WEAR, dressId})
 
 /**
  * THUNK CREATORS
@@ -64,8 +66,28 @@ export const addDress = dress => {
   }
 }
 
-export const updateDress = dress => {
-  console.log('dress to update', dress)
+export const updateDress = (dress, id) => {
+  const dressId = id
+  return async (dispatch, getState) => {
+    try {
+      const {data} = await axios.post(`/api/closet/${dressId}`, dress)
+
+      dispatch(gotUpdatedDress(data))
+    } catch (err) {
+      console.error(err)
+    }
+  }
+}
+
+export const addWear = dressId => {
+  return async (dispatch, getState) => {
+    try {
+      const {data} = await axios.post(`/api/closet/${dressId}`, dressId)
+      dispatch(gotDressToIncrement(data))
+    } catch (err) {
+      console.error(err)
+    }
+  }
 }
 
 /**
@@ -81,6 +103,8 @@ export default function(state = initialState, action) {
       return {...state, dress: action.dress}
     case UPDATED_DRESS:
       return {...state, dress: action.dress}
+    case ADD_WEAR:
+      return {...state, dressId: action.dressId}
     default:
       return state
   }

@@ -15,20 +15,18 @@ const Closet = db.define('closet', {
     type: Sequelize.TEXT
   },
   wearCount: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
+    defaultValue: 0
+  },
+  cost: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
   }
-  // userId: {
-  //   type: Sequelize.INTEGER,
-  //   value: User.id
-  // }
 })
 
-// console.log('***********', this.getUser())
+Closet.beforeValidate(instance => {
+  instance.wearCount = Number(instance.wearCount)
+  instance.cost = Number(instance.cost)
+})
 
 module.exports = Closet
-
-// const getUserId = async () => {
-//   Closet.prototype.getUser()
-// }
-
-// Closet.beforeCreate(getUserId())

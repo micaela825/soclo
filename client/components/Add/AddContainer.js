@@ -12,6 +12,8 @@ class AddContainer extends Component {
       imageURL: '',
       name: '',
       description: '',
+      wearCount: '',
+      cost: '',
       submitted: false
     }
     this.handleChange = this.handleChange.bind(this)
@@ -32,6 +34,8 @@ class AddContainer extends Component {
       imageURL: '',
       name: '',
       description: '',
+      wearCount: '',
+      cost: '',
       submitted: true
     })
   }
@@ -55,7 +59,8 @@ class AddContainer extends Component {
     let widget = window.cloudinary.createUploadWidget(
       {
         cloudName: 'micaelascloud',
-        uploadPreset: 'ahb8abmz'
+        uploadPreset: 'ahb8abmz',
+        showAdvancedOptions: true
       },
       (error, result) => {
         if (!error && result && result.event === 'success') {
@@ -74,16 +79,6 @@ class AddContainer extends Component {
           <Body>
             add a dress
             <form onSubmit={this.handleSubmit}>
-              {/* <label>
-                <small>url image</small>
-                <input
-                  name="imageURL"
-                  type="text"
-                  value={this.state.imageURL}
-                  onChange={this.handleChange}
-                />
-              </label> */}
-
               <label>
                 <small>dress name</small>
                 <input
@@ -103,6 +98,34 @@ class AddContainer extends Component {
                   value={this.state.description}
                 />
               </label>
+              <label>
+                <small>wears</small>
+                <input
+                  name="wearCount"
+                  type="text"
+                  onChange={this.handleChange}
+                  value={this.state.wearCount}
+                />
+              </label>
+              <label>
+                <small>purchase cost</small>
+                <input
+                  name="cost"
+                  type="text"
+                  onChange={this.handleChange}
+                  value={this.state.cost}
+                />
+              </label>
+              {/* <label>
+                <small>cost per wear goal: </small>
+                {// add tooltip above}
+                <input
+                  name="cost"
+                  type="text"
+                  onChange={this.handleChange}
+                  value={this.state.cost}
+                />
+              </label> */}
               <button type="submit">Submit</button>
             </form>
             <Widget onClick={() => this.showWidget(widget)}>

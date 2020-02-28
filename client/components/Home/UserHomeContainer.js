@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Table, Header, Input, SubmitBtn} from './UserHome.style'
-import SimpleSlider from '../ItemCarousel/CarouselContainer'
+// import SimpleSlider from '../ItemCarousel/CarouselContainer'
 
 class UserHomeContainer extends Component {
   constructor() {
@@ -39,7 +39,6 @@ class UserHomeContainer extends Component {
   render() {
     return (
       <div>
-        <SimpleSlider />
         <Header>Find something beautiful</Header>
         <Table onSubmit={this.handleSearchClick}>
           <Input>

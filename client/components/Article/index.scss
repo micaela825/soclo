@@ -1,0 +1,64 @@
+.article {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 25% auto 25%;
+  margin: 0 60px;
+  justify-items: center;
+
+  &__image {
+    height: 360px;
+    width: 224px;
+    grid-column: 3 / span 3;
+    grid-row: 2;
+  }
+
+  &__info {
+    grid-row: 2;
+    grid-column: 7 / span 3;
+    display: grid;
+    grid-template-rows: 75px 100px auto;
+
+    &__title {
+      grid-row: 1;
+      font-size: 32px;
+      margin-top: 0;
+    }
+
+    &__cost {
+      grid-row: 2;
+      font-size: 14px;
+      line-height: 26px;
+      font-family: 'Lato';
+      text-transform: uppercase;
+      opacity: 0.8;
+
+      div span {
+        font-size: 18px;
+        font-weight: 600;
+        opacity: 1;
+        margin-left: 7px;
+      }
+    }
+
+    &__buttons {
+      grid-row: 3;
+      display: flex;
+      flex-direction: column;
+
+      button {
+        border-radius: 7px;
+        background-color: mistyrose;
+        padding: 7px;
+        margin: 10px 0px;
+        opacity: 0.8;
+        text-transform: uppercase;
+        width: 120px;
+
+        &:hover {
+          cursor: pointer;
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

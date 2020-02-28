@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'React'
 import ReactDOM from 'react-dom'
 import {Provider} from 'react-redux'
 import {Router} from 'react-router-dom'

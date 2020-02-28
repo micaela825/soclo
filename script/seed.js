@@ -19,7 +19,8 @@ async function seed() {
       name: 'Black dress',
       description: 'a very pretty dress!',
       userId: 1,
-      wearCount: 2
+      wearCount: 2,
+      cost: 50.99
     }),
     Closet.create({
       imageURL:
@@ -27,7 +28,8 @@ async function seed() {
       name: 'Floral dress',
       description: 'Perfect for springtime',
       userId: 2,
-      wearCount: 1
+      wearCount: 1,
+      cost: 35
     }),
     Closet.create({
       imageURL:
@@ -35,7 +37,8 @@ async function seed() {
       name: 'Penelope scallop hem dress',
       description: 'Illusion neck, short sleeves, scallop trip',
       userId: 1,
-      wearCount: 2
+      wearCount: 2,
+      cost: 100
     }),
     Closet.create({
       imageURL:
@@ -44,7 +47,8 @@ async function seed() {
       description:
         'A bodice boasting geometric symmetry with a V-neck and mesh-inset cutouts at the waist tops a skirt featuring mirror-image floral patterning for a balanced dress that will skew all comments in your favor.',
       userId: 2,
-      wearCount: 3
+      wearCount: 3,
+      cost: 200
     }),
     Closet.create({
       imageURL:
@@ -53,7 +57,8 @@ async function seed() {
       description:
         'Fit true to size. Sweetheart neck with bow detail. Off-the-shoulder short sleeves',
       userId: 1,
-      wearCount: 3
+      wearCount: 3,
+      cost: 70
     })
   ])
 

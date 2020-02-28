@@ -1,15 +1,20 @@
-import React from 'react'
+import React from 'React'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../../store'
+import DesktopHeader from './components/DesktopHeader/index'
+import MobileHeader from './components/MobileHeader/index'
+import './index.scss'
 
 const NavBar = ({handleClick, isLoggedIn}) => (
   <div className="navBar">
     <nav>
       {isLoggedIn ? (
         <div>
-          <div>
+          <DesktopHeader />
+          <MobileHeader />
+          {/* <div>
             <Link to="/home" id="logo">
               SC
             </Link>
@@ -19,7 +24,7 @@ const NavBar = ({handleClick, isLoggedIn}) => (
             <a href="#" onClick={handleClick}>
               Logout
             </a>
-          </div>
+          </div> */}
         </div>
       ) : (
         <div>
