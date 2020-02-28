@@ -57,38 +57,32 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-router.post('/:dressId', async (req, res, next) => {
+router.post('/:dressId/edit', async (req, res, next) => {
   const dressId = req.params.dressId
-  console.log('here **** in dres ID **', req.params, req.body)
 
-  // GOT HERE - new values aren't coming through in req.body, and need to figure out how to combine wearCount increment and this update
   try {
-    // const dressToUpdate = await Closet.increment('wearCount', {
-    //   where: {id: dressId}
-    // })
     const dressToEdit = await Closet.update(req.body, {
       where: {
         id: dressId
       }
     })
-    // res.send(dressToUpdate)
+    res.send(dressToEdit)
   } catch (err) {
     next(err)
   }
 })
 
 router.post('/:dressId', async (req, res, next) => {
+  const dressId = req.params.dressId
+
   try {
-    Closet.update(
-      {
-        imageURL: req.body.imageURL,
-        name: req.body.name,
-        description: req.body.description
-      },
-      {returning: true}
-    )
+    const dressToUpdate = await Closet.increment('wearCount', {
+      where: {id: dressId}
+    })
+
+    res.send(dressToUpdate)
   } catch (err) {
-    console.log(err)
+    next(err)
   }
 })
 

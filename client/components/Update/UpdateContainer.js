@@ -2,14 +2,11 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {updateDress} from '../../store/closet'
 import {Body} from '../Add/Add.style'
-import store from '../../store'
-import AddSuccess from '../AddSuccess/AddSuccess'
-
-// EDIT DRESS SHOULD RETURN DRESS FROM DB
 
 class UpdateContainer extends Component {
   constructor(dress) {
     super(dress)
+
     this.state = {
       imageURL: '',
       name: '',
@@ -30,10 +27,8 @@ class UpdateContainer extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    const dressToEdit = this.props.location.state
     const dressId = this.props.match.params.dressId
-
-    this.props.updateDress(dressToEdit, dressId)
+    this.props.updateDress(this.state, dressId)
   }
 
   render() {
