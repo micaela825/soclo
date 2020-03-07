@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom'
 import './index.scss'
 
 const DesktopHeader = ({handleClick}) => (
-  <div id="desktop-header">
+  <div className="desktop-header">
     <Link to="/home" id="logo">
       SC
     </Link>

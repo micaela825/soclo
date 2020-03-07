@@ -57,8 +57,9 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-router.post('/:dressId/edit', async (req, res, next) => {
+router.put('/:dressId/edit', async (req, res, next) => {
   const dressId = req.params.dressId
+  console.log('req.body ********', req.body)
 
   try {
     const dressToEdit = await Closet.update(req.body, {
@@ -72,6 +73,17 @@ router.post('/:dressId/edit', async (req, res, next) => {
   }
 })
 
+router.delete('/:dressId', (req, res) => {
+  try {
+    Closet.destroy({
+      where: {
+        id: req.params.dressId
+      }
+    })
+  } catch (err) {
+    console.log(err)
+  }
+})
 router.post('/:dressId', async (req, res, next) => {
   const dressId = req.params.dressId
 
@@ -83,17 +95,5 @@ router.post('/:dressId', async (req, res, next) => {
     res.send(dressToUpdate)
   } catch (err) {
     next(err)
-  }
-})
-
-router.delete('/:dressId', async (req, res, next) => {
-  try {
-    Closet.destroy({
-      where: {
-        id: req.params.dressId
-      }
-    })
-  } catch (err) {
-    console.log(err)
   }
 })

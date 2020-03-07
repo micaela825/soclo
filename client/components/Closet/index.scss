@@ -1,22 +1,41 @@
 @import '../../assets/colors.scss';
+// @import '/client/styles/mq';
 
 .closet-container {
+  @include blue;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 100px auto;
-  margin: 0 60px;
+  grid-template-rows: 50px 50px 1fr;
+  margin: 0 10px;
+  // @include mq($from: desktop) {
+  //   grid-template-rows: 100px auto;
+  //   margin: 0 60px;
+  // }
 
   &_title {
     grid-row: 1;
-    grid-column: 6 / span 2;
-    font-size: 28px;
+    grid-column: 1 / span 12;
+    // font-size: 24px;
+    text-align: center;
+    @include blue;
+    @include type-style-H1;
+    // @include mq($from: desktop) {
+    //   grid-column: 6 / span 2;
+    //   font-size: 28px;
+    // }
   }
 
   &_nav {
-    grid-column: 1 / span 1;
+    grid-column: 1 / span 12;
     grid-row: 2;
     display: flex;
     flex-direction: column;
+    width: fit-content;
+    height: fit-content;
+
+    // @include mq($from: desktop) {
+    //   grid-column: 1 / span 2;
+    // }
   }
 
   &_menu-button {
@@ -45,16 +64,19 @@
   }
 
   &_menu-button {
-    border-radius: 7px;
+    font-size: 12px;
     background-color: mistyrose;
-    padding: 7px;
-    margin: 10px 5px 10px 10px;
     opacity: 0.8;
+    text-transform: uppercase;
+    // @include mq($from: desktop) {
+    //   padding: 7px;
+    //   border-radius: 7px;
+    //   margin: 10px 5px 10px 10px;
+    // }
     &:hover {
       cursor: pointer;
       opacity: 1;
     }
-    text-transform: uppercase;
   }
 
   &_name-body {

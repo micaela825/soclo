@@ -1,14 +1,17 @@
-import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
+import React, {Component, useState} from 'react'
+import {Link, Redirect} from 'react-router-dom'
 import axios from 'axios'
 import store from '../../store'
-import {getSingleDress} from '../../store/closet'
+import {getSingleDress, addWear} from '../../store/closet'
 import './index.scss'
+
+const BASE_CLASS = 'article'
 
 export default class ArticleContainer extends Component {
   constructor() {
     super()
     this.state = store.getState()
+    this.removeDress = this.removeDress.bind(this)
   }
 
   async componentDidMount() {
@@ -16,14 +19,31 @@ export default class ArticleContainer extends Component {
     store.dispatch(getSingleDress(dressId))
     this.unsubscribe = store.subscribe(() => this.setState(store.getState))
   }
+  async removeDress(dressId) {
+    // confirm('are you sure?')
+    if (confirm('are you sure you want to remove this dress?')) {
+      await axios.delete(`/api/closet/${dressId}`).then(() => {
+        console.log('redirecting')
+        Redirect()
+      })
+      // route back to closet page
+    } else console.log('cancelled!')
+  }
 
-  componentWillUnmount() {
-    this.unsubscribe()
+  async Redirect() {
+    return <Redirect to="/closet" />
+  }
+
+  async addWear(dressId) {
+    store.dispatch(addWear(dressId))
+    const dressToIncrement = await this.state.closet.dresses.filter(
+      dress => dress.id === dressId
+    )
+    dressToIncrement[0].wearCount += 1
   }
 
   render() {
     const dress = this.state.closet.dress[0]
-    const BASE_CLASS = 'article'
 
     if (dress) {
       return (
@@ -49,8 +69,21 @@ export default class ArticleContainer extends Component {
               <Link to={{pathname: `/closet/${dress.id}/edit`, state: dress}}>
                 edit
               </Link>
-              <button>remove</button>
-              <button> add wear </button>
+              <button
+                className={`${BASE_CLASS}_remove-button`}
+                onClick={() => this.removeDress(dress.id)}
+              >
+                remove
+              </button>
+              <button
+                className={`${BASE_CLASS}_remove-button`}
+                onClick={() => {
+                  this.addWear(dress.id, setWear(19))
+                }}
+              >
+                {' '}
+                add wear{' '}
+              </button>
             </div>
           </div>
         </div>

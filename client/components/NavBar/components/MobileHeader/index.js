@@ -3,14 +3,15 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {logout} from '../../../../store/index'
 import {Link} from 'react-router-dom'
-// import './index.scss'
+import './index.scss'
 
 const MobileHeader = ({handleClick}) => {
   const isNavOpen = false
+  const BASE_CLASS = 'header-mobile'
 
   return (
-    <div id="mobile-header">
-      {/* <Link to="/home" id="logo">
+    <div className="mobile-header">
+      <Link to="/home" id="logo">
         SC
       </Link>
       <button>x</button>
@@ -19,7 +20,7 @@ const MobileHeader = ({handleClick}) => {
       <Link to="/account">My Account</Link>
       <a href="#" onClick={handleClick}>
         Logout
-      </a> */}
+      </a>
     </div>
   )
 }
@@ -28,7 +29,6 @@ const MobileHeader = ({handleClick}) => {
  * CONTAINER
  */
 const mapState = state => {
-  console.log('STATE IN NAV BAR', !!state.user.user.id)
   return {
     isLoggedIn: !!state.user.user.id
   }

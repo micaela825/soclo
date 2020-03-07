@@ -2,6 +2,7 @@
   /* H1: */
   // color: map-get($colors, charcoal);
   color: black;
+  background-color: blue !important;
   font-family: 'EB Garamond', serif;
   line-height: 32px;
   font-size: 24px;
@@ -9,6 +10,11 @@
   font-weight: normal;
   @include mq($from: desktop) {
     line-height: 50px;
-    font-size: 42px;
+    font-size: 62px;
   }
+}
+
+@mixin blue {
+  color: yellow !important;
+  background-color: yellow !important;
 }

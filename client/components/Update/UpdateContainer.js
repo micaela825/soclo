@@ -2,19 +2,12 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {updateDress} from '../../store/closet'
 import {Body} from '../Add/Add.style'
+import store from '../../store'
 
 class UpdateContainer extends Component {
   constructor(dress) {
     super(dress)
-
-    this.state = {
-      imageURL: '',
-      name: '',
-      description: '',
-      wearCount: '',
-      cost: '',
-      submitted: false
-    }
+    this.state = store.getState()
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -29,6 +22,7 @@ class UpdateContainer extends Component {
     event.preventDefault()
     const dressId = this.props.match.params.dressId
     this.props.updateDress(this.state, dressId)
+    console.log('new state after handle submit', this.state)
   }
 
   render() {
@@ -39,16 +33,6 @@ class UpdateContainer extends Component {
         <Body>
           edit
           <form onSubmit={this.handleSubmit}>
-            <label>
-              <small>url image</small>
-              <input
-                name="imageURL"
-                type="text"
-                value={this.state.imageURL}
-                onChange={this.handleChange}
-              />
-            </label>
-
             <label>
               <small>dress name</small>
               <input
@@ -61,13 +45,23 @@ class UpdateContainer extends Component {
             </label>
 
             <label>
-              <small>description</small>
+              <small>wear count</small>
               <input
-                name="description"
+                name="wear count"
                 type="text"
                 onChange={this.handleChange}
-                value={this.state.description}
-                placeholder={dressToEdit.description}
+                value={this.state.wearCount}
+                placeholder={dressToEdit.wearCount}
+              />
+            </label>
+            <label>
+              <small>cost</small>
+              <input
+                name="cost"
+                type="text"
+                onChange={this.handleChange}
+                value={this.state.cost}
+                placeholder={dressToEdit.cost}
               />
             </label>
             <button type="submit">Submit</button>

@@ -12,23 +12,22 @@ class ClosetContainer extends Component {
   constructor(props) {
     super(props)
     this.state = store.getState()
-    this.removeDress = this.removeDress.bind(this)
+    // this.removeDress = this.removeDress.bind(this)
     this.filterCostMoreThan50 = this.filterCostMoreThan50.bind(this)
     this.sortByCost = this.sortByCost.bind(this)
   }
 
-  async removeDress(dressId) {
-    // before onClick, have confirmation pop-up - ask if want to remove dress. if no, route back to /closet, if yes, continue with delete dress
-    await axios.delete(`api/closet/${dressId}`).then(
-      this.setState({
-        dresses: this.state.closet.dresses.filter(dress => dress.id !== dressId)
-      })
-    )
-  }
+  // async removeDress(dressId) {
+  //   // before onClick, have confirmation pop-up - ask if want to remove dress. if no, route back to /closet, if yes, continue with delete dress
+  //   await axios.delete(`api/closet/${dressId}`).then(
+  //     this.setState({
+  //       dresses: this.state.closet.dresses.filter(dress => dress.id !== dressId)
+  //     })
+  //   )
+  // }
 
   async addWear(dressId) {
     store.dispatch(addWear(dressId))
-    console.log(this.state.closet.dresses)
     const dressToIncrement = await this.state.closet.dresses.filter(
       dress => dress.id === dressId
     )
@@ -39,7 +38,6 @@ class ClosetContainer extends Component {
     const sortedDresses = await this.state.closet.dresses.sort(function(a, b) {
       return a.cost - b.cost
     })
-    console.log(sortedDresses, 'sorted dresses ******')
   }
 
   async filterCostMoreThan50() {
@@ -47,7 +45,6 @@ class ClosetContainer extends Component {
       dress => dress.cost > 50
     )
     // setDresses(dressesFiltered);
-    console.log(dressesFiltered, 'dreses filtered ***')
   }
   async componentDidMount() {
     store.dispatch(getDresses())

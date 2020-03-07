@@ -68,11 +68,10 @@ export const addDress = dress => {
 
 export const updateDress = (dress, id) => {
   const dressId = id
-  console.log('dress, dressid', dress, dressId)
+  console.log('dress to be dispatched, dressid', dress, dressId)
   return async (dispatch, getState) => {
     try {
-      const {data} = await axios.post(`/api/closet/${dressId}/edit`, dress)
-      console.log('DATA DATA DATTA', data)
+      const {data} = await axios.put(`/api/closet/${dressId}/edit`, dress)
       dispatch(gotUpdatedDress(data))
     } catch (err) {
       console.error(err)
