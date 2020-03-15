@@ -1,4 +1,4 @@
-import React from 'React'
+import React, {Fragment} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
@@ -8,32 +8,19 @@ import MobileHeader from './components/MobileHeader/index'
 import './index.scss'
 
 const NavBar = ({handleClick, isLoggedIn}) => (
-  <div className="navBar">
-    <nav>
-      {isLoggedIn ? (
-        <div>
-          <DesktopHeader />
-          <MobileHeader />
-          {/* <div>
-            <Link to="/home" id="logo">
-              SC
-            </Link>
-            <Link to="/search">Find A Dress</Link>
-            <Link to="/closet">My Closet</Link>
-            <Link to="/account">My Account</Link>
-            <a href="#" onClick={handleClick}>
-              Logout
-            </a>
-          </div> */}
-        </div>
-      ) : (
-        <div>
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
-        </div>
-      )}
-    </nav>
-  </div>
+  <nav>
+    {isLoggedIn ? (
+      <Fragment>
+        <DesktopHeader handleClick={handleClick} />
+        <MobileHeader handleClick={handleClick} />
+      </Fragment>
+    ) : (
+      <div>
+        <Link to="/login">Login</Link>
+        <Link to="/signup">Sign Up</Link>
+      </div>
+    )}
+  </nav>
 )
 
 /**

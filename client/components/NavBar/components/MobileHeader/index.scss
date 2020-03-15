@@ -1,5 +1,14 @@
 .header-mobile {
   display: block;
+  width: 100%;
+
+  &__nav {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    align-items: center;
+  }
 
   @media (min-width: 1024px) {
     display: none;

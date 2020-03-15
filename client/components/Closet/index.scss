@@ -1,28 +1,26 @@
 @import '../../assets/colors.scss';
-// @import '/client/styles/mq';
+@import '../../assets/mq.scss';
 
 .closet-container {
-  @include blue;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: 50px 50px 1fr;
   margin: 0 10px;
-  // @include mq($from: desktop) {
-  //   grid-template-rows: 100px auto;
-  //   margin: 0 60px;
-  // }
+  @include mq($from: desktop) {
+    grid-template-rows: 100px auto;
+    margin: 0 60px;
+  }
 
   &_title {
     grid-row: 1;
     grid-column: 1 / span 12;
     // font-size: 24px;
     text-align: center;
-    @include blue;
-    @include type-style-H1;
-    // @include mq($from: desktop) {
-    //   grid-column: 6 / span 2;
-    //   font-size: 28px;
-    // }
+
+    @include mq($from: desktop) {
+      grid-column: 6 / span 2;
+      font-size: 28px;
+    }
   }
 
   &_nav {
@@ -33,9 +31,9 @@
     width: fit-content;
     height: fit-content;
 
-    // @include mq($from: desktop) {
-    //   grid-column: 1 / span 2;
-    // }
+    @include mq($from: desktop) {
+      grid-column: 1 / span 2;
+    }
   }
 
   &_menu-button {
@@ -53,10 +51,10 @@
   }
 
   &_item {
-    // width: 200px;
-    // margin: 30px 50px;
-    // animation: div 1s ease-in 2s 3 linear fill-mode;
-    // border-bottom: grey 1px;
+    width: 200px;
+    margin: 30px 50px;
+    animation: div 1s ease-in 2s 3 linear fill-mode;
+    border-bottom: grey 1px;
 
     :hover {
       cursor: pointer;
@@ -68,11 +66,11 @@
     background-color: mistyrose;
     opacity: 0.8;
     text-transform: uppercase;
-    // @include mq($from: desktop) {
-    //   padding: 7px;
-    //   border-radius: 7px;
-    //   margin: 10px 5px 10px 10px;
-    // }
+    @include mq($from: desktop) {
+      padding: 7px;
+      border-radius: 7px;
+      margin: 10px 5px 10px 10px;
+    }
     &:hover {
       cursor: pointer;
       opacity: 1;
