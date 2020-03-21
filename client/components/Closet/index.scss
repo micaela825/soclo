@@ -3,36 +3,41 @@
 
 .closet-container {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 50px 50px 1fr;
+  grid-template-columns: repeat(2, 50%);
+  grid-template-rows: 60px 60px 1fr;
   margin: 0 10px;
+
   @include mq($from: desktop) {
+    grid-template-columns: repeat(12, 1fr);
     grid-template-rows: 100px auto;
     margin: 0 60px;
   }
 
   &_title {
     grid-row: 1;
-    grid-column: 1 / span 12;
-    // font-size: 24px;
+    grid-column: 1 / span 2;
+    font-size: 24px;
     text-align: center;
+    align-self: center;
 
     @include mq($from: desktop) {
-      grid-column: 6 / span 2;
+      grid-column: 5 / span 4;
       font-size: 28px;
     }
   }
 
   &_nav {
-    grid-column: 1 / span 12;
+    grid-column: 1 / span 2;
     grid-row: 2;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     width: fit-content;
     height: fit-content;
+    padding: 0 10px;
 
     @include mq($from: desktop) {
       grid-column: 1 / span 2;
+      flex-direction: column;
     }
   }
 
@@ -42,19 +47,27 @@
   }
 
   &_table {
-    grid-row: 2;
-    grid-column: 3 / span 8;
+    grid-row: 3;
+    grid-column: 1 / span 2;
     display: grid;
-    grid-template-columns: repeat(4, 25%);
+    grid-template-columns: repeat(2, 50%);
     grid-template-rows: auto;
     justify-items: center;
+    @include mq($from: desktop) {
+      grid-column: 3 / span 8;
+      grid-row: 2;
+      grid-template-columns: repeat(4, 1fr);
+    }
   }
 
   &_item {
-    width: 200px;
-    margin: 30px 50px;
-    animation: div 1s ease-in 2s 3 linear fill-mode;
+    width: 155px;
+    margin: 0;
+    animation: 1s ease-in 2s 3 linear;
     border-bottom: grey 1px;
+    @include mq($from: desktop) {
+      padding: 10px;
+    }
 
     :hover {
       cursor: pointer;
