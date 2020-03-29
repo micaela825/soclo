@@ -17,11 +17,11 @@ before_script:
   - psql -c 'create database "sc";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
 
 # before_deploy:
-#   - npm run build-client # make the bundle
+  - npm run build-client # make the bundle
 #   - rm -rf node_modules # omit from the tarball, since we skip cleanup
 # deploy:
 #   skip_cleanup: true # prevents travis from deleting the build
-#   provider: heroku
-#   app: YOUR-HEROKU-APP-NAME-HERE # see README
+   provider: heroku
+   app: social-closet # see README
 #   api_key:
-#     secure: YOUR-***ENCRYPTED***-API-KEY-HERE # see README
+     secure: cNz520Zg/3N0t6vShg0g+KUVhvz1TA/I7rM2KGu4MrWEl0DZTr4Tyyx2JnrrXPjVu1yVdCypjcWmaiYeTli/tU/e6E9Ekm+dl9fV0/x1QWX6jWhhO2y1EA+64bu20Hdt5KaMRtc+QsEsX7DwIcyhXnUlULkpvBzod/M76o6z3KTVp16rkonoqcXxAQCYJOY6ykmgMfVlLnsjN/9DkotAyjleXXBSxNhCQ/dgiZM0CS1dcp3MwNYlt9hVDkV2C8zICVTDEzcRBAlXP9Ym6K4plO991FWwsTOhI2l2Kv8GOYcecQVgSYiHm2Qf7kWGHFzQUaJaMdWXZB3WdWy0b7d7x4vd9KqJDrgqjvAI7ucu49s2vArA9DKdSelFd7pI3BzfFCHCV8KrPln8SiGPsvd29Cbf7u1QZr3ZguhITy27zTacLM9ZIyLIBv6pTllV6UaqJXH7Y/M24SKYG86Pr+geNXRjF13WthYOgKPhYrt5srbnyvspfBat81yGHIsjlvOedaY19K7hbnTiWtbGl8bJhJ2r9Hdm5fdqHGSZ9zFjtXBShfP2VbWhFPLaNI2VEFUhpPegeiUfoSz9RXuD27Ha79AY7HYN450Lukc8/+paK6XUqVM2v92WUG/YC7M9lMIYTUvI+TLy+EZVkiY++6WeblbiBxGZyHLm7thvml6qIf8= # see README
