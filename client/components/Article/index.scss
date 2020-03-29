@@ -1,31 +1,55 @@
+@import '../../assets/colors.scss';
+@import '../../assets/mq.scss';
+
 .article {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 25% auto 25%;
-  margin: 0 60px;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(4, auto);
   justify-items: center;
+  margin-top: 45px;
+  font-size: 20px;
+
+  @include mq($from: desktop) {
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 25% auto 25%;
+    margin: 0 60px;
+  }
 
   &__image {
-    height: 360px;
-    width: 224px;
-    grid-column: 3 / span 3;
+    width: 185px;
+    height: 285px;
     grid-row: 2;
+
+    @include mq($from: desktop) {
+      height: 360px;
+      width: 224px;
+      grid-column: 3 / span 3;
+    }
+  }
+
+  &__title {
+    grid-row: 1;
+    font-size: 22px;
+    margin-top: 0;
+    // background-color: red;
+    text-align: center;
+
+    @include mq($from: desktop) {
+      font-size: 32px;
+    }
   }
 
   &__info {
-    grid-row: 2;
-    grid-column: 7 / span 3;
-    display: grid;
-    grid-template-rows: 75px 100px auto;
-
-    &__title {
-      grid-row: 1;
-      font-size: 32px;
-      margin-top: 0;
+    grid-row: 3;
+    @include mq($from: desktop) {
+      grid-row: 2;
+      grid-column: 7 / span 3;
+      display: grid;
+      grid-template-rows: 75px 100px auto;
     }
 
     &__cost {
-      grid-row: 2;
+      // grid-row: 2;
       font-size: 14px;
       line-height: 26px;
       font-family: 'Lato';
@@ -41,9 +65,13 @@
     }
 
     &__buttons {
-      grid-row: 3;
+      grid-row: 4;
       display: flex;
       flex-direction: column;
+
+      @include mq($from: desktop) {
+        grid-row: 3;
+      }
 
       button {
         border-radius: 7px;

@@ -49,8 +49,8 @@ export default class ArticleContainer extends Component {
       return (
         <div className={BASE_CLASS} key="dress.id">
           <img className={`${BASE_CLASS}__image`} src={dress.imageURL} />
+          <h2 className={`${BASE_CLASS}__title`}>{dress.name}</h2>
           <div className={`${BASE_CLASS}__info`}>
-            <h2 className={`${BASE_CLASS}__info__title`}>{dress.name}</h2>
             <div className={`${BASE_CLASS}__info__cost`}>
               <div>
                 original cost: <span>${dress.cost}</span>
