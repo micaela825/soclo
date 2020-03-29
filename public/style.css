@@ -36,11 +36,8 @@ body {
 nav {
   background-attachment: scroll;
   font-family: 'Lato', sans-serif;
-  margin-left: 5vw;
-  margin-right: 5vw;
   display: flex;
   justify-content: flex-start;
-  padding-top: 10px;
   font-size: 1.25em;
   border: none;
 }
