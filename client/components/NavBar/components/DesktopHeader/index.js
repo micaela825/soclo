@@ -4,16 +4,22 @@ import {connect} from 'react-redux'
 import {logout} from '../../../../store/index'
 import {Link} from 'react-router-dom'
 import './index.scss'
+import Icon from '../../../../../public/icon'
+
+const BASE_CLASS = 'desktop-header'
 
 const DesktopHeader = ({handleClick}) => (
-  <div className="desktop-header">
-    <Link to="/home" id="logo">
-      SC
+  <div className={BASE_CLASS}>
+    <Link to="/home">
+      <Icon />
     </Link>
-    <Link to="/search">Find A Dress</Link>
-    <Link to="/closet">My Closet</Link>
-    <Link to="/account">My Account</Link>
-    <a href="#" onClick={handleClick}>
+    <div className={`${BASE_CLASS}__links`}>
+      <Link to="/search">Find A Dress</Link>
+      <Link to="/closet">My Closet</Link>
+      <Link to="/account">My Account</Link>
+    </div>
+
+    <a href="#" onClick={handleClick} className={`${BASE_CLASS}__logout`}>
       Logout
     </a>
   </div>
@@ -23,7 +29,6 @@ const DesktopHeader = ({handleClick}) => (
  * CONTAINER
  */
 const mapState = state => {
-  console.log('STATE IN NAV BAR', !!state.user.user.id)
   return {
     isLoggedIn: !!state.user.user.id
   }

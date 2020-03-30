@@ -66,17 +66,19 @@ export default class ArticleContainer extends Component {
               </div>
             </div>
             <div className={`${BASE_CLASS}__info__buttons`}>
-              <Link to={{pathname: `/closet/${dress.id}/edit`, state: dress}}>
-                edit
-              </Link>
+              <button className={`${BASE_CLASS}__info__buttons__button`}>
+                <Link to={{pathname: `/closet/${dress.id}/edit`, state: dress}}>
+                  edit
+                </Link>
+              </button>
               <button
-                className={`${BASE_CLASS}_remove-button`}
+                className={`${BASE_CLASS}__info__buttons__button`}
                 onClick={() => this.removeDress(dress.id)}
               >
                 remove
               </button>
               <button
-                className={`${BASE_CLASS}_remove-button`}
+                className={`${BASE_CLASS}__info__buttons__button`}
                 onClick={() => {
                   this.addWear(dress.id, setWear(19))
                 }}

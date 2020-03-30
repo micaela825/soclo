@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {logout} from '../../../../store/index'
 import {Link} from 'react-router-dom'
 import Hamburger from './components/Hamburger'
+import Icon from '../../../../../public/icon'
 import './index.scss'
 
 const BASE_CLASS = 'header-mobile'
@@ -12,12 +13,19 @@ const MobileHeader = ({handleClick}) => {
 
   function handleNavClick() {
     setIsNavOpen(!isNavOpen)
+    const body = document.getElementsByTagName('body')[0]
+
+    if (!isNavOpen) {
+      body.setAttribute('style', 'overflow: hidden')
+    } else {
+      body.setAttribute('style', 'overflow: auto')
+    }
   }
 
   return (
     <div className={BASE_CLASS}>
-      <Link to="/home" id="logo" className={`${BASE_CLASS}__logo`}>
-        SC
+      <Link to="/home">
+        <Icon />
       </Link>
       {!isNavOpen ? (
         <Hamburger handleClick={handleNavClick} isActive={isNavOpen} />

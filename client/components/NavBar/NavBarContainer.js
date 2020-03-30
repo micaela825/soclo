@@ -15,9 +15,13 @@ const NavBar = ({handleClick, isLoggedIn}) => (
         <MobileHeader handleClick={handleClick} />
       </Fragment>
     ) : (
-      <div>
-        <Link to="/login">Login</Link>
-        <Link to="/signup">Sign Up</Link>
+      <div className="auth">
+        <Link to="/login" className="auth__login">
+          Login
+        </Link>
+        <Link to="/signup" className="auth__signup">
+          Sign Up
+        </Link>
       </div>
     )}
   </nav>

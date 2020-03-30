@@ -52,9 +52,9 @@ label {
 
 nav a {
   display: inline-block;
-  /* margin: 1em; */
+  letter-spacing: 0.1em;
   margin: 20px;
-  color: grey;
+  color: black;
   text-transform: lowercase;
 }
 

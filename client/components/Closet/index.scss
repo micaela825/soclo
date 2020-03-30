@@ -1,16 +1,17 @@
 @import '../../assets/colors.scss';
 @import '../../assets/mq.scss';
+$nav-height: 85px;
 
 .closet-container {
   display: grid;
   grid-template-columns: repeat(2, 50%);
   grid-template-rows: 60px 60px 1fr;
-  margin: 0 10px;
+  margin: $nav-height 10px 0 10px;
 
   @include mq($from: desktop) {
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: 100px auto;
-    margin: 0 60px;
+    margin: $nav-height 60px 0;
   }
 
   &_title {
