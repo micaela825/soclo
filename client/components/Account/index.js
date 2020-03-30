@@ -2,6 +2,9 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import store from '../../store'
 import {getDresses} from '../../store/closet'
+import './index.scss'
+
+const BASE_CLASS = 'account'
 
 class AccountContainer extends Component {
   constructor() {
@@ -33,7 +36,7 @@ class AccountContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div className={`${BASE_CLASS}`}>
         <h1>user account</h1>
         <h2>total items:</h2>
         <h3>{this.state.closet.dresses.length}</h3>

@@ -17,14 +17,14 @@ class ClosetContainer extends Component {
     this.sortByCost = this.sortByCost.bind(this)
   }
 
-  // async removeDress(dressId) {
-  //   // before onClick, have confirmation pop-up - ask if want to remove dress. if no, route back to /closet, if yes, continue with delete dress
-  //   await axios.delete(`api/closet/${dressId}`).then(
-  //     this.setState({
-  //       dresses: this.state.closet.dresses.filter(dress => dress.id !== dressId)
-  //     })
-  //   )
-  // }
+  async removeDress(dressId) {
+    // before onClick, have confirmation pop-up - ask if want to remove dress. if no, route back to /closet, if yes, continue with delete dress
+    await axios.delete(`api/closet/${dressId}`).then(
+      this.setState({
+        dresses: this.state.closet.dresses.filter(dress => dress.id !== dressId)
+      })
+    )
+  }
 
   async addWear(dressId) {
     store.dispatch(addWear(dressId))
@@ -60,20 +60,23 @@ class ClosetContainer extends Component {
       <div className={`${baseClass}`}>
         <div className={`${baseClass}_title`}>micaela's closet</div>
 
-        <div className={`${baseClass}_nav`}>
+        <div className={`${baseClass}__menu`}>
           <div
             onClick={this.filterCostMoreThan50}
-            className={`${baseClass}_menu-button`}
+            className={`${baseClass}__menu__button`}
           >
             filter
           </div>
 
-          <div onClick={this.sortByCost} className={`${baseClass}_menu-button`}>
+          <div
+            onClick={this.sortByCost}
+            className={`${baseClass}__menu__button`}
+          >
             sort
           </div>
 
           <Link to="/add">
-            <div className={`${baseClass}_menu-button`}>add an item </div>
+            <div className={`${baseClass}__menu__button`}>add an item </div>
           </Link>
         </div>
         <div className={`${baseClass}_table`}>
@@ -88,13 +91,13 @@ class ClosetContainer extends Component {
                     <div className={`${baseClass}_name-body`}>{dress.name}</div>
                   </Link>
                   <div className={`${baseClass}_buttons`}>
-                    {/* <Link
+                    <Link
                       className={`${baseClass}_remove-button`}
                       onClick={() => this.editArticle(dress.id)}
                       to="/edit"
                     >
                       edit
-                    </Link> */}
+                    </Link>
                     <div
                       className={`${baseClass}_remove-button`}
                       onClick={() => this.addWear(dress.id)}
@@ -103,12 +106,12 @@ class ClosetContainer extends Component {
                       + wear{' '}
                     </div>
 
-                    {/* <div
+                    <div
                       className={`${baseClass}_remove-button`}
                       onClick={() => this.removeDress(dress.id)}
                     >
                       remove
-                    </div> */}
+                    </div>
                   </div>
                 </div>
               ))
