@@ -41,7 +41,7 @@ class Routes extends Component {
             <Route path="/account" component={AccountContainer} />
             <Route path="/add" component={AddContainer} />
             <Route path="/success" component={AddSuccess} />
-            <Route path="/closet/:dressId" component={ArticleContainer} />
+            <Route exact path="/closet/:dressId" component={ArticleContainer} />
             <Route
               exact
               path="/closet/:dressId/edit"

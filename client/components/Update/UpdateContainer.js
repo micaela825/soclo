@@ -27,6 +27,7 @@ class UpdateContainer extends Component {
 
   render() {
     const dressToEdit = this.props.location.state
+    console.log('here in update container')
 
     return (
       <div id="add_container">
@@ -40,7 +41,7 @@ class UpdateContainer extends Component {
                 type="text"
                 value={this.state.name}
                 onChange={this.handleChange}
-                placeholder={dressToEdit.name}
+                // placeholder={dressToEdit.name}
               />
             </label>
 
@@ -51,7 +52,7 @@ class UpdateContainer extends Component {
                 type="text"
                 onChange={this.handleChange}
                 value={this.state.wearCount}
-                placeholder={dressToEdit.wearCount}
+                // placeholder={dressToEdit.wearCount}
               />
             </label>
             <label>
@@ -61,7 +62,7 @@ class UpdateContainer extends Component {
                 type="text"
                 onChange={this.handleChange}
                 value={this.state.cost}
-                placeholder={dressToEdit.cost}
+                // placeholder={dressToEdit.cost}
               />
             </label>
             <button type="submit">Submit</button>

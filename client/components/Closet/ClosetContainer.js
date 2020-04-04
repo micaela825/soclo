@@ -84,22 +84,25 @@ class ClosetContainer extends Component {
             ? this.state.closet.dresses.map((dress, i) => (
                 <div className={`${baseClass}_item`}>
                   <Link to={`/closet/${dress.id}`}>
-                    <div>{dress.wearCount}</div>
+                    <div className={`${baseClass}__item__wearcount`}>
+                      {dress.wearCount}
+                    </div>
                     <div className={`${baseClass}_image-body`}>
                       <img src={dress.imageURL} height="240" width="160" />
                     </div>
                     <div className={`${baseClass}_name-body`}>{dress.name}</div>
                   </Link>
-                  <div className={`${baseClass}_buttons`}>
+                  <div className={`${baseClass}__buttons`}>
                     <Link
-                      className={`${baseClass}_remove-button`}
+                      className={`${baseClass}__buttons__edit`}
                       onClick={() => this.editArticle(dress.id)}
-                      to="/edit"
+                      // to={`/edit/${dress.id}`}
+                      to={{pathname: `/closet/${dress.id}/edit`, state: dress}}
                     >
                       edit
                     </Link>
                     <div
-                      className={`${baseClass}_remove-button`}
+                      className={`${baseClass}__buttons__add`}
                       onClick={() => this.addWear(dress.id)}
                     >
                       {' '}
@@ -107,7 +110,7 @@ class ClosetContainer extends Component {
                     </div>
 
                     <div
-                      className={`${baseClass}_remove-button`}
+                      className={`${baseClass}__buttons__remove`}
                       onClick={() => this.removeDress(dress.id)}
                     >
                       remove
