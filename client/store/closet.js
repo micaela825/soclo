@@ -58,7 +58,6 @@ export const addDress = dress => {
   return async (dispatch, getState) => {
     try {
       const {data} = await axios.post(`/api/closet`, dress)
-
       dispatch(gotAddedDress(data))
     } catch (err) {
       console.error(err)
@@ -72,6 +71,7 @@ export const updateDress = (dress, id) => {
   return async (dispatch, getState) => {
     try {
       const {data} = await axios.put(`/api/closet/${dressId}/edit`, dress)
+      console.log('data *******', data)
       dispatch(gotUpdatedDress(data))
     } catch (err) {
       console.error(err)
@@ -101,8 +101,10 @@ export default function(state = initialState, action) {
       return {...state, dress: action.dress}
     case ADDED_DRESS:
       return {...state, dress: action.dress}
-    case UPDATED_DRESS:
+    case UPDATED_DRESS: {
+      console.log('action.dress', action.dress)
       return {...state, dress: action.dress}
+    }
     case ADD_WEAR:
       return {...state, dressId: action.dressId}
     default:

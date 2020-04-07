@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {updateDress} from '../../store/closet'
-import {Body} from '../Add/Add.style'
 import store from '../../store'
 
 class UpdateContainer extends Component {
@@ -22,16 +21,14 @@ class UpdateContainer extends Component {
     event.preventDefault()
     const dressId = this.props.match.params.dressId
     this.props.updateDress(this.state, dressId)
-    console.log('new state after handle submit', this.state)
   }
 
   render() {
     const dressToEdit = this.props.location.state
-    console.log('here in update container')
 
     return (
       <div id="add_container">
-        <Body>
+        <div>
           edit
           <form onSubmit={this.handleSubmit}>
             <label>
@@ -48,7 +45,7 @@ class UpdateContainer extends Component {
             <label>
               <small>wear count</small>
               <input
-                name="wear count"
+                name="wearCount"
                 type="text"
                 onChange={this.handleChange}
                 value={this.state.wearCount}
@@ -67,7 +64,7 @@ class UpdateContainer extends Component {
             </label>
             <button type="submit">Submit</button>
           </form>
-        </Body>
+        </div>
       </div>
     )
   }
@@ -89,4 +86,3 @@ export default connect(mapState, mapDispatch)(UpdateContainer)
 
 // ** TODO:
 // add cloudinary functionality to local state
-// add remove dress functionality

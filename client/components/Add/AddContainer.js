@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
-import AddSuccess from '../AddSuccess/AddSuccess'
+import './index.scss'
 import {Link, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {addDress} from '../../store/closet'
-import {Widget, Body} from './Add.style'
+const BASE_CLASS = 'add-form'
 
 class AddContainer extends Component {
   constructor(props) {
@@ -72,52 +72,54 @@ class AddContainer extends Component {
       }
     )
     return (
-      <div id="add_container">
+      <div className={BASE_CLASS}>
         {this.state.submitted ? (
           <Redirect to="/success" />
         ) : (
-          <Body>
-            add a dress
-            <form onSubmit={this.handleSubmit}>
-              <label>
-                <small>dress name</small>
-                <input
-                  name="name"
-                  type="text"
-                  value={this.state.name}
-                  onChange={this.handleChange}
-                />
-              </label>
+          <div>
+            <h1 className={`${BASE_CLASS}__header`}>add an article </h1>
+            <form
+              className={`${BASE_CLASS}__form`}
+              onSubmit={this.handleSubmit}
+            >
+              <div className={`${BASE_CLASS}__form__title`}>item name</div>
+              <input
+                className={`${BASE_CLASS}__form__input`}
+                name="name"
+                type="text"
+                value={this.state.name}
+                onChange={this.handleChange}
+              />
 
-              <label>
-                <small>description</small>
-                <input
-                  name="description"
-                  type="text"
-                  onChange={this.handleChange}
-                  value={this.state.description}
-                />
-              </label>
-              <label>
-                <small>wears</small>
-                <input
-                  name="wearCount"
-                  type="text"
-                  onChange={this.handleChange}
-                  value={this.state.wearCount}
-                />
-              </label>
-              <label>
-                <small>purchase cost</small>
-                <input
-                  name="cost"
-                  type="text"
-                  onChange={this.handleChange}
-                  value={this.state.cost}
-                />
-              </label>
+              <div className={`${BASE_CLASS}__form__title`}>description</div>
+              <input
+                className={`${BASE_CLASS}__form__input`}
+                name="description"
+                type="text"
+                onChange={this.handleChange}
+                value={this.state.description}
+              />
+
+              <div className={`${BASE_CLASS}__form__title`}>wears</div>
+              <input
+                className={`${BASE_CLASS}__form__input`}
+                name="wearCount"
+                type="text"
+                onChange={this.handleChange}
+                value={this.state.wearCount}
+              />
+
+              <div className={`${BASE_CLASS}__form__title`}>cost</div>
+              <input
+                className={`${BASE_CLASS}__form__input`}
+                name="cost"
+                type="text"
+                onChange={this.handleChange}
+                value={this.state.cost}
+              />
+
               {/* <label>
-                <small>cost per wear goal: </small>
+                <div>cost per wear goal: </div>
                 {// add tooltip above}
                 <input
                   name="cost"
@@ -126,12 +128,12 @@ class AddContainer extends Component {
                   value={this.state.cost}
                 />
               </label> */}
-              <button type="submit">Submit</button>
+              <button className={`${BASE_CLASS}__form__submit`} type="submit">
+                Submit
+              </button>
             </form>
-            <Widget onClick={() => this.showWidget(widget)}>
-              Upload image
-            </Widget>
-          </Body>
+            <div onClick={() => this.showWidget(widget)}>Upload image</div>
+          </div>
         )}
       </div>
     )

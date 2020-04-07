@@ -45,9 +45,6 @@ $nav-height: 85px;
 
       font-family: 'Lato', sans-serif;
       // FCF8F5
-
-      // margin: 10px 0px;
-      // margin-right: 60px;
       font-size: 12px;
       letter-spacing: 0.2em;
       height: 40px;
@@ -116,6 +113,8 @@ $nav-height: 85px;
   &_image-body {
     display: flex;
     justify-content: center;
+    height: 180px;
+    width: 120px;
 
     :hover {
       opacity: 0.9;

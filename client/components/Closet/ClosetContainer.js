@@ -2,6 +2,8 @@ import React, {Component, useState} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {getDresses, addWear} from '../../store/closet'
+import {setIsModalOpen} from '../../store/utils'
+import RemoveConfirmationModal from '../RemoveConfirmation'
 import store from '../../store'
 import axios from 'axios'
 import './index.scss'
@@ -32,6 +34,18 @@ class ClosetContainer extends Component {
       dress => dress.id === dressId
     )
     dressToIncrement[0].wearCount += 1
+  }
+
+  async handleAccept(dressId) {
+    store.dispatch(setIsModalOpen(false))
+    await axios.delete(`/api/closet/${dressId}`)
+  }
+  showModal(dressId) {
+    store.dispatch(setIsModalOpen(true))
+  }
+
+  handleCancel() {
+    store.dispatch(setIsModalOpen(false))
   }
 
   async sortByCost() {
@@ -87,16 +101,16 @@ class ClosetContainer extends Component {
                     <div className={`${baseClass}__item__wearcount`}>
                       {dress.wearCount}
                     </div>
-                    <div className={`${baseClass}_image-body`}>
-                      <img src={dress.imageURL} height="240" width="160" />
-                    </div>
+                    <img
+                      className={`${baseClass}_image-body`}
+                      src={dress.imageURL}
+                    />
                     <div className={`${baseClass}_name-body`}>{dress.name}</div>
                   </Link>
                   <div className={`${baseClass}__buttons`}>
                     <Link
                       className={`${baseClass}__buttons__edit`}
                       onClick={() => this.editArticle(dress.id)}
-                      // to={`/edit/${dress.id}`}
                       to={{pathname: `/closet/${dress.id}/edit`, state: dress}}
                     >
                       edit
@@ -108,14 +122,20 @@ class ClosetContainer extends Component {
                       {' '}
                       + wear{' '}
                     </div>
-
                     <div
-                      className={`${baseClass}__buttons__remove`}
-                      onClick={() => this.removeDress(dress.id)}
+                      className={`${baseClass}__info__buttons__remove`}
+                      onClick={() => this.showModal(dress.id)}
                     >
                       remove
                     </div>
                   </div>
+                  {this.state.utils.isModalOpen ? (
+                    <RemoveConfirmationModal
+                      handleCancel={this.handleCancel}
+                      handleAccept={this.handleAccept}
+                      dressId={dress.id}
+                    />
+                  ) : null}
                 </div>
               ))
             : null}
