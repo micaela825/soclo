@@ -96,7 +96,7 @@ class ClosetContainer extends Component {
         <div className={`${baseClass}_table`}>
           {this.state.closet.dresses
             ? this.state.closet.dresses.map((dress, i) => (
-                <div className={`${baseClass}_item`}>
+                <div className={`${baseClass}_item`} key={i}>
                   <Link to={`/closet/${dress.id}`}>
                     <div className={`${baseClass}__item__wearcount`}>
                       {dress.wearCount}

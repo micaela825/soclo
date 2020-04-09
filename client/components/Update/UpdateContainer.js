@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {updateDress} from '../../store/closet'
 import store from '../../store'
+const BASE_CLASS = 'edit-form'
+import './index.scss'
 
 class UpdateContainer extends Component {
   constructor(dress) {
@@ -27,42 +29,40 @@ class UpdateContainer extends Component {
     const dressToEdit = this.props.location.state
 
     return (
-      <div id="add_container">
+      <div className={BASE_CLASS}>
         <div>
-          edit
-          <form onSubmit={this.handleSubmit}>
-            <label>
-              <small>dress name</small>
-              <input
-                name="name"
-                type="text"
-                value={this.state.name}
-                onChange={this.handleChange}
-                // placeholder={dressToEdit.name}
-              />
-            </label>
-
-            <label>
-              <small>wear count</small>
-              <input
-                name="wearCount"
-                type="text"
-                onChange={this.handleChange}
-                value={this.state.wearCount}
-                // placeholder={dressToEdit.wearCount}
-              />
-            </label>
-            <label>
-              <small>cost</small>
-              <input
-                name="cost"
-                type="text"
-                onChange={this.handleChange}
-                value={this.state.cost}
-                // placeholder={dressToEdit.cost}
-              />
-            </label>
-            <button type="submit">Submit</button>
+          <h1 className={`${BASE_CLASS}__header`}>edit</h1>
+          <form className={`${BASE_CLASS}__form`} onSubmit={this.handleSubmit}>
+            <div className={`${BASE_CLASS}__form__title`}>item name</div>
+            <input
+              className={`${BASE_CLASS}__form__input`}
+              name="name"
+              type="text"
+              value={this.state.name}
+              onChange={this.handleChange}
+              // placeholder={dressToEdit.name}
+            />
+            <div className={`${BASE_CLASS}__form__title`}>wears</div>
+            <input
+              className={`${BASE_CLASS}__form__input`}
+              name="wearCount"
+              type="text"
+              onChange={this.handleChange}
+              value={this.state.wearCount}
+              // placeholder={dressToEdit.wearCount}
+            />
+            <div className={`${BASE_CLASS}__form__title`}>cost</div>
+            <input
+              className={`${BASE_CLASS}__form__input`}
+              name="cost"
+              type="text"
+              onChange={this.handleChange}
+              value={this.state.cost}
+              // placeholder={dressToEdit.cost}
+            />
+            <button className={`${BASE_CLASS}__form__submit`} type="submit">
+              Submit
+            </button>
           </form>
         </div>
       </div>

@@ -128,11 +128,16 @@ class AddContainer extends Component {
                   value={this.state.cost}
                 />
               </label> */}
+              <div
+                className={`${BASE_CLASS}__form__upload`}
+                onClick={() => this.showWidget(widget)}
+              >
+                Upload image
+              </div>
               <button className={`${BASE_CLASS}__form__submit`} type="submit">
                 Submit
               </button>
             </form>
-            <div onClick={() => this.showWidget(widget)}>Upload image</div>
           </div>
         )}
       </div>
