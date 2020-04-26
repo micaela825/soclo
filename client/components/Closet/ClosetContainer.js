@@ -14,14 +14,12 @@ class ClosetContainer extends Component {
   constructor(props) {
     super(props)
     this.state = store.getState()
-    // this.removeDress = this.removeDress.bind(this)
     this.filterCostMoreThan50 = this.filterCostMoreThan50.bind(this)
     this.sortByCost = this.sortByCost.bind(this)
   }
 
   async addWear(dressId) {
     store.dispatch(addWear(dressId))
-    console.log('dress ID to be dispatched from CLOSET container', dressId)
     const dressToIncrement = await this.state.closet.dresses.filter(
       dress => dress.id === dressId
     )
@@ -50,7 +48,6 @@ class ClosetContainer extends Component {
     const dressesFiltered = await this.state.closet.dresses.filter(
       dress => dress.cost > 50
     )
-    // setDresses(dressesFiltered);
   }
   componentDidMount() {
     store.dispatch(getDresses())
@@ -150,6 +147,3 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapState, mapDispatchToProps)(ClosetContainer)
-
-// TODO:
-// remove dress - confirm pop up, redirect to closet on confirmation

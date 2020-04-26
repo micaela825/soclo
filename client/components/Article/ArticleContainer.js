@@ -29,21 +29,8 @@ class ArticleContainer extends Component {
 
   async addWear(dressId) {
     store.dispatch(addWear(dressId))
-    console.log('new state AFTER DISPATCH', this.state.closet)
-
     const dressToAddWear = await this.state.closet.dress[0]
-    console.log('dress to add wear count before', dressToAddWear)
     dressToAddWear.wearCount += 1
-
-    console.log('dress to add wear count after', dressToAddWear)
-
-    // const dressToIncrement = await this.state.closet.dresses.filter(
-    //   (dress) => dress.id === dressId
-    // )
-    // dressToIncrement[0].wearCount += 1
-    // this.setState((state) => {
-    //   state.closet.dress = state.closet.dress[0] + 1
-    // })
   }
 
   async handleAccept(dressId) {
