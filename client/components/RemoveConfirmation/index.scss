@@ -1,0 +1,33 @@
+.remove-confirmation-modal {
+  font-family: 'Lato', sans-serif;
+  border: 3px solid black;
+  height: 200px;
+  width: 75%;
+  position: absolute;
+  top: 25%;
+  left: 12%;
+  z-index: 2;
+  background-color: white;
+  z-index: 4;
+
+  &__prompt {
+    text-align: center;
+    padding: 40px;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 0 30px;
+    &__button {
+      margin: 0 10px;
+      font-size: 14px;
+      background-color: white;
+      border: 2px solid black;
+      padding: 5px 10px;
+      font-family: 'Lato', sans-serif;
+      text-transform: uppercase;
+    }
+  }
+}

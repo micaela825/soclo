@@ -1,0 +1,63 @@
+@import '../../assets/mq.scss';
+
+.edit-form {
+  margin: 150px 50px 75px;
+
+  &__header {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+  }
+  &__form {
+    &__title {
+      font-size: 16px;
+      font-family: 'Lato', serif;
+      letter-spacing: 0.1em;
+      font-weight: 100;
+      margin-top: 45px;
+    }
+    &__input {
+      width: 200px;
+      height: 45px;
+      border: solid 1px #f0e9e4;
+      border-radius: 3px;
+      font-size: 16px;
+      font-family: 'Lato', sans-serif;
+      letter-spacing: 0.2em;
+      text-align: center;
+
+      @include mq($from: tablet) {
+        margin-right: 30px;
+      }
+    }
+
+    &__submit {
+      width: 200px;
+      height: 45px;
+      background-color: #fcf8f5;
+      border-color: #fcf8f5;
+      border-radius: 3px;
+      font-size: 22px;
+      font-family: 'Playfair Display', serif;
+      letter-spacing: 0.1em;
+      margin-top: 30px;
+      padding-top: 5px;
+      color: black;
+    }
+
+    &__upload {
+      width: 200px;
+      height: 45px;
+
+      border: solid 1px #f0e9e4;
+      border-radius: 3px;
+      font-size: 16px;
+      text-transform: uppercase;
+      font-family: 'Lato', sans-serif;
+      letter-spacing: 0.1em;
+      margin-top: 30px;
+      padding-top: 5px;
+      color: black;
+      text-align: center;
+    }
+  }
+}

@@ -33,8 +33,8 @@ $nav-height: 85px;
     grid-row: 2;
     display: flex;
     flex-direction: row;
-
-    padding: 0 10px;
+    justify-content: space-between;
+    padding: 20px 20px 0;
 
     @include mq($from: desktop) {
       grid-column: 1 / span 2;
@@ -45,9 +45,6 @@ $nav-height: 85px;
 
       font-family: 'Lato', sans-serif;
       // FCF8F5
-
-      // margin: 10px 0px;
-      // margin-right: 60px;
       font-size: 12px;
       letter-spacing: 0.2em;
       height: 40px;
@@ -69,7 +66,7 @@ $nav-height: 85px;
     }
   }
 
-  &_item {
+  &__item {
     width: 155px;
     margin: 0;
     animation: 1s ease-in 2s 3 linear;
@@ -80,6 +77,25 @@ $nav-height: 85px;
 
     :hover {
       cursor: pointer;
+    }
+
+    &__wearcount {
+      border-radius: 50%;
+      background-color: white;
+      border: 1px solid grey;
+      height: 40px;
+      width: 40px;
+      font-weight: 500;
+      font-size: 18px;
+      text-align: center;
+      align-self: center;
+      padding: 5px;
+      z-index: 3;
+      margin: -10px 0 0 -5px;
+      color: black;
+      font-family: monospace;
+      position: absolute;
+      margin: 7px;
     }
   }
 
@@ -97,6 +113,8 @@ $nav-height: 85px;
   &_image-body {
     display: flex;
     justify-content: center;
+    height: 180px;
+    width: 120px;
 
     :hover {
       opacity: 0.9;
@@ -108,12 +126,26 @@ $nav-height: 85px;
     font-family: 'Lato', sans-serif;
   }
 
-  &_buttons {
-    display: flex;
+  &__buttons {
+    font-family: 'Lato', sans-serif;
+    font-size: 12px;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     justify-content: center;
-  }
 
-  &_remove-button {
-    @include button;
+    &__edit {
+      grid-column: 1;
+      grid-row: 1;
+    }
+    &__remove {
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    &__add {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+    }
   }
 }

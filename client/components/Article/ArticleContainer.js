@@ -1,45 +1,45 @@
 import React, {Component, useState} from 'react'
-import {Link, Redirect} from 'react-router-dom'
+import {Link, Route} from 'react-router-dom'
 import axios from 'axios'
 import store from '../../store'
+import {setIsModalOpen} from '../../store/utils'
 import {getSingleDress, addWear} from '../../store/closet'
 import './index.scss'
+import RemoveConfirmationModal from '../RemoveConfirmation'
+import {connect} from 'react-redux'
 
 const BASE_CLASS = 'article'
 
-export default class ArticleContainer extends Component {
-  constructor() {
+class ArticleContainer extends Component {
+  constructor(props) {
     super()
     this.state = store.getState()
-    this.removeDress = this.removeDress.bind(this)
+    this.showModal = this.showModal.bind(this)
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     const dressId = this.props.match.params.dressId
     store.dispatch(getSingleDress(dressId))
     this.unsubscribe = store.subscribe(() => this.setState(store.getState))
   }
-  async removeDress(dressId) {
-    // confirm('are you sure?')
-    if (confirm('are you sure you want to remove this dress?')) {
-      await axios.delete(`/api/closet/${dressId}`).then(() => {
-        console.log('redirecting')
-        Redirect()
-      })
-      // route back to closet page
-    } else console.log('cancelled!')
-  }
 
-  async Redirect() {
-    return <Redirect to="/closet" />
+  showModal(dressId) {
+    store.dispatch(setIsModalOpen(true))
   }
 
   async addWear(dressId) {
     store.dispatch(addWear(dressId))
-    const dressToIncrement = await this.state.closet.dresses.filter(
-      dress => dress.id === dressId
-    )
-    dressToIncrement[0].wearCount += 1
+    const dressToAddWear = await this.state.closet.dress[0]
+    dressToAddWear.wearCount += 1
+  }
+
+  async handleAccept(dressId) {
+    store.dispatch(setIsModalOpen(false))
+    await axios.delete(`/api/closet/${dressId}`)
+  }
+
+  handleCancel() {
+    store.dispatch(setIsModalOpen(false))
   }
 
   render() {
@@ -65,22 +65,23 @@ export default class ArticleContainer extends Component {
                 </span>
               </div>
             </div>
+
             <div className={`${BASE_CLASS}__info__buttons`}>
-              <button className={`${BASE_CLASS}__info__buttons__button`}>
-                <Link to={{pathname: `/closet/${dress.id}/edit`, state: dress}}>
-                  edit
-                </Link>
-              </button>
+              {/* <button className={`${BASE_CLASS}__info__buttons__button`}> */}
+              <Link to={{pathname: `/closet/${dress.id}/edit`, state: dress}}>
+                edit
+              </Link>
+
               <button
                 className={`${BASE_CLASS}__info__buttons__button`}
-                onClick={() => this.removeDress(dress.id)}
+                onClick={() => this.showModal(dress.id)}
               >
                 remove
               </button>
               <button
                 className={`${BASE_CLASS}__info__buttons__button`}
                 onClick={() => {
-                  this.addWear(dress.id, setWear(19))
+                  this.addWear(dress.id)
                 }}
               >
                 {' '}
@@ -88,6 +89,13 @@ export default class ArticleContainer extends Component {
               </button>
             </div>
           </div>
+          {this.state.utils.isModalOpen ? (
+            <RemoveConfirmationModal
+              handleCancel={this.handleCancel}
+              handleAccept={this.handleAccept}
+              dressId={dress.id}
+            />
+          ) : null}
         </div>
       )
     } else {
@@ -95,3 +103,11 @@ export default class ArticleContainer extends Component {
     }
   }
 }
+
+const mapState = state => {
+  return {
+    dresses: state.closet.dresses
+  }
+}
+
+export default connect(mapState)(ArticleContainer)

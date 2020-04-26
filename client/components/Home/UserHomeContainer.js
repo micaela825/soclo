@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
-import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {Table, Header, Input, SubmitBtn} from './UserHome.style'
+import './index.scss'
 // import SimpleSlider from '../ItemCarousel/CarouselContainer'
+const BASE_CLASS = 'home'
 
 class UserHomeContainer extends Component {
   constructor() {
@@ -28,20 +28,20 @@ class UserHomeContainer extends Component {
   }
 
   handleSearchClick(event) {
-    console.log(this.state.keyword, this.state.zipcode)
     event.preventDefault()
     this.setState({keyword: '', zipcode: ''})
   }
 
   handleAdvancedClick(event) {
-    console.log('advanced search', event.target)
+    // console.log('advanced search', event.target)
   }
   render() {
     return (
-      <div>
-        <Header>Find something beautiful</Header>
-        <Table onSubmit={this.handleSearchClick}>
-          <Input>
+      <div className={BASE_CLASS}>
+        <h1>welcome.</h1>
+        {/* <h2>Find something beautiful</h2>
+        <div onSubmit={this.handleSearchClick}>
+          <div>
             <label>
               <small>keyword</small>
               <input
@@ -52,8 +52,8 @@ class UserHomeContainer extends Component {
                 value={this.state.keyword}
               />
             </label>
-          </Input>
-          <Input>
+          </div>
+          <div>
             <label>
               <small>Zip code</small>
             </label>
@@ -63,11 +63,11 @@ class UserHomeContainer extends Component {
               value={this.state.zipcode}
               onChange={this.handleZipChange}
             />
-          </Input>
-          <Input>
+          </div>
+          <div>
             <input type="submit" value="Submit" />
-          </Input>
-        </Table>
+          </div>
+        </div> */}
       </div>
     )
   }

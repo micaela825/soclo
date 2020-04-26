@@ -11,7 +11,6 @@ const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
   const alternativeFormName = () => {
-    console.log('display name', displayName, 'name', name)
     return name == 'signup' ? 'Sign in' : 'Sign up'
   }
 
