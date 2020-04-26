@@ -21,6 +21,7 @@ class ClosetContainer extends Component {
 
   async addWear(dressId) {
     store.dispatch(addWear(dressId))
+    console.log('dress ID to be dispatched from CLOSET container', dressId)
     const dressToIncrement = await this.state.closet.dresses.filter(
       dress => dress.id === dressId
     )

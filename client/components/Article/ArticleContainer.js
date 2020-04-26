@@ -27,9 +27,15 @@ class ArticleContainer extends Component {
     store.dispatch(setIsModalOpen(true))
   }
 
-  addWear(dressId) {
+  async addWear(dressId) {
     store.dispatch(addWear(dressId))
-    console.log('state here ************ HI HI I', this.state.closet.dress[0])
+    console.log('new state AFTER DISPATCH', this.state.closet)
+
+    const dressToAddWear = await this.state.closet.dress[0]
+    console.log('dress to add wear count before', dressToAddWear)
+    dressToAddWear.wearCount += 1
+
+    console.log('dress to add wear count after', dressToAddWear)
 
     // const dressToIncrement = await this.state.closet.dresses.filter(
     //   (dress) => dress.id === dressId

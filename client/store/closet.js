@@ -67,11 +67,9 @@ export const addDress = dress => {
 
 export const updateDress = (dress, id) => {
   const dressId = id
-  console.log('dress to be dispatched, dressid', dress, dressId)
   return async (dispatch, getState) => {
     try {
       const {data} = await axios.put(`/api/closet/${dressId}/edit`, dress)
-      console.log('data *******', data)
       dispatch(gotUpdatedDress(data))
     } catch (err) {
       console.error(err)
@@ -82,7 +80,9 @@ export const updateDress = (dress, id) => {
 export const addWear = dressId => {
   return async (dispatch, getState) => {
     try {
+      console.log('dress id in addWEar', dressId)
       const {data} = await axios.post(`/api/closet/${dressId}`, dressId)
+      console.log('data', data, 'dress id', dressId)
       dispatch(gotDressToIncrement(data))
     } catch (err) {
       console.error(err)
@@ -105,8 +105,12 @@ export default function(state = initialState, action) {
       console.log('action.dress', action.dress)
       return {...state, dress: action.dress}
     }
-    case ADD_WEAR:
+    case ADD_WEAR: {
+      console.log('state', state, action.dressId)
+      // dress ID is an object *****
       return {...state, dressId: action.dressId}
+      // return {...state, dress: action.dress}
+    }
     default:
       return state
   }
