@@ -17,9 +17,9 @@ class ArticleContainer extends Component {
     this.showModal = this.showModal.bind(this)
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     const dressId = this.props.match.params.dressId
-    await store.dispatch(getSingleDress(dressId))
+    store.dispatch(getSingleDress(dressId))
     this.unsubscribe = store.subscribe(() => this.setState(store.getState))
   }
 
@@ -27,16 +27,17 @@ class ArticleContainer extends Component {
     store.dispatch(setIsModalOpen(true))
   }
 
-  async addWear(dressId) {
+  addWear(dressId) {
     store.dispatch(addWear(dressId))
-    console.log('this.state', this.state)
-    const dressToIncrement = await this.state.closet.dresses.filter(
-      dress => dress.id === dressId
-    )
-    dressToIncrement[0].wearCount += 1
-    this.setState(state => {
-      state.closet.dress = state.closet.dress[0] + 1
-    })
+    console.log('state here ************ HI HI I', this.state.closet.dress[0])
+
+    // const dressToIncrement = await this.state.closet.dresses.filter(
+    //   (dress) => dress.id === dressId
+    // )
+    // dressToIncrement[0].wearCount += 1
+    // this.setState((state) => {
+    //   state.closet.dress = state.closet.dress[0] + 1
+    // })
   }
 
   async handleAccept(dressId) {
@@ -50,6 +51,7 @@ class ArticleContainer extends Component {
 
   render() {
     const dress = this.state.closet.dress[0]
+
     if (dress) {
       return (
         <div className={BASE_CLASS} key="dress.id">
@@ -70,12 +72,13 @@ class ArticleContainer extends Component {
                 </span>
               </div>
             </div>
+
             <div className={`${BASE_CLASS}__info__buttons`}>
-              <button className={`${BASE_CLASS}__info__buttons__button`}>
-                <Link to={{pathname: `/closet/${dress.id}/edit`, state: dress}}>
-                  edit
-                </Link>
-              </button>
+              {/* <button className={`${BASE_CLASS}__info__buttons__button`}> */}
+              <Link to={{pathname: `/closet/${dress.id}/edit`, state: dress}}>
+                edit
+              </Link>
+
               <button
                 className={`${BASE_CLASS}__info__buttons__button`}
                 onClick={() => this.showModal(dress.id)}

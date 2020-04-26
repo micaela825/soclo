@@ -22,7 +22,9 @@ class UpdateContainer extends Component {
   handleSubmit(event) {
     event.preventDefault()
     const dressId = this.props.match.params.dressId
-    this.props.updateDress(this.state, dressId)
+    this.props
+      .updateDress(this.state, dressId)
+      .then(() => this.props.history.push('/closet'))
   }
 
   render() {

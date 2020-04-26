@@ -19,15 +19,6 @@ class ClosetContainer extends Component {
     this.sortByCost = this.sortByCost.bind(this)
   }
 
-  async removeDress(dressId) {
-    // before onClick, have confirmation pop-up - ask if want to remove dress. if no, route back to /closet, if yes, continue with delete dress
-    await axios.delete(`api/closet/${dressId}`).then(
-      this.setState({
-        dresses: this.state.closet.dresses.filter(dress => dress.id !== dressId)
-      })
-    )
-  }
-
   async addWear(dressId) {
     store.dispatch(addWear(dressId))
     const dressToIncrement = await this.state.closet.dresses.filter(
@@ -60,7 +51,7 @@ class ClosetContainer extends Component {
     )
     // setDresses(dressesFiltered);
   }
-  async componentDidMount() {
+  componentDidMount() {
     store.dispatch(getDresses())
     this.unsubscribe = store.subscribe(() => this.setState(store.getState))
   }
@@ -110,7 +101,6 @@ class ClosetContainer extends Component {
                   <div className={`${baseClass}__buttons`}>
                     <Link
                       className={`${baseClass}__buttons__edit`}
-                      onClick={() => this.editArticle(dress.id)}
                       to={{pathname: `/closet/${dress.id}/edit`, state: dress}}
                     >
                       edit

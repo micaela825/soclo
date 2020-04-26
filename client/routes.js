@@ -34,16 +34,18 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         {isLoggedIn && (
           <Switch>
-            {/* Routes placed here are only available after logging in */}
-            <Route exact path="/" component={UserHomeContainer} />
-            <Route exact path="/home" component={UserHomeContainer} />
+            <Route path="/home" component={UserHomeContainer} />
             <Route path="/search" component={SearchContainer} />
             <Route exact path="/closet" component={ClosetContainer} />
             <Route path="/account" component={AccountContainer} />
             <Route path="/add" component={AddContainer} />
             <Route path="/success" component={AddSuccess} />
-            <Route path="/closet/:dressId/edit" component={UpdateContainer} />
-            <Route exct path="/closet/:dressId" component={ArticleContainer} />
+            <Route exact path="/closet/:dressId" component={ArticleContainer} />
+            <Route
+              exact
+              path="/closet/:dressId/edit"
+              component={UpdateContainer}
+            />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
