@@ -29,7 +29,6 @@ class ArticleContainer extends Component {
 
   addWear(dressId) {
     store.dispatch(addWear(dressId))
-    console.log('state here ************ HI HI I', this.state.closet.dress[0])
 
     // const dressToIncrement = await this.state.closet.dresses.filter(
     //   (dress) => dress.id === dressId

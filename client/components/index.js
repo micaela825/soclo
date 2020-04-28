@@ -3,6 +3,8 @@
  */
 
 import AccountContainer from './Account'
+import AddContainer from './Add'
+import AddSuccess from './AddSuccess'
 
 export {NavBar} from './NavBar'
 export {UserHomeContainer} from './Home'
@@ -11,7 +13,7 @@ export {AccountContainer}
 export {ClosetContainer} from './Closet'
 export {Login, Signup} from './Auth'
 export {ArticleContainer} from './Article'
-export {AddContainer} from './Add'
-export {AddSuccess} from './AddSuccess'
+export {AddContainer}
+export {AddSuccess}
 export {UpdateContainer} from './Update'
 export {RemoveConfirmationModal} from './RemoveConfirmation'
