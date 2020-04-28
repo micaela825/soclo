@@ -2,18 +2,25 @@
  * `components/index.js` exists simply as a 'central export' for our components.
  */
 
-import AccountContainer from './Account'
-import AddContainer from './Add'
+import Account from './Account'
+import Add from './Add'
 import AddSuccess from './AddSuccess'
+import Article from './Article'
+import Closet from './Closet'
+import Home from './Home'
+import RemoveConfirmationModal from './RemoveConfirmation'
+import Search from './Search'
+import Update from './Update'
+// import ItemCarousel from './ItemCarousel'
 
 export {NavBar} from './NavBar'
-export {UserHomeContainer} from './Home'
-export {SearchContainer} from './Search'
-export {AccountContainer}
-export {ClosetContainer} from './Closet'
+export {Home}
+export {Search}
+export {Account}
+export {Closet}
 export {Login, Signup} from './Auth'
-export {ArticleContainer} from './Article'
-export {AddContainer}
+export {Article}
+export {Add}
 export {AddSuccess}
-export {UpdateContainer} from './Update'
-export {RemoveConfirmationModal} from './RemoveConfirmation'
+export {Update}
+export {RemoveConfirmationModal}

@@ -5,14 +5,14 @@ import PropTypes from 'prop-types'
 import {
   Login,
   Signup,
-  UserHomeContainer,
-  SearchContainer,
-  ClosetContainer,
-  AccountContainer,
-  AddContainer,
-  ArticleContainer,
+  Home,
+  Search,
+  Closet,
+  Account,
+  Add,
+  Article,
   AddSuccess,
-  UpdateContainer
+  Update
 } from './components'
 import {me} from './store'
 
@@ -34,19 +34,15 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         {isLoggedIn && (
           <Switch>
-            <Route exact path="/" component={UserHomeContainer} />
-            <Route path="/home" component={UserHomeContainer} />
-            <Route path="/search" component={SearchContainer} />
-            <Route exact path="/closet" component={ClosetContainer} />
-            <Route path="/account" component={AccountContainer} />
-            <Route path="/add" component={AddContainer} />
+            <Route exact path="/" component={Home} />
+            <Route path="/home" component={Home} />
+            <Route path="/search" component={Search} />
+            <Route exact path="/closet" component={Closet} />
+            <Route path="/account" component={Account} />
+            <Route path="/add" component={Add} />
             <Route path="/success" component={AddSuccess} />
-            <Route exact path="/closet/:dressId" component={ArticleContainer} />
-            <Route
-              exact
-              path="/closet/:dressId/edit"
-              component={UpdateContainer}
-            />
+            <Route exact path="/closet/:dressId" component={Article} />
+            <Route exact path="/closet/:dressId/edit" component={Update} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
