@@ -27,16 +27,10 @@ class ArticleContainer extends Component {
     store.dispatch(setIsModalOpen(true))
   }
 
-  addWear(dressId) {
+  async addWear(dressId) {
     store.dispatch(addWear(dressId))
-
-    // const dressToIncrement = await this.state.closet.dresses.filter(
-    //   (dress) => dress.id === dressId
-    // )
-    // dressToIncrement[0].wearCount += 1
-    // this.setState((state) => {
-    //   state.closet.dress = state.closet.dress[0] + 1
-    // })
+    const dressToAddWear = await this.state.closet.dress[0]
+    dressToAddWear.wearCount += 1
   }
 
   async handleAccept(dressId) {

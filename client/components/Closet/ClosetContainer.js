@@ -14,7 +14,6 @@ class ClosetContainer extends Component {
   constructor(props) {
     super(props)
     this.state = store.getState()
-    // this.removeDress = this.removeDress.bind(this)
     this.filterCostMoreThan50 = this.filterCostMoreThan50.bind(this)
     this.sortByCost = this.sortByCost.bind(this)
   }
@@ -49,7 +48,6 @@ class ClosetContainer extends Component {
     const dressesFiltered = await this.state.closet.dresses.filter(
       dress => dress.cost > 50
     )
-    // setDresses(dressesFiltered);
   }
   componentDidMount() {
     store.dispatch(getDresses())
@@ -149,6 +147,3 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapState, mapDispatchToProps)(ClosetContainer)
-
-// TODO:
-// remove dress - confirm pop up, redirect to closet on confirmation
