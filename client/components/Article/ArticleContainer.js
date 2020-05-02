@@ -10,7 +10,7 @@ import {connect} from 'react-redux'
 
 const BASE_CLASS = 'article'
 
-class Article extends Component {
+class ArticleContainer extends Component {
   constructor(props) {
     super()
     this.state = store.getState()
@@ -110,4 +110,4 @@ const mapState = state => {
   }
 }
 
-export default connect(mapState)(Article)
+export default connect(mapState)(ArticleContainer)

@@ -6,7 +6,7 @@ import './index.scss'
 
 const BASE_CLASS = 'account'
 
-class Account extends Component {
+class AccountContainer extends Component {
   constructor() {
     super()
     this.state = store.getState()
@@ -59,4 +59,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapState, mapDispatchToProps)(Account)
+export default connect(mapState, mapDispatchToProps)(AccountContainer)

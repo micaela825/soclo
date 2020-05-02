@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import {addDress} from '../../store/closet'
 const BASE_CLASS = 'add-form'
 
-class Add extends Component {
+class AddContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -157,4 +157,4 @@ const mapDispatch = dispatch => {
   }
 }
 
-export default connect(mapState, mapDispatch)(Add)
+export default connect(mapState, mapDispatch)(AddContainer)
