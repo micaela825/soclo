@@ -5,7 +5,7 @@ import store from '../../store'
 const BASE_CLASS = 'edit-form'
 import './index.scss'
 
-class UpdateContainer extends Component {
+class Update extends Component {
   constructor(dress) {
     super(dress)
     this.state = store.getState()
@@ -84,7 +84,7 @@ const mapDispatch = dispatch => {
   }
 }
 
-export default connect(mapState, mapDispatch)(UpdateContainer)
+export default connect(mapState, mapDispatch)(Update)
 
 // ** TODO:
 // add cloudinary functionality to local state
