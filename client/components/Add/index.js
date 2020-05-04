@@ -14,7 +14,8 @@ class Add extends Component {
       description: '',
       wearCount: '',
       cost: '',
-      submitted: false
+      submitted: false,
+      error: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -22,22 +23,39 @@ class Add extends Component {
 
   handleChange(event) {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
+      error: ''
     })
   }
 
   handleSubmit(event) {
     event.preventDefault()
-    this.props.addDress(this.state)
+    console.log('this.state', this.state)
+    if (!this.state.name && !this.state.imageURL) {
+      this.setState({
+        error: 'please enter an item name or image'
+      })
+    } else if (this.state.cost && isNaN(this.state.cost)) {
+      this.setState({
+        error: 'the item cost must be a number'
+      })
+    } else if (this.state.wearCount && isNaN(this.state.wearCount)) {
+      this.setState({
+        error: 'the item wear count must be a number'
+      })
+    } else {
+      this.props.addDress(this.state)
 
-    this.setState({
-      imageURL: '',
-      name: '',
-      description: '',
-      wearCount: '',
-      cost: '',
-      submitted: true
-    })
+      this.setState({
+        imageURL: '',
+        name: '',
+        description: '',
+        wearCount: '',
+        cost: '',
+        submitted: true,
+        error: ''
+      })
+    }
   }
 
   showWidget = widget => {
@@ -78,6 +96,9 @@ class Add extends Component {
         ) : (
           <div>
             <h1 className={`${BASE_CLASS}__header`}>add an article </h1>
+            {this.state.error && (
+              <h3 className={`${BASE_CLASS}__error`}>{this.state.error}</h3>
+            )}
             <form
               className={`${BASE_CLASS}__form`}
               onSubmit={this.handleSubmit}
