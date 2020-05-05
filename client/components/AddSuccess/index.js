@@ -4,7 +4,7 @@ import './index.scss'
 
 const baseClass = 'add-success'
 
-export default class AddSuccess extends Component {
+class AddSuccess extends Component {
   render() {
     return (
       <div className={`${baseClass}`}>
@@ -15,3 +15,5 @@ export default class AddSuccess extends Component {
     )
   }
 }
+
+export default AddSuccess

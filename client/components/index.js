@@ -11,9 +11,10 @@ import Home from './Home'
 import RemoveConfirmationModal from './RemoveConfirmation'
 import Search from './Search'
 import Edit from './Edit'
+import NavBar from './NavBar'
 // import ItemCarousel from './ItemCarousel'
 
-export {NavBar} from './NavBar'
+export {NavBar}
 export {Home}
 export {Search}
 export {Account}
