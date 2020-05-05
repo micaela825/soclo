@@ -6,10 +6,10 @@ import {
   Login,
   Signup,
   Home,
+  Add,
   Search,
   Closet,
   Account,
-  Add,
   Article,
   AddSuccess,
   Edit
@@ -34,7 +34,6 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         {isLoggedIn && (
           <Switch>
-            <Route exact path="/" component={Home} />
             <Route path="/home" component={Home} />
             <Route path="/search" component={Search} />
             <Route exact path="/closet" component={Closet} />
