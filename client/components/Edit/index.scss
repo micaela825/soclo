@@ -1,19 +1,11 @@
 @import '../../assets/mq.scss';
 
-.add-form {
+.edit-form {
   margin: 150px 50px 75px;
 
   &__header {
     font-family: 'Playfair Display', serif;
     font-size: 28px;
-  }
-
-  &__error {
-    background: red;
-    color: white;
-    height: 50px;
-    width: fit-content;
-    padding: 10px 20px;
   }
   &__form {
     &__title {
@@ -67,5 +59,12 @@
       color: black;
       text-align: center;
     }
+  }
+  &__error {
+    background: red;
+    color: white;
+    height: 50px;
+    width: fit-content;
+    padding: 10px 20px;
   }
 }
