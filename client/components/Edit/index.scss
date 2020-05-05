@@ -60,4 +60,11 @@
       text-align: center;
     }
   }
+  &__error {
+    background: red;
+    color: white;
+    height: 50px;
+    width: fit-content;
+    padding: 10px 20px;
+  }
 }

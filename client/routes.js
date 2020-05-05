@@ -12,7 +12,7 @@ import {
   Add,
   Article,
   AddSuccess,
-  Update
+  Edit
 } from './components'
 import {me} from './store'
 
@@ -42,7 +42,7 @@ class Routes extends Component {
             <Route path="/add" component={Add} />
             <Route path="/success" component={AddSuccess} />
             <Route exact path="/closet/:dressId" component={Article} />
-            <Route exact path="/closet/:dressId/edit" component={Update} />
+            <Route exact path="/closet/:dressId/edit" component={Edit} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

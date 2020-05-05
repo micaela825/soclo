@@ -10,7 +10,7 @@ import Closet from './Closet'
 import Home from './Home'
 import RemoveConfirmationModal from './RemoveConfirmation'
 import Search from './Search'
-import Update from './Update'
+import Edit from './Edit'
 // import ItemCarousel from './ItemCarousel'
 
 export {NavBar} from './NavBar'
@@ -22,5 +22,5 @@ export {Login, Signup} from './Auth'
 export {Article}
 export {Add}
 export {AddSuccess}
-export {Update}
+export {Edit}
 export {RemoveConfirmationModal}
