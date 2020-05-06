@@ -4,11 +4,13 @@ import PropTypes from 'prop-types'
 import {auth} from '../../store'
 import './index.scss'
 import Icon from '../../../public/icon'
+import isEmailValid from './utils/isEmailValid'
+import isPasswordValid from './utils/isPasswordValid'
 
 const BASE_CLASS = 'auth'
 
 const AuthForm = props => {
-  const {name, displayName, handleSubmit, error} = props
+  const {name, displayName, handleSubmit, error, signUpError} = props
 
   const alternativeFormName = () => {
     return name == 'signup' ? 'Sign in' : 'Sign up'
@@ -27,6 +29,14 @@ const AuthForm = props => {
         name={name}
         className={`${BASE_CLASS}__form`}
       >
+        {name === 'signup' && (
+          <input
+            name="userName"
+            type="text"
+            placeholder="your name"
+            className={`${BASE_CLASS}__form__input`}
+          />
+        )}
         <input
           name="email"
           type="text"
@@ -51,6 +61,7 @@ const AuthForm = props => {
               {error.response.data}{' '}
             </div>
           )}
+        {signUpError && <div>{signUpError}</div>}
       </form>
       <a href="/auth/google" className={`${BASE_CLASS}__socialauth`}>
         {displayName} with Google
@@ -64,18 +75,12 @@ const AuthForm = props => {
   )
 }
 
-/**
- * CONTAINER
- *   Note that we have two different sets of 'mapStateToProps' functions -
- *   one for Login, and one for Signup. However, they share the same 'mapDispatchToProps'
- *   function, and share the same Component. This is a good example of how we
- *   can stay DRY with interfaces that are very similar to each other!
- */
 const mapLogin = state => {
   return {
     name: 'login',
     displayName: 'Sign in',
-    error: state.user.error
+    error: state.user.user.error,
+    signUpError: ''
   }
 }
 
@@ -83,7 +88,8 @@ const mapSignup = state => {
   return {
     name: 'signup',
     displayName: 'Sign up',
-    error: state.user.error
+    error: state.user.user.error,
+    signUpError: ''
   }
 }
 
@@ -91,10 +97,22 @@ const mapDispatch = dispatch => {
   return {
     handleSubmit(evt) {
       evt.preventDefault()
+
       const formName = evt.target.name
       const email = evt.target.email.value
       const password = evt.target.password.value
-      dispatch(auth(email, password, formName))
+      const userName = evt.target.userName ? evt.target.userName.value : ''
+      if (email && !isEmailValid(email)) {
+        console.log(
+          'todo - make component stateful & add sign up error on local state'
+        )
+      } else if (password && !isPasswordValid) {
+        console.log(
+          'todo - make component stateful & add sign up error on local state'
+        )
+      } else {
+        dispatch(auth(userName, email, password, formName))
+      }
     }
   }
 }
@@ -109,5 +127,6 @@ AuthForm.propTypes = {
   name: PropTypes.string.isRequired,
   displayName: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  error: PropTypes.object
+  error: PropTypes.object,
+  signUpError: PropTypes.string
 }
