@@ -5,7 +5,7 @@ import './style.scss'
 
 const App = () => {
   return (
-    <div id="container">
+    <div id="app">
       <NavBar />
       <Routes />
     </div>

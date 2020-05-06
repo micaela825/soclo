@@ -7,15 +7,25 @@
   background-color: #fcf8f5;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
 
-  &__nav {
+  &__icon {
+    display: grid;
+    padding: 22px 0 0 32px;
+  }
+
+  &__open-nav {
     height: 100vh;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    padding-top: 85px;
+    grid: repeat(4, 100px) / 1fr;
     z-index: 9;
     background-color: #fcf8f5;
-    font-family: 'Playfair Display', serif;
     align-items: center;
-    margin-top: -10px;
+    justify-items: center;
+    font-size: 26px;
+    &__item {
+      color: #eb1736;
+      text-transform: lowercase;
+    }
   }
 
   @media (min-width: 1024px) {

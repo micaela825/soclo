@@ -1,8 +1,6 @@
-import './index.scss'
-
-import classnames from 'classnames'
 import React from 'react'
-// import {useSelector} from 'react-redux'
+import classnames from 'classnames'
+import './index.scss'
 
 const Hamburger = ({isActive, handleClick}) => {
   return (

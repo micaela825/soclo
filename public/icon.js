@@ -13,6 +13,7 @@ const Icon = () => (
       stroke="black"
       strokeLinecap="round"
       strokeLinejoin="round"
+      strokeWidth="2px"
     />
   </svg>
 )
