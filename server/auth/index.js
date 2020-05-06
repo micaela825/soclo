@@ -6,9 +6,9 @@ router.post('/login', async (req, res, next) => {
   try {
     const user = await User.findOne({where: {email: req.body.email}})
     if (!user) {
-      res.status(401).send('Wrong username and/or password')
+      res.status(401).send("Oops, we can't find that email")
     } else if (!user.correctPassword(req.body.password)) {
-      res.status(401).send('Wrong username and/or password')
+      res.status(401).send("Oops, that's not a match")
     }
     req.login(user, err => (err ? next(err) : res.json(user)))
   } catch (err) {
