@@ -1,5 +1,11 @@
-$nav-height: 85px;
-
 .account {
-  margin: 130px 0 0 60px;
+  display: grid;
+  grid-template-columns: 1fr;
+
+  justify-items: center;
+  margin: 80px;
+
+  &__title {
+    font-size: 30px;
+  }
 }
