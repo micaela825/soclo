@@ -74,6 +74,8 @@ class AddContainer extends Component {
   }
 
   render() {
+    // let imageArr = []
+
     let widget = window.cloudinary.createUploadWidget(
       {
         cloudName: 'micaelascloud',
@@ -83,6 +85,8 @@ class AddContainer extends Component {
       (error, result) => {
         if (!error && result && result.event === 'success') {
           console.log('Done! Here is the image info: ', result.info)
+          //imageArr.push(result.info.url)
+
           this.setState({
             imageURL: result.info.url
           })

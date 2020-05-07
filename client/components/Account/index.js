@@ -38,9 +38,9 @@ class AccountContainer extends Component {
     return (
       <div className={`${BASE_CLASS}`}>
         <div className={`${BASE_CLASS}__title`}>user account</div>
-        <h2>total items:</h2>
+        <h2>total items in your closet:</h2>
         <h3>{this.state.closet.dresses.length}</h3>
-        <h2>total value:</h2>
+        <h2>total value of your wardrobe:</h2>
         <h3>{this.total}</h3>
       </div>
     )
