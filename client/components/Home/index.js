@@ -1,27 +1,25 @@
 import React, {Component} from 'react'
-// import {connect} from 'react-redux'
+import {connect} from 'react-redux'
 import './index.scss'
 // import SimpleSlider from '../ItemCarousel/CarouselContainer'
 const BASE_CLASS = 'home'
 
-class Home extends Component {
-  render() {
-    return (
-      <div className="hi">
-        <h1>welcome.</h1>
-      </div>
-    )
+const Home = props => {
+  return (
+    <div className={BASE_CLASS}>
+      {props.name ? <h2>welcome, {props.name}!</h2> : <h2>welcome!</h2>}
+    </div>
+  )
+}
+
+const mapState = state => {
+  return {
+    email: state.user.user.email,
+    name: state.user.user.name
   }
 }
 
-// const mapState = (state) => {
-//   return {
-//     // email: state.user.email
-//   }
-// }
-
-// export default connect(mapState)(Home)
-export default Home
+export default connect(mapState)(Home)
 
 /**
  * PROP TYPES

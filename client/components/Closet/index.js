@@ -8,7 +8,7 @@ import store from '../../store'
 import axios from 'axios'
 import './index.scss'
 
-const baseClass = 'closet-container'
+const BASE_CLASS = 'closet'
 
 class ClosetContainer extends Component {
   constructor(props) {
@@ -60,62 +60,67 @@ class ClosetContainer extends Component {
 
   render() {
     return (
-      <div className={`${baseClass}`}>
-        <div className={`${baseClass}_title`}>micaela's closet</div>
+      <div className={`${BASE_CLASS}`}>
+        <div className={`${BASE_CLASS}__title`}>your wardrobe</div>
 
-        <div className={`${baseClass}__menu`}>
+        <div className={`${BASE_CLASS}__menu`}>
           <div
             onClick={this.filterCostMoreThan50}
-            className={`${baseClass}__menu__button`}
+            className={`${BASE_CLASS}__menu__button`}
           >
             filter
           </div>
 
           <div
             onClick={this.sortByCost}
-            className={`${baseClass}__menu__button`}
+            className={`${BASE_CLASS}__menu__button`}
           >
             sort
           </div>
 
           <Link to="/add">
-            <div className={`${baseClass}__menu__button`}>add an item </div>
+            <div className={`${BASE_CLASS}__menu__button`}>add</div>
           </Link>
         </div>
-        <div className={`${baseClass}_table`}>
+        <div className={`${BASE_CLASS}__table`}>
           {this.state.closet.dresses
             ? this.state.closet.dresses.map((dress, i) => (
-                <div className={`${baseClass}_item`} key={i}>
-                  <Link to={`/closet/${dress.id}`}>
-                    <div className={`${baseClass}__item__wearcount`}>
+                <div className={`${BASE_CLASS}__item`} key={i}>
+                  <Link
+                    to={`/closet/${dress.id}`}
+                    className={`${BASE_CLASS}__item__body`}
+                  >
+                    <div className={`${BASE_CLASS}__item__body__wearcount`}>
                       {dress.wearCount}
                     </div>
                     <img
-                      className={`${baseClass}_image-body`}
+                      className={`${BASE_CLASS}__item__body__image`}
                       src={dress.imageURL}
                     />
-                    <div className={`${baseClass}_name-body`}>{dress.name}</div>
+                    <div className={`${BASE_CLASS}__item__body__name`}>
+                      {dress.name}
+                    </div>
                   </Link>
-                  <div className={`${baseClass}__buttons`}>
+                  <div className={`${BASE_CLASS}__buttons`}>
                     <Link
-                      className={`${baseClass}__buttons__edit`}
+                      className={`${BASE_CLASS}__buttons__edit`}
                       to={{pathname: `/closet/${dress.id}/edit`, state: dress}}
                     >
                       edit
                     </Link>
                     <div
-                      className={`${baseClass}__buttons__add`}
+                      className={`${BASE_CLASS}__buttons__add`}
                       onClick={() => this.addWear(dress.id)}
                     >
                       {' '}
                       + wear{' '}
                     </div>
-                    <div
-                      className={`${baseClass}__info__buttons__remove`}
+                    {/* <div
+                      className={`${BASE_CLASS}__info__buttons__remove`}
                       onClick={() => this.showModal(dress.id)}
                     >
                       remove
-                    </div>
+                    </div> */}
                   </div>
                   {this.state.utils.isModalOpen ? (
                     <RemoveConfirmationModal

@@ -15,21 +15,18 @@ const NavBar = ({handleClick, isLoggedIn}) => (
         <MobileHeader handleClick={handleClick} />
       </Fragment>
     ) : (
-      <div className="auth">
+      <Fragment>
         <Link to="/login" className="auth__login">
           Login
         </Link>
         <Link to="/signup" className="auth__signup">
           Sign Up
         </Link>
-      </div>
+      </Fragment>
     )}
   </nav>
 )
 
-/**
- * CONTAINER
- */
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.user.id
@@ -46,9 +43,6 @@ const mapDispatch = dispatch => {
 
 export default connect(mapState, mapDispatch)(NavBar)
 
-/**
- * PROP TYPES
- */
 NavBar.propTypes = {
   handleClick: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired

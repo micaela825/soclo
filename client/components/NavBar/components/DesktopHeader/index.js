@@ -10,24 +10,27 @@ const BASE_CLASS = 'desktop-header'
 
 const DesktopHeader = ({handleClick}) => (
   <div className={BASE_CLASS}>
-    <Link to="/home">
+    <Link to="/home" className={`${BASE_CLASS}__icon`}>
       <Icon />
     </Link>
     <div className={`${BASE_CLASS}__links`}>
-      <Link to="/search">Find A Dress</Link>
-      <Link to="/closet">My Closet</Link>
-      <Link to="/account">My Account</Link>
+      <Link to="/search" className={`${BASE_CLASS}__links__link`}>
+        search
+      </Link>
+      <Link to="/closet" className={`${BASE_CLASS}__links__link`}>
+        Closet
+      </Link>
+      <Link to="/account" className={`${BASE_CLASS}__links__link`}>
+        Account
+      </Link>
     </div>
 
     <a href="#" onClick={handleClick} className={`${BASE_CLASS}__logout`}>
-      Logout
+      Log out
     </a>
   </div>
 )
 
-/**
- * CONTAINER
- */
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.user.id
@@ -44,9 +47,6 @@ const mapDispatch = dispatch => {
 
 export default connect(mapState, mapDispatch)(DesktopHeader)
 
-/**
- * PROP TYPES
- */
 DesktopHeader.propTypes = {
   handleClick: PropTypes.func.isRequired
 }

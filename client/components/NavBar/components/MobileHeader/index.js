@@ -24,19 +24,32 @@ const MobileHeader = ({handleClick}) => {
 
   return (
     <div className={BASE_CLASS}>
-      <Link to="/home">
+      <Link to="/home" className={`${BASE_CLASS}__icon`}>
         <Icon />
       </Link>
       {!isNavOpen ? (
         <Hamburger handleClick={handleNavClick} isActive={isNavOpen} />
       ) : (
-        <div className={`${BASE_CLASS}__nav`} onClick={() => handleNavClick()}>
+        <div
+          className={`${BASE_CLASS}__open-nav`}
+          onClick={() => handleNavClick()}
+        >
           <Hamburger handleClick={handleNavClick} isActive={isNavOpen} />
-          <Link to="/search">Find A Dress</Link>
-          <Link to="/closet">My Closet</Link>
-          <Link to="/account">My Account</Link>
-          <a href="#" onClick={handleClick}>
-            Logout
+          <Link to="/search" className={`${BASE_CLASS}__open-nav__item`}>
+            search
+          </Link>
+          <Link to="/closet" className={`${BASE_CLASS}__open-nav__item`}>
+            closet
+          </Link>
+          <Link to="/account" className={`${BASE_CLASS}__open-nav__item`}>
+            account
+          </Link>
+          <a
+            href="#"
+            className={`${BASE_CLASS}__open-nav__item__last`}
+            onClick={handleClick}
+          >
+            Log out
           </a>
         </div>
       )}

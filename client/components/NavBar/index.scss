@@ -1,1 +1,11 @@
 @import '../../assets/colors.scss';
+
+.nav {
+  a {
+    display: inline-block;
+    letter-spacing: 0.1em;
+    margin: 20px;
+    color: black;
+    text-transform: lowercase;
+  }
+}

@@ -1,8 +1,10 @@
 .desktop-header {
   display: none;
   background-color: #fcf8f5;
+  // background-color: #fff5f2;
   width: 100%;
-  box-shadow: 0px 0px 10px 0px rgba(238, 8, 8, 0.1);
+
+  box-shadow: 0px 0px 10px 0px rgba(113, 84, 84, 0.2);
 
   @media (min-width: 1024px) {
     display: grid;
@@ -10,15 +12,32 @@
     align-items: center;
     position: fixed;
     height: 85px;
+    top: 0;
     z-index: 1;
     padding: 0 20px;
   }
 
+  &__icon {
+    display: grid;
+    padding: 20px;
+  }
+
   &__links {
     grid-column: 3 / span 7;
+
+    &__link {
+      // color: #eb1736;
+      color: #222222;
+      text-transform: lowercase;
+      font-size: 26px;
+      margin-right: 32px;
+    }
   }
 
   &__logout {
     grid-column: 11;
+    text-transform: lowercase;
+    font-size: 26px;
+    color: #5252d4;
   }
 }
