@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import './index.scss'
 import {Link, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
@@ -76,8 +76,8 @@ class AddContainer extends Component {
         {this.state.submitted ? (
           <Redirect to="/success" />
         ) : (
-          <div>
-            <h1 className={`${BASE_CLASS}__header`}>add an article </h1>
+          <Fragment>
+            <h2 className={`${BASE_CLASS}__header`}>add an item </h2>
             <form
               className={`${BASE_CLASS}__form`}
               onSubmit={this.handleSubmit}
@@ -138,7 +138,7 @@ class AddContainer extends Component {
                 Submit
               </button>
             </form>
-          </div>
+          </Fragment>
         )}
       </div>
     )

@@ -2,63 +2,69 @@
 @import '../../assets/mq.scss';
 $nav-height: 85px;
 
-.closet-container {
+.closet {
   display: grid;
   grid-template-columns: repeat(2, 50%);
   grid-template-rows: repeat(3, auto);
-  margin: 118px 10px 0 10px;
+  padding: 10px;
 
   @include mq($from: desktop) {
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: 100px auto;
-    margin: $nav-height 60px 0;
+    // margin: $nav-height 60px 0;
   }
 
-  &_title {
+  &__title {
     grid-row: 1;
     grid-column: 1 / span 2;
     font-size: 28px;
     text-align: center;
     align-self: center;
-    font-family: 'Playfair Display', serif;
+    font-family: futura-pt, serif;
+    margin-top: 26px;
 
     @include mq($from: desktop) {
       grid-column: 5 / span 4;
-      font-size: 28px;
     }
   }
 
   &__menu {
     grid-column: 1 / span 2;
     grid-row: 2;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 20px 20px 0;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: center;
+    grid-column-gap: 26px;
+    margin: 26px 10px;
 
     @include mq($from: desktop) {
       grid-column: 1 / span 2;
-      flex-direction: column;
+      width: 100px;
+      margin-left: 25%;
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(3, auto) 1fr;
+      grid-gap: 30px;
     }
     &__button {
-      // @include button;
-
-      font-family: 'Lato', sans-serif;
-      // FCF8F5
-      font-size: 12px;
-      letter-spacing: 0.2em;
-      height: 40px;
-      font-weight: 500;
+      border: solid red 1px;
+      background-color: #fcf8f5;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: 3px;
+      letter-spacing: 2px;
     }
   }
 
-  &_table {
+  &__table {
     grid-row: 3;
     grid-column: 1 / span 2;
     display: grid;
     grid-template-columns: repeat(2, 50%);
     grid-template-rows: auto;
     justify-items: center;
+    padding: 12px;
+
     @include mq($from: desktop) {
       grid-column: 3 / span 8;
       grid-row: 2;
@@ -67,10 +73,11 @@ $nav-height: 85px;
   }
 
   &__item {
-    width: 155px;
-    margin: 0;
+    width: 100%;
+    padding: 12px;
     animation: 1s ease-in 2s 3 linear;
-    border-bottom: grey 1px;
+    margin-bottom: 28px;
+
     @include mq($from: desktop) {
       padding: 10px;
     }
@@ -79,73 +86,74 @@ $nav-height: 85px;
       cursor: pointer;
     }
 
-    &__wearcount {
-      border-radius: 50%;
-      background-color: white;
-      border: 1px solid grey;
-      height: 40px;
-      width: 40px;
-      font-weight: 500;
-      font-size: 18px;
-      text-align: center;
-      align-self: center;
-      padding: 5px;
-      z-index: 3;
-      margin: -10px 0 0 -5px;
-      color: black;
-      font-family: monospace;
-      position: absolute;
-      margin: 7px;
+    &__body {
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: center;
+      justify-items: center;
+      font-family: futura-pt, serif;
+      height: 280px;
+
+      &__wearcount {
+        border-radius: 50%;
+        background-color: white;
+        border: 1px solid #222222;
+        height: 40px;
+        width: 40px;
+        font-weight: 400;
+        font-size: 18px;
+        text-align: center;
+        align-self: center;
+        padding: 5px;
+        z-index: 3;
+        margin: -10px 0 0 -5px;
+        color: black;
+        position: absolute;
+      }
+
+      &__name {
+        padding: 10px;
+        font-size: 18px;
+        text-align: center;
+        text-transform: lowercase;
+        color: #222222;
+      }
+      &__image {
+        max-height: 180px;
+
+        :hover {
+          opacity: 0.9;
+        }
+      }
     }
-  }
-
-  &_name-body {
-    padding: 10px;
-    font-size: 22px;
-    text-align: center;
-    text-transform: lowercase;
-
-    :hover {
-      text-transform: uppercase;
-    }
-  }
-
-  &_image-body {
-    display: flex;
-    justify-content: center;
-    height: 180px;
-    width: 120px;
-
-    :hover {
-      opacity: 0.9;
-    }
-  }
-
-  &_desc-body {
-    margin: 25px auto 25px 35px;
-    font-family: 'Lato', sans-serif;
   }
 
   &__buttons {
-    font-family: 'Lato', sans-serif;
-    font-size: 12px;
+    font-size: 18px;
     display: grid;
-    grid-template-rows: repeat(2, 1fr);
     grid-template-columns: repeat(2, 1fr);
-    justify-content: center;
+    color: #222222;
+    // color: #5252d4;
+    justify-items: center;
 
     &__edit {
       grid-column: 1;
-      grid-row: 1;
+      background: #fcf8f5;
+      padding: 5px 8px;
+      border: 1px solid #5252d4;
+      border-radius: 3px;
     }
-    &__remove {
-      grid-column: 1;
-      grid-row: 2;
-    }
+    // &__remove {
+    //   grid-column: 1;
+    //   grid-row: 2;
+    // }
 
     &__add {
       grid-column: 2;
-      grid-row: 1 / span 2;
+      background: #fcf8f5;
+      padding: 5px 8px;
+      border: 1px solid #5252d4;
+      border-radius: 3px;
     }
   }
 }

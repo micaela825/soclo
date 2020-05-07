@@ -46,7 +46,7 @@ const MobileHeader = ({handleClick}) => {
           </Link>
           <a
             href="#"
-            className={`${BASE_CLASS}__open-nav__item`}
+            className={`${BASE_CLASS}__open-nav__item__last`}
             onClick={handleClick}
           >
             Log out

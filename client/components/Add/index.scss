@@ -1,11 +1,15 @@
 @import '../../assets/mq.scss';
 
 .add-form {
-  margin: 150px 50px 75px;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  margin: 50px auto;
 
   &__header {
-    font-family: 'Playfair Display', serif;
+    font-family: futura-pt, serif;
     font-size: 28px;
+    font-weight: 300;
   }
 
   &__error {
@@ -18,10 +22,11 @@
   &__form {
     &__title {
       font-size: 16px;
-      font-family: 'Lato', serif;
+      font-family: futura-pt, serif;
       letter-spacing: 0.1em;
       font-weight: 100;
-      margin-top: 45px;
+      margin: 10px 0;
+      // margin-top: 45px;
     }
     &__input {
       width: 200px;
@@ -29,7 +34,7 @@
       border: solid 1px #f0e9e4;
       border-radius: 3px;
       font-size: 16px;
-      font-family: 'Lato', sans-serif;
+      font-family: futura-pt, serif;
       letter-spacing: 0.2em;
       text-align: center;
 
@@ -41,31 +46,33 @@
     &__submit {
       width: 200px;
       height: 45px;
-      background-color: #fcf8f5;
-      border-color: #fcf8f5;
+      // background-color: #fcf8f5;
+      // border-color: #fcf8f5;
       border-radius: 3px;
       font-size: 22px;
-      font-family: 'Playfair Display', serif;
+      font-family: futura-pt, serif;
       letter-spacing: 0.1em;
       margin-top: 30px;
       padding-top: 5px;
-      color: black;
+      color: white;
+      background-color: red;
     }
 
     &__upload {
       width: 200px;
       height: 45px;
-
-      border: solid 1px #f0e9e4;
+      background-color: #fff5f2;
+      border: solid 1px red;
       border-radius: 3px;
       font-size: 16px;
       text-transform: uppercase;
-      font-family: 'Lato', sans-serif;
+      font-family: futura-pt, serif;
       letter-spacing: 0.1em;
       margin-top: 30px;
-      padding-top: 5px;
+      padding: 5px 9px;
       color: black;
       text-align: center;
+      line-height: 40px;
     }
   }
 }

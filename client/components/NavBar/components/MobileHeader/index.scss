@@ -23,8 +23,14 @@
     justify-items: center;
     font-size: 26px;
     &__item {
-      color: #eb1736;
+      // color: #eb1736;
+      color: #222222;
       text-transform: lowercase;
+
+      &__last {
+        color: #5252d4;
+        text-transform: lowercase;
+      }
     }
   }
 
