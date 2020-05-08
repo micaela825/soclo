@@ -20,7 +20,9 @@ async function seed() {
       description: 'a very pretty dress!',
       userId: 1,
       wearCount: 2,
-      cost: 50.99
+      cost: 50.99,
+      category: 'Top',
+      latestWear: Date.now()
     }),
     Closet.create({
       imageURL:
@@ -29,7 +31,9 @@ async function seed() {
       description: 'Perfect for springtime',
       userId: 2,
       wearCount: 1,
-      cost: 35
+      cost: 35,
+      category: 'Bottom',
+      latestWear: Date.now()
     }),
     Closet.create({
       imageURL:
@@ -38,7 +42,9 @@ async function seed() {
       description: 'Illusion neck, short sleeves, scallop trip',
       userId: 1,
       wearCount: 2,
-      cost: 100
+      cost: 100,
+      category: 'Outerwear',
+      latestWear: Date.now()
     }),
     Closet.create({
       imageURL:

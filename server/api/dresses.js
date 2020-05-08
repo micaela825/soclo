@@ -18,7 +18,9 @@ router.get('/', async (req, res, next) => {
         'description',
         'userId',
         'cost',
-        'wearCount'
+        'wearCount',
+        'category',
+        'latestWear'
       ]
     })
     res.json(dresses)
@@ -42,6 +44,7 @@ router.get('/:dressId', async (req, res, next) => {
 })
 
 router.post('/', async (req, res, next) => {
+  console.log('here ****in post', req.body)
   try {
     const newDress = await Closet.create({
       id: req.body.id,
@@ -50,7 +53,10 @@ router.post('/', async (req, res, next) => {
       description: req.body.description,
       wearCount: Number(req.body.wearCount),
       cost: req.body.cost,
-      userId: req.session.passport.user
+      userId: req.session.passport.user,
+      category: req.body.category,
+      // latestWear: req.body.wearCount && Date.now(),
+      latestWear: Date.now()
     })
   } catch (err) {
     console.error(err)
@@ -85,15 +91,31 @@ router.delete('/:dressId', (req, res) => {
   }
 })
 router.post('/:dressId', async (req, res, next) => {
+  console.log('req.body', req.body)
   const dressId = req.params.dressId
 
   try {
     const dressToUpdate = await Closet.increment('wearCount', {
       where: {id: dressId}
     })
+    // console
+    //   .log('dress to update BEFORE', dressToUpdate)
+    // await dressToUpdate.updateWear()
+    // Closet.prototype.updateWear(dressToUpdate)
 
+    // console.log('dress to update AFTER', dressToUpdate)
+
+    // console.log('CLOSET', Closet.prototype.updateWear(dressToUpdate))
     res.send(dressToUpdate)
   } catch (err) {
     next(err)
   }
+  // try {
+  //   const dressToUpdate = await Closet.findOne({
+  //     where: {id: dressId},
+  //   }).then(() => Closet.prototype.updateWear(dressToUpdate))
+  //   res.send(dressToUpdate)
+  // } catch (err) {
+  //   next(err)
+  // }
 })

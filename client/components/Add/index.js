@@ -4,6 +4,9 @@ import {Link, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {addDress} from '../../store/closet'
 const BASE_CLASS = 'add-form'
+import classnames from 'classnames'
+import brands from './utils/brands'
+import categories from './utils/categories'
 
 class AddContainer extends Component {
   constructor(props) {
@@ -15,6 +18,7 @@ class AddContainer extends Component {
       wearCount: '',
       cost: '',
       submitted: false,
+      category: '',
       error: ''
     }
     this.handleChange = this.handleChange.bind(this)
@@ -53,6 +57,7 @@ class AddContainer extends Component {
         wearCount: '',
         cost: '',
         submitted: true,
+        // category: '',
         error: ''
       })
     }
@@ -84,7 +89,7 @@ class AddContainer extends Component {
       },
       (error, result) => {
         if (!error && result && result.event === 'success') {
-          console.log('Done! Here is the image info: ', result.info)
+          // console.log('Done! Here is the image info: ', result.info)
           //imageArr.push(result.info.url)
 
           this.setState({
@@ -93,13 +98,14 @@ class AddContainer extends Component {
         }
       }
     )
+
     return (
       <div className={BASE_CLASS}>
         {this.state.submitted ? (
           <Redirect to="/success" />
         ) : (
           <Fragment>
-            <h1 className={`${BASE_CLASS}__header`}>add an article </h1>
+            <h1 className={`${BASE_CLASS}__header`}>add an item </h1>
             {this.state.error && (
               <h3 className={`${BASE_CLASS}__error`}>{this.state.error}</h3>
             )}
@@ -115,26 +121,20 @@ class AddContainer extends Component {
                 value={this.state.name}
                 onChange={this.handleChange}
               />
-
-              <div className={`${BASE_CLASS}__form__title`}>description</div>
-              <input
-                className={`${BASE_CLASS}__form__input`}
-                name="description"
-                type="text"
-                onChange={this.handleChange}
-                value={this.state.description}
-              />
-
-              <div className={`${BASE_CLASS}__form__title`}>wears</div>
-              <input
-                className={`${BASE_CLASS}__form__input`}
-                name="wearCount"
-                type="text"
-                onChange={this.handleChange}
-                value={this.state.wearCount}
-              />
-
-              <div className={`${BASE_CLASS}__form__title`}>cost</div>
+              <div className={`${BASE_CLASS}__form__title`}>category</div>
+              {categories.map((item, key) => (
+                <button
+                  key={key}
+                  value={item}
+                  name="category"
+                  type="button"
+                  className={`${BASE_CLASS}__form__category`}
+                  onClick={this.handleChange}
+                >
+                  {item}
+                </button>
+              ))}
+              <div className={`${BASE_CLASS}__form__title`}>$ cost</div>
               <input
                 className={`${BASE_CLASS}__form__input`}
                 name="cost"
@@ -143,16 +143,24 @@ class AddContainer extends Component {
                 value={this.state.cost}
               />
 
-              {/* <label>
-                <div>cost per wear goal: </div>
-                {// add tooltip above}
-                <input
-                  name="cost"
-                  type="text"
-                  onChange={this.handleChange}
-                  value={this.state.cost}
-                />
-              </label> */}
+              <div className={`${BASE_CLASS}__form__title`}># of wears</div>
+              <input
+                className={`${BASE_CLASS}__form__input`}
+                name="wearCount"
+                type="text"
+                onChange={this.handleChange}
+                value={this.state.wearCount}
+              />
+              <div className={`${BASE_CLASS}__form__title`}>brand</div>
+              <input
+                type="text"
+                list="datalist"
+                className={`${BASE_CLASS}__form__input`}
+              />
+              <datalist id="datalist">
+                {brands.map((item, key) => <option key={key} value={item} />)}
+              </datalist>
+
               <div
                 className={`${BASE_CLASS}__form__upload`}
                 onClick={() => this.showWidget(widget)}
@@ -160,7 +168,7 @@ class AddContainer extends Component {
                 Upload image
               </div>
               <button className={`${BASE_CLASS}__form__submit`} type="submit">
-                Submit
+                add item
               </button>
             </form>
           </Fragment>
