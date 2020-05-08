@@ -40,8 +40,10 @@ class AccountContainer extends Component {
         <div className={`${BASE_CLASS}__title`}>user account</div>
         <h2>total items in your closet:</h2>
         <h3>{this.state.closet.dresses.length}</h3>
+        <div className={`${BASE_CLASS}__divider`} />
         <h2>total value of your wardrobe:</h2>
         <h3>{this.total}</h3>
+        <div className={`${BASE_CLASS}__divider`} />
       </div>
     )
   }

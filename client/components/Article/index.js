@@ -50,6 +50,7 @@ class ArticleContainer extends Component {
       return (
         <div className={BASE_CLASS} key="dress.id">
           <img className={`${BASE_CLASS}__image`} src={dress.imageURL} />
+
           <div className={`${BASE_CLASS}__title`}>{dress.name}</div>
           <div className={`${BASE_CLASS}__info`}>
             <div className={`${BASE_CLASS}__info__title`}>original cost:</div>

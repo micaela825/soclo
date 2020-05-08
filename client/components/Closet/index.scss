@@ -1,6 +1,5 @@
 @import '../../assets/colors.scss';
 @import '../../assets/mq.scss';
-$nav-height: 85px;
 
 .closet {
   display: grid;
@@ -11,7 +10,6 @@ $nav-height: 85px;
   @include mq($from: desktop) {
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: 100px auto;
-    // margin: $nav-height 60px 0;
   }
 
   &__title {
@@ -96,8 +94,10 @@ $nav-height: 85px;
 
       &__wearcount {
         border-radius: 50%;
-        background-color: white;
-        border: 1px solid #222222;
+        // background-color: #fff5f2;
+        background-color: #fcf8f5;
+        border: 2px solid #222222;
+        // border: 1px solid purple;
         height: 40px;
         width: 40px;
         font-weight: 400;
@@ -135,12 +135,19 @@ $nav-height: 85px;
     color: #222222;
     // color: #5252d4;
     justify-items: center;
+    font-size: 18px;
+    // padding: 0 20px;
+
+    // @include mq($from: desktop) {
+    //   padding: 0 50px;
+    // }
 
     &__edit {
       grid-column: 1;
-      background: #fcf8f5;
+      color: purple;
+      // background: #fcf8f5;
       padding: 5px 8px;
-      border: 1px solid #5252d4;
+      // border: 1px solid #5252d4;
       border-radius: 3px;
     }
     // &__remove {
@@ -150,10 +157,31 @@ $nav-height: 85px;
 
     &__add {
       grid-column: 2;
-      background: #fcf8f5;
+      // background: #fcf8f5;
       padding: 5px 8px;
-      border: 1px solid #5252d4;
+      color: purple;
+      // border: 1px solid #5252d4;
       border-radius: 3px;
+    }
+  }
+  &__divider {
+    height: 3px;
+    display: block;
+    width: 70px;
+    grid-column: 1 / span 2;
+    margin: 20px auto;
+    align-self: center;
+    &__light {
+      background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='15' height='15'><g fill='white'><circle cx='1' cy='1' r='1' /></g></svg>")
+        repeat;
+    }
+    // &__dark {
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='15' height='15'><g fill='turquoise'><circle cx='1' cy='1' r='1' /></g></svg>")
+      repeat;
+    // }
+
+    @include mq($from: desktop) {
+      margin: 40px auto;
     }
   }
 }

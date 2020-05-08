@@ -6,6 +6,8 @@ import {setIsModalOpen} from '../../store/utils'
 import RemoveConfirmationModal from '../RemoveConfirmation'
 import store from '../../store'
 import axios from 'axios'
+import EditIcon from '../../../public/editIcon'
+import AddIcon from '../../../public/addIcon'
 import './index.scss'
 
 const BASE_CLASS = 'closet'
@@ -108,13 +110,17 @@ class ClosetContainer extends Component {
                     >
                       edit
                     </Link>
+                    {/* <EditIcon className={`${BASE_CLASS}__buttons__edit`} />
+                    <AddIcon className={`${BASE_CLASS}__buttons__add`} /> */}
                     <div
                       className={`${BASE_CLASS}__buttons__add`}
                       onClick={() => this.addWear(dress.id)}
                     >
                       {' '}
-                      + wear{' '}
+                      +wear{' '}
                     </div>
+
+                    <div className={`${BASE_CLASS}__divider`} />
                     {/* <div
                       className={`${BASE_CLASS}__info__buttons__remove`}
                       onClick={() => this.showModal(dress.id)}
