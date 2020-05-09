@@ -20,6 +20,7 @@ router.get('/', async (req, res, next) => {
         'cost',
         'wearCount',
         'category',
+        'brand',
         'latestWear'
       ]
     })
@@ -55,6 +56,7 @@ router.post('/', async (req, res, next) => {
       cost: req.body.cost,
       userId: req.session.passport.user,
       category: req.body.category,
+      brand: req.body.brand,
       // latestWear: req.body.wearCount && Date.now(),
       latestWear: Date.now()
     })

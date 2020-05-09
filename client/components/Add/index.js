@@ -19,10 +19,12 @@ class AddContainer extends Component {
       cost: '',
       submitted: false,
       category: '',
+      brand: '',
       error: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.onInput = this.onInput.bind(this)
   }
 
   handleChange(event) {
@@ -32,8 +34,16 @@ class AddContainer extends Component {
     })
   }
 
+  onInput() {
+    var val = document.getElementById('input').value
+    this.setState({
+      brand: val
+    })
+  }
+
   handleSubmit(event) {
     event.preventDefault()
+    console.log('state in handle submit', this.state)
 
     if (!this.state.name && !this.state.imageURL) {
       this.setState({
@@ -154,7 +164,10 @@ class AddContainer extends Component {
               <div className={`${BASE_CLASS}__form__title`}>brand</div>
               <input
                 type="text"
+                id="input"
                 list="datalist"
+                name="brand"
+                onChange={this.onInput}
                 className={`${BASE_CLASS}__form__input`}
               />
               <datalist id="datalist">

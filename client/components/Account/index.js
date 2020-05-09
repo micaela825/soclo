@@ -54,6 +54,7 @@ class AccountContainer extends Component {
         <div className={`${BASE_CLASS}__title`}>user account</div>
         <h2>total items in your closet:</h2>
         <h3>{totalItems}</h3>
+        <div className={`${BASE_CLASS}__divider`} />
         <h2>average cost of an item in your closet:</h2>
         <h3>{totalCost / totalItems}</h3>
         <div className={`${BASE_CLASS}__divider`} />

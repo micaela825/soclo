@@ -25,6 +25,9 @@ const Closet = db.define('closet', {
   category: {
     type: Sequelize.STRING
   },
+  brand: {
+    type: Sequelize.STRING
+  },
   latestWear: {
     type: Sequelize.DATE
   }

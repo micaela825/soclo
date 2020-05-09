@@ -21,7 +21,7 @@ async function seed() {
       userId: 1,
       wearCount: 2,
       cost: 50.99,
-      category: 'Top',
+      category: 'top',
       latestWear: Date.now()
     }),
     Closet.create({
@@ -32,7 +32,8 @@ async function seed() {
       userId: 2,
       wearCount: 1,
       cost: 35,
-      category: 'Bottom',
+      category: 'bottom',
+      brand: 'Madewell',
       latestWear: Date.now()
     }),
     Closet.create({
@@ -43,7 +44,8 @@ async function seed() {
       userId: 1,
       wearCount: 2,
       cost: 100,
-      category: 'Outerwear',
+      category: 'outerwear',
+      brand: 'H+M',
       latestWear: Date.now()
     }),
     Closet.create({
@@ -54,7 +56,9 @@ async function seed() {
         'A bodice boasting geometric symmetry with a V-neck and mesh-inset cutouts at the waist tops a skirt featuring mirror-image floral patterning for a balanced dress that will skew all comments in your favor.',
       userId: 2,
       wearCount: 3,
-      cost: 200
+      cost: 200,
+      category: 'top',
+      brand: 'Zara'
     }),
     Closet.create({
       imageURL:
@@ -64,7 +68,8 @@ async function seed() {
         'Fit true to size. Sweetheart neck with bow detail. Off-the-shoulder short sleeves',
       userId: 1,
       wearCount: 3,
-      cost: 70
+      cost: 70,
+      brand: 'Anthropologie'
     })
   ])
 
