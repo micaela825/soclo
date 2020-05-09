@@ -1,98 +1,135 @@
 @import '../../assets/colors.scss';
 @import '../../assets/mq.scss';
 
-$nav-height: 85px;
-
 .article {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(4, auto);
-  margin-top: $nav-height + 45px;
-  font-size: 20px;
+  justify-items: center;
 
   @include mq($from: desktop) {
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: 25% auto 25%;
-    margin: $nav-height 60px 0;
-  }
-
-  &__image {
-    width: 185px;
-    height: 285px;
-    grid-row: 2;
-    justify-self: center;
-
-    @include mq($from: desktop) {
-      height: 360px;
-      width: 224px;
-      grid-column: 3 / span 3;
-    }
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, auto);
+    align-items: center;
+    margin: 100px 200px 0 50px;
   }
 
   &__title {
     grid-row: 1;
-    font-size: 24px;
-    margin-top: 0;
-    text-align: center;
-    font-family: 'Playfair Display', serif;
-    justify-self: center;
+    font-size: 28px;
+    letter-spacing: 1px;
+    font-family: futura-pt, sans-serif;
+    margin: 60px 0 30px;
+    font-weight: 500;
 
     @include mq($from: desktop) {
-      grid-column: 7 / span 3;
+      grid-column: 2;
+      grid-row: 1;
       font-size: 32px;
+      justify-self: start;
+      margin: 0;
+    }
+  }
+
+  &__image {
+    max-height: 200px;
+    grid-row: 2;
+
+    @include mq($from: desktop) {
+      max-height: 360px;
+      grid-row: 1 / span 3;
+      grid-column: 1;
+      margin-top: 20px;
     }
   }
 
   &__info {
     grid-row: 3;
-    margin: 25px 0 0 60px;
+    width: 100%;
+    padding: 30px 45px 30px;
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    font-family: futura-pt, sans-serif;
+    font-size: 24px;
+    margin: 30px 0 15px;
+    max-width: 300px;
+
     @include mq($from: desktop) {
       grid-row: 2;
-      grid-column: 7 / span 3;
-      display: grid;
-      grid-template-rows: 75px 100px auto;
+      grid-column: 2;
+      justify-self: start;
+      padding: 0;
     }
 
-    &__cost {
-      font-size: 18px;
-      line-height: 26px;
-      font-family: 'Lato';
+    &__title {
+      grid-column: 1;
+      font-family: futura-pt, sans-serif;
+      letter-spacing: 2px;
+      font-size: 20px;
+    }
+
+    &__figure {
+      grid-column: 2;
       letter-spacing: 0.1em;
+      justify-self: end;
+      font-weight: 400;
+    }
+  }
 
-      div span {
-        font-weight: 600;
-        margin-left: 7px;
-      }
+  &__buttons {
+    grid-row: 4;
+    display: grid;
+    grid-template-columns: 1fr;
+
+    @include mq($from: desktop) {
+      grid-column: 2;
+      grid-row: 3;
+      justify-self: start;
     }
 
-    &__buttons {
-      grid-row: 4;
-      display: flex;
-      flex-direction: column;
-      margin-top: 35px;
+    &__button {
+      // todo: add box shadow
+      height: 45px;
+      width: 235px;
+      border-radius: 3px;
+      background-color: #fcf8f5;
+      text-align: center;
+      margin: 15px 0px;
+      border: none;
+      text-transform: uppercase;
+      font-size: 18px;
+      letter-spacing: 2px;
+      font-weight: 500;
+      padding: 10px;
 
-      @include mq($from: desktop) {
-        grid-row: 3;
+      &:hover {
+        cursor: pointer;
+        opacity: 1;
+      }
+      &__add {
+        color: red;
       }
 
-      &__button {
-        border-radius: 7px;
-        background-color: #fde9da;
-        padding: 7px;
-        margin: 10px 0px;
-        text-transform: uppercase;
-        margin-right: 60px;
-        font-size: 18px;
-        letter-spacing: 0.1em;
-        height: 40px;
-        font-weight: 500;
-        border-color: #fde9da;
+      &__edit {
+        color: purple;
+      }
 
-        &:hover {
-          cursor: pointer;
-          opacity: 1;
-        }
+      &__remove {
+        color: turquoise;
       }
     }
+  }
+  &__divider {
+    height: 3px;
+    display: block;
+    width: 70px;
+    &__light {
+      background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='15' height='15'><g fill='white'><circle cx='1' cy='1' r='1' /></g></svg>")
+        repeat;
+    }
+    // &__dark {
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='15' height='15'><circle cx='1' cy='1' r='1' /></svg>")
+      repeat;
+    // }
   }
 }

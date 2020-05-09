@@ -45,7 +45,7 @@ class AuthForm extends Component {
           )}
           <input
             name="email"
-            type="text"
+            type="email"
             placeholder="email"
             className={`${BASE_CLASS}__form__input`}
           />

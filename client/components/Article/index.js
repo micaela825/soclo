@@ -7,6 +7,7 @@ import {getSingleDress, addWear} from '../../store/closet'
 import './index.scss'
 import RemoveConfirmationModal from '../RemoveConfirmation'
 import {connect} from 'react-redux'
+import classnames from 'classnames'
 
 const BASE_CLASS = 'article'
 
@@ -49,46 +50,53 @@ class ArticleContainer extends Component {
       return (
         <div className={BASE_CLASS} key="dress.id">
           <img className={`${BASE_CLASS}__image`} src={dress.imageURL} />
-          <h2 className={`${BASE_CLASS}__title`}>{dress.name}</h2>
+
+          <div className={`${BASE_CLASS}__title`}>{dress.name}</div>
           <div className={`${BASE_CLASS}__info`}>
-            <div className={`${BASE_CLASS}__info__cost`}>
-              <div>
-                original cost: <span>${dress.cost}</span>
-              </div>
-              <div>
-                wears: <span>{dress.wearCount} </span>{' '}
-              </div>
-              <div>
-                cost per wear:
-                <span>
-                  ${Math.round(dress.cost / dress.wearCount * 100) / 100}{' '}
-                </span>
-              </div>
+            <div className={`${BASE_CLASS}__info__title`}>original cost:</div>
+            <div className={`${BASE_CLASS}__info__figure`}>${dress.cost}</div>
+            <div className={`${BASE_CLASS}__info__title`}>wears:</div>
+            <div className={`${BASE_CLASS}__info__figure`}>
+              {dress.wearCount}{' '}
             </div>
-
-            <div className={`${BASE_CLASS}__info__buttons`}>
-              {/* <button className={`${BASE_CLASS}__info__buttons__button`}> */}
-              <Link to={{pathname: `/closet/${dress.id}/edit`, state: dress}}>
-                edit
-              </Link>
-
-              <button
-                className={`${BASE_CLASS}__info__buttons__button`}
-                onClick={() => this.showModal(dress.id)}
-              >
-                remove
-              </button>
-              <button
-                className={`${BASE_CLASS}__info__buttons__button`}
-                onClick={() => {
-                  this.addWear(dress.id)
-                }}
-              >
-                {' '}
-                add wear{' '}
-              </button>
+            <div className={`${BASE_CLASS}__info__title`}>cost per wear:</div>
+            <div className={`${BASE_CLASS}__info__figure`}>
+              ${Math.round(dress.cost / dress.wearCount * 100) / 100}
             </div>
           </div>
+          <div className={`${BASE_CLASS}__buttons`}>
+            {/* <button className={`${BASE_CLASS}__info__buttons__button`}> */}
+            <button
+              className={classnames(
+                `${BASE_CLASS}__buttons__button`,
+                `${BASE_CLASS}__buttons__button__add`
+              )}
+              onClick={() => {
+                this.addWear(dress.id)
+              }}
+            >
+              add wear
+            </button>
+            <Link
+              to={{pathname: `/closet/${dress.id}/edit`, state: dress}}
+              className={classnames(
+                `${BASE_CLASS}__buttons__button`,
+                `${BASE_CLASS}__buttons__button__edit`
+              )}
+            >
+              edit
+            </Link>
+            <button
+              className={classnames(
+                `${BASE_CLASS}__buttons__button`,
+                `${BASE_CLASS}__buttons__button__remove`
+              )}
+              onClick={() => this.showModal(dress.id)}
+            >
+              remove
+            </button>
+          </div>
+
           {this.state.utils.isModalOpen ? (
             <RemoveConfirmationModal
               handleCancel={this.handleCancel}

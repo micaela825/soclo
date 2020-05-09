@@ -1,5 +1,23 @@
-$nav-height: 85px;
-
 .account {
-  margin: 130px 0 0 60px;
+  display: grid;
+  grid-template-columns: 1fr;
+
+  justify-items: center;
+  margin: 80px;
+
+  &__title {
+    font-size: 30px;
+  }
+
+  &__divider {
+    height: 3px;
+    display: block;
+    width: 70px;
+    &__light {
+      background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='15' height='15'><g fill='white'><circle cx='1' cy='1' r='1' /></g></svg>")
+        repeat;
+    }
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='15' height='15'><circle cx='1' cy='1' r='1' /></svg>")
+      repeat;
+  }
 }
