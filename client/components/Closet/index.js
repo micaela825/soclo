@@ -1,7 +1,7 @@
 import React, {Component, useState} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {getDresses, addWear} from '../../store/closet'
+import {getDresses, addWear, addOutfit} from '../../store/closet'
 import {setIsModalOpen} from '../../store/utils'
 import RemoveConfirmationModal from '../RemoveConfirmation'
 import store from '../../store'
@@ -18,6 +18,8 @@ class ClosetContainer extends Component {
     this.state = {...store.getState(), outfit: []}
     this.filterCostMoreThan50 = this.filterCostMoreThan50.bind(this)
     this.sortByCost = this.sortByCost.bind(this)
+    this.saveOutfit = this.saveOutfit.bind(this)
+    this.createOutfit = this.createOutfit.bind(this)
   }
 
   async addWear(dressId) {
@@ -52,11 +54,10 @@ class ClosetContainer extends Component {
 
   createOutfit(dress) {
     this.state.outfit.push(dress)
-    console.log('this state', this.state)
   }
 
   saveOutfit() {
-    // dispatch local outfit on state to store
+    store.dispatch(addOutfit(this.state.outfit))
   }
 
   componentDidMount() {
@@ -79,6 +80,12 @@ class ClosetContainer extends Component {
             className={`${BASE_CLASS}__menu__button`}
           >
             filter
+          </div>
+          <div
+            onClick={this.saveOutfit}
+            className={`${BASE_CLASS}__menu__button`}
+          >
+            save outfit
           </div>
 
           <div
@@ -167,7 +174,8 @@ const mapState = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getDresses: () => dispatch(getDresses()),
-    addWear: dressId => dispatch(addWear(dressId))
+    addWear: dressId => dispatch(addWear(dressId)),
+    addOutfit: articles => dispatch(addOutfit(articles))
   }
 }
 

@@ -22,7 +22,8 @@ async function seed() {
       wearCount: 2,
       cost: 50.99,
       category: 'top',
-      latestWear: Date.now()
+      latestWear: Date.now(),
+      outfits: []
     }),
     Closet.create({
       imageURL:
@@ -34,7 +35,8 @@ async function seed() {
       cost: 35,
       category: 'bottom',
       brand: 'Madewell',
-      latestWear: Date.now()
+      latestWear: Date.now(),
+      outfits: []
     }),
     Closet.create({
       imageURL:

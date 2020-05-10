@@ -12,6 +12,7 @@ import RemoveConfirmationModal from './RemoveConfirmation'
 import Search from './Search'
 import Edit from './Edit'
 import NavBar from './NavBar'
+import Outfits from './Outfits'
 // import ItemCarousel from './ItemCarousel'
 
 export {NavBar}
@@ -25,3 +26,4 @@ export {Add}
 export {AddSuccess}
 export {Edit}
 export {RemoveConfirmationModal}
+export {Outfits}

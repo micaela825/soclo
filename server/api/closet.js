@@ -30,6 +30,23 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.get('/outfits', async (req, res, next) => {
+  try {
+    const userId = req.session.passport.user
+    const outfits = await Closet.findAll({
+      where: {
+        userId: userId
+      },
+      include: [{model: User}],
+
+      attributes: ['id', 'outfits']
+    })
+    res.json(outfits)
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.get('/:dressId', async (req, res, next) => {
   const dressId = req.params.dressId
   try {
@@ -45,7 +62,6 @@ router.get('/:dressId', async (req, res, next) => {
 })
 
 router.post('/', async (req, res, next) => {
-  console.log('here ****in post', req.body)
   try {
     const newDress = await Closet.create({
       id: req.body.id,
@@ -57,18 +73,37 @@ router.post('/', async (req, res, next) => {
       userId: req.session.passport.user,
       category: req.body.category,
       brand: req.body.brand,
-      // latestWear: req.body.wearCount && Date.now(),
-      latestWear: Date.now()
+      latestWear: req.body.wearCount && Date.now()
+      // latestWear: Date.now()
     })
   } catch (err) {
     console.error(err)
   }
 })
 
+router.post('/outfits', async (req, res, next) => {
+  const userId = req.body[0].user.id
+  console.log('user Id *******', userId)
+  // going to need user ID and outfits array
+  // try {
+  //   const dressToAddOutfit = await Closet.insertOrUpdate(
+  //     {
+  //       outfits: req.body.outfits,
+  //     },
+  //     {
+  //       where: {
+  //         id: userId,
+  //       },
+  //     }
+  //   )
+  //   res.send(dressToAddOutfit)
+  // } catch (err) {
+  //   console.error(err)
+  // }
+})
+
 router.put('/:dressId/edit', async (req, res, next) => {
   const dressId = req.params.dressId
-  console.log('req.body ********', req.body)
-
   try {
     const dressToEdit = await Closet.update(req.body, {
       where: {
@@ -93,7 +128,6 @@ router.delete('/:dressId', (req, res) => {
   }
 })
 router.post('/:dressId', async (req, res, next) => {
-  console.log('req.body', req.body)
   const dressId = req.params.dressId
 
   try {

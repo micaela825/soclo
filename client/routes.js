@@ -12,7 +12,8 @@ import {
   Account,
   Article,
   AddSuccess,
-  Edit
+  Edit,
+  Outfits
 } from './components'
 import {me} from './store'
 
@@ -38,6 +39,7 @@ class Routes extends Component {
             <Route path="/home" component={Home} />
             <Route path="/search" component={Search} />
             <Route exact path="/closet" component={Closet} />
+            <Route path="/closet/outfits" component={Outfits} />
             <Route path="/account" component={Account} />
             <Route path="/add" component={Add} />
             <Route path="/success" component={AddSuccess} />

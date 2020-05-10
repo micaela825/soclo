@@ -7,7 +7,8 @@ import history from '../history'
 const initialState = {
   // defaultUser: {},
   dresses: [],
-  dress: {}
+  dress: {},
+  outfits: {}
 }
 
 /**
@@ -18,12 +19,15 @@ const GET_SINGLE_DRESS = 'GET_SINGLE_DRESS'
 const ADDED_DRESS = 'ADDED_DRESS'
 const UPDATED_DRESS = 'UPDATED DRESS'
 const ADD_WEAR = 'ADD_WEAR'
+const ADDED_OUTFIT = 'ADDED_OUTFIT'
+// const GET_OUTFITS = 'GET_OUTFITS'
 
 /**
  * ACTION CREATORS
  */
 const gotDresses = dresses => ({type: GET_DRESSES, dresses})
 const gotAddedDress = dress => ({type: ADDED_DRESS, dress})
+const gotAddedOutfit = outfit => ({type: ADDED_OUTFIT, outfit})
 const gotDress = dress => ({type: GET_SINGLE_DRESS, dress})
 const gotUpdatedDress = dress => ({type: UPDATED_DRESS, dress})
 const gotDressToIncrement = dressId => ({type: ADD_WEAR, dressId})
@@ -65,6 +69,19 @@ export const addDress = dress => {
   }
 }
 
+export const addOutfit = articles => {
+  console.log('here in store', articles)
+  return async (dispatch, getState) => {
+    try {
+      const {data} = await axios.put(`/api/closet/outfits`, articles)
+      console.log('data in added outfit in store', data)
+      dispatch(gotAddedOutfit(data))
+    } catch (err) {
+      console.error(err)
+    }
+  }
+}
+
 export const updateDress = (dress, id) => {
   const dressId = id
   return async (dispatch, getState) => {
@@ -100,6 +117,9 @@ export default function(state = initialState, action) {
       return {...state, dress: action.dress}
     case ADDED_DRESS:
       return {...state, dress: action.dress}
+
+    case ADDED_OUTFIT:
+      return {...state, outfits: action.outfit}
     case UPDATED_DRESS: {
       return {...state, dress: action.dress}
     }

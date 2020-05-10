@@ -30,19 +30,24 @@ const Closet = db.define('closet', {
   },
   latestWear: {
     type: Sequelize.DATE
-  }
+  },
   // wearDates: {
   //   type: Sequelize.ARRAY,
   // },
+  outfits: {
+    type: Sequelize.STRING,
+    allowNull: true
+    // defaultValue: [],
+  }
 })
 
 Closet.beforeValidate(instance => {
+  console.log('CLOSET', Closet)
   instance.wearCount = Number(instance.wearCount)
   instance.cost = Number(instance.cost)
 })
 
 Closet.prototype.updateWear = function(instance) {
-  console.log('here ************')
   instance.latestWear = Date.now()
   // return instance
   // also add to array
