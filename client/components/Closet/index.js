@@ -15,7 +15,7 @@ const BASE_CLASS = 'closet'
 class ClosetContainer extends Component {
   constructor(props) {
     super(props)
-    this.state = store.getState()
+    this.state = {...store.getState(), outfit: []}
     this.filterCostMoreThan50 = this.filterCostMoreThan50.bind(this)
     this.sortByCost = this.sortByCost.bind(this)
   }
@@ -41,16 +41,24 @@ class ClosetContainer extends Component {
   }
 
   async sortByCost() {
-    const sortedDresses = await this.state.closet.dresses.sort(function(a, b) {
+    await this.state.closet.dresses.sort(function(a, b) {
       return a.cost - b.cost
     })
   }
 
   async filterCostMoreThan50() {
-    const dressesFiltered = await this.state.closet.dresses.filter(
-      dress => dress.cost > 50
-    )
+    await this.state.closet.dresses.filter(dress => dress.cost > 50)
   }
+
+  createOutfit(dress) {
+    this.state.outfit.push(dress)
+    console.log('this state', this.state)
+  }
+
+  saveOutfit() {
+    // dispatch local outfit on state to store
+  }
+
   componentDidMount() {
     store.dispatch(getDresses())
     this.unsubscribe = store.subscribe(() => this.setState(store.getState))
@@ -118,6 +126,12 @@ class ClosetContainer extends Component {
                     >
                       {' '}
                       +wear{' '}
+                    </div>
+                    <div
+                      className={`${BASE_CLASS}__buttons__add`}
+                      onClick={() => this.createOutfit(dress)}
+                    >
+                      add to outfit
                     </div>
 
                     <div className={`${BASE_CLASS}__divider`} />
