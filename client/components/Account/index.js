@@ -70,14 +70,10 @@ class AccountContainer extends Component {
       .reduce(reducer, [], dresses)
       .sort((a, b) => a - b)
     const highestWearCount = sortedWearCounts[sortedWearCounts.length - 1]
-    console.log('dresses', dresses, highestWearCount)
     const mostWornDress = dresses.filter(
       dress => dress.wearCount === highestWearCount
     )
-    // console.log('most worn', mostWornDress)
-
     const mostWornDressName = mostWornDress[0] && mostWornDress[0].name
-
     return mostWornDressName
   }
 
