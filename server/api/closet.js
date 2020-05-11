@@ -62,8 +62,10 @@ router.get('/:dressId', async (req, res, next) => {
 })
 
 router.post('/', async (req, res, next) => {
+  const getWearDate = count => (Number(count) > 0 ? Date.now() : null)
+
   try {
-    const newDress = await Closet.create({
+    await Closet.create({
       id: req.body.id,
       imageURL: req.body.imageURL,
       name: req.body.name,
@@ -73,8 +75,7 @@ router.post('/', async (req, res, next) => {
       userId: req.session.passport.user,
       category: req.body.category,
       brand: req.body.brand,
-      latestWear: req.body.wearCount && Date.now()
-      // latestWear: Date.now()
+      latestWear: getWearDate(req.body.wearCount)
     })
   } catch (err) {
     console.error(err)

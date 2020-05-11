@@ -23,7 +23,7 @@ async function seed() {
       cost: 50.99,
       category: 'top',
       latestWear: Date.now(),
-      outfits: []
+      outfits: [{id: 1, category: 'top', name: 'test outfit'}]
     }),
     Closet.create({
       imageURL:
@@ -36,7 +36,7 @@ async function seed() {
       category: 'bottom',
       brand: 'Madewell',
       latestWear: Date.now(),
-      outfits: []
+      outfits: [{id: 1, category: 'bottom', name: 'test outfit 2'}]
     }),
     Closet.create({
       imageURL:

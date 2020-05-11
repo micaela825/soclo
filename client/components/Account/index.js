@@ -98,25 +98,49 @@ class AccountContainer extends Component {
     return (
       <div className={`${BASE_CLASS}`}>
         <div className={`${BASE_CLASS}__title`}>user account</div>
-        <h2>total items in your closet:</h2>
-        <h3>{this.getTotalItems()}</h3>
+        <div className={`${BASE_CLASS}__category`}>
+          total items in your closet:
+        </div>
+        <div className={`${BASE_CLASS}__value`}>{this.getTotalItems()}</div>
         <div className={`${BASE_CLASS}__divider`} />
-        <h2>average cost of an item in your closet:</h2>
-        <h3>{this.getTotalCost() / this.getTotalItems()}</h3>
+        <div className={`${BASE_CLASS}__category`}>
+          average cost of an item in your closet:
+        </div>
+        <div className={`${BASE_CLASS}__value`}>
+          {Number.parseFloat(
+            this.getTotalCost() / this.getTotalItems()
+          ).toFixed(2)}
+        </div>
         <div className={`${BASE_CLASS}__divider`} />
-        <h2>total value of your wardrobe:</h2>
-        <h3>${this.getTotalCost()}</h3>
-        <h2>average cost per wear of your wardrobe:</h2>
-        <h3>${this.getAvgCostPerWear()}</h3>
+        <div className={`${BASE_CLASS}__category`}>
+          total value of your wardrobe:
+        </div>
+        <div className={`${BASE_CLASS}__value`}>${this.getTotalCost()}</div>
         <div className={`${BASE_CLASS}__divider`} />
-        <h2>percentage of your wardrobe worn:</h2>
-        <h3>{this.getPercentageOfWardrobeWorn()}%</h3>
+        <div className={`${BASE_CLASS}__category`}>
+          average cost per wear of your wardrobe:
+        </div>
+        <div className={`${BASE_CLASS}__value`}>
+          ${Number.parseFloat(this.getAvgCostPerWear()).toFixed(2)}
+        </div>
         <div className={`${BASE_CLASS}__divider`} />
-        <h2>the brand you've worn the most:</h2>
-        <h3>{this.getMostWornBrand()}</h3>
+        <div className={`${BASE_CLASS}__category`}>
+          percentage of your wardrobe worn:
+        </div>
+        <div className={`${BASE_CLASS}__value`}>
+          {Number.parseFloat(this.getPercentageOfWardrobeWorn()).toFixed(2)}%
+        </div>
         <div className={`${BASE_CLASS}__divider`} />
-        <h2>article you've worn the most:</h2>
-        <h3>{this.getMostWornItem()}</h3>
+        <div className={`${BASE_CLASS}__category`}>
+          the brand you've worn the most:
+        </div>
+        <div className={`${BASE_CLASS}__value`}>{this.getMostWornBrand()}</div>
+        <div className={`${BASE_CLASS}__divider`} />
+        <div className={`${BASE_CLASS}__category`}>
+          article you've worn the most:
+        </div>
+        <div className={`${BASE_CLASS}__value`}>{this.getMostWornItem()}</div>
+        <div className={`${BASE_CLASS}__divider`} />
       </div>
     )
   }

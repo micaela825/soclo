@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize')
+const {Sequelize, DataTypes} = require('sequelize')
 const db = require('../db')
 const User = require('./user')
 
@@ -31,23 +31,24 @@ const Closet = db.define('closet', {
   latestWear: {
     type: Sequelize.DATE
   },
+  outfits: {
+    type: Sequelize.ARRAY(DataTypes.JSON),
+    defaultValue: []
+  }
   // wearDates: {
   //   type: Sequelize.ARRAY,
   // },
-  outfits: {
-    type: Sequelize.STRING,
-    allowNull: true
-    // defaultValue: [],
-  }
 })
 
 Closet.beforeValidate(instance => {
-  console.log('CLOSET', Closet)
   instance.wearCount = Number(instance.wearCount)
   instance.cost = Number(instance.cost)
+  console.log('here *****', typeof instance.outfits, instance.outfits)
+  // add getter for latestwear - upon create, if wearCount, latestWear == Date.Now()
 })
 
 Closet.prototype.updateWear = function(instance) {
+  console.log('here ************')
   instance.latestWear = Date.now()
   // return instance
   // also add to array
