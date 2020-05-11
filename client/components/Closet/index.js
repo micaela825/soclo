@@ -1,7 +1,7 @@
 import React, {Component, useState} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {getDresses, addWear} from '../../store/closet'
+import {getDresses, addWear, addOutfit} from '../../store/closet'
 import {setIsModalOpen} from '../../store/utils'
 import RemoveConfirmationModal from '../RemoveConfirmation'
 import store from '../../store'
@@ -15,9 +15,11 @@ const BASE_CLASS = 'closet'
 class ClosetContainer extends Component {
   constructor(props) {
     super(props)
-    this.state = store.getState()
+    this.state = {...store.getState(), outfit: []}
     this.filterCostMoreThan50 = this.filterCostMoreThan50.bind(this)
     this.sortByCost = this.sortByCost.bind(this)
+    this.saveOutfit = this.saveOutfit.bind(this)
+    this.createOutfit = this.createOutfit.bind(this)
   }
 
   async addWear(dressId) {
@@ -41,16 +43,23 @@ class ClosetContainer extends Component {
   }
 
   async sortByCost() {
-    const sortedDresses = await this.state.closet.dresses.sort(function(a, b) {
+    await this.state.closet.dresses.sort(function(a, b) {
       return a.cost - b.cost
     })
   }
 
   async filterCostMoreThan50() {
-    const dressesFiltered = await this.state.closet.dresses.filter(
-      dress => dress.cost > 50
-    )
+    await this.state.closet.dresses.filter(dress => dress.cost > 50)
   }
+
+  createOutfit(dress) {
+    this.state.outfit.push(dress)
+  }
+
+  saveOutfit() {
+    store.dispatch(addOutfit(this.state.outfit))
+  }
+
   componentDidMount() {
     store.dispatch(getDresses())
     this.unsubscribe = store.subscribe(() => this.setState(store.getState))
@@ -71,6 +80,12 @@ class ClosetContainer extends Component {
             className={`${BASE_CLASS}__menu__button`}
           >
             filter
+          </div>
+          <div
+            onClick={this.saveOutfit}
+            className={`${BASE_CLASS}__menu__button`}
+          >
+            save outfit
           </div>
 
           <div
@@ -119,6 +134,12 @@ class ClosetContainer extends Component {
                       {' '}
                       +wear{' '}
                     </div>
+                    <div
+                      className={`${BASE_CLASS}__buttons__add`}
+                      onClick={() => this.createOutfit(dress)}
+                    >
+                      add to outfit
+                    </div>
 
                     <div className={`${BASE_CLASS}__divider`} />
                     {/* <div
@@ -153,7 +174,8 @@ const mapState = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getDresses: () => dispatch(getDresses()),
-    addWear: dressId => dispatch(addWear(dressId))
+    addWear: dressId => dispatch(addWear(dressId)),
+    addOutfit: articles => dispatch(addOutfit(articles))
   }
 }
 

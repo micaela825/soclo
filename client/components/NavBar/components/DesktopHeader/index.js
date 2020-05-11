@@ -20,6 +20,9 @@ const DesktopHeader = ({handleClick}) => (
       <Link to="/closet" className={`${BASE_CLASS}__links__link`}>
         Closet
       </Link>
+      <Link to="/closet/outfits" className={`${BASE_CLASS}__links__link`}>
+        Outfits
+      </Link>
       <Link to="/account" className={`${BASE_CLASS}__links__link`}>
         Account
       </Link>
