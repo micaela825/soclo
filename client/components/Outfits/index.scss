@@ -1,0 +1,67 @@
+@import '../../assets/colors.scss';
+@import '../../assets/mq.scss';
+
+.outfits {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  &__title {
+    font-size: 28px;
+    margin: 85px 0 30px 0;
+  }
+
+  &__outfit {
+    grid-column: 1;
+    display: grid;
+    // grid: repeat(2, auto) / repeat(2, auto);
+    grid-template-columns: repeat(2, auto);
+
+    &__dress {
+      grid-column: 1;
+      grid-row: 1 / span 2;
+    }
+
+    &__top {
+      grid-column: 1;
+      grid-row: 1;
+    }
+    &__bottom {
+      grid-column: 1;
+      grid-row: 2;
+    }
+    &__outerwear {
+      grid-column: 2;
+      grid-row: 1;
+    }
+    &__shoes {
+      grid-column: 2;
+      grid-row: 2;
+    }
+
+    margin: 30px;
+    img {
+      max-height: 200px;
+    }
+
+    &__divider {
+      height: 3px;
+      display: block;
+      width: 70px;
+      grid-column: 1 / span 2;
+      margin: 20px auto;
+      align-self: center;
+      &__light {
+        background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='15' height='15'><g fill='white'><circle cx='1' cy='1' r='1' /></g></svg>")
+          repeat;
+      }
+      // &__dark {
+      background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='25' height='25'><g fill='turquoise'><circle cx='6' cy='6' r='6' /></g></svg>")
+        repeat;
+      // }
+
+      @include mq($from: desktop) {
+        margin: 40px auto;
+      }
+    }
+  }
+}
