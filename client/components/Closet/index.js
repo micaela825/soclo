@@ -1,7 +1,8 @@
 import React, {Component, useState} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {getDresses, addWear, addOutfit} from '../../store/closet'
+import {getDresses, addWear} from '../../store/closet'
+import {addOutfit} from '../../store/outfit'
 import {setIsModalOpen} from '../../store/utils'
 import RemoveConfirmationModal from '../RemoveConfirmation'
 import store from '../../store'
@@ -15,7 +16,7 @@ const BASE_CLASS = 'closet'
 class ClosetContainer extends Component {
   constructor(props) {
     super(props)
-    this.state = {...store.getState(), outfit: []}
+    this.state = {...store.getState(), singleOutfit: []}
     this.filterCostMoreThan50 = this.filterCostMoreThan50.bind(this)
     this.sortByCost = this.sortByCost.bind(this)
     this.saveOutfit = this.saveOutfit.bind(this)
@@ -53,11 +54,11 @@ class ClosetContainer extends Component {
   }
 
   createOutfit(dress) {
-    this.state.outfit.push(dress)
+    this.state.singleOutfit.push(dress)
   }
 
   saveOutfit() {
-    store.dispatch(addOutfit(this.state.outfit))
+    store.dispatch(addOutfit(this.state.singleOutfit))
   }
 
   componentDidMount() {
@@ -70,16 +71,17 @@ class ClosetContainer extends Component {
   }
 
   render() {
+    console.log('dresses in closet', this.state.closet.dresses)
     return (
       <div className={`${BASE_CLASS}`}>
         <div className={`${BASE_CLASS}__title`}>your wardrobe</div>
-
         <div className={`${BASE_CLASS}__menu`}>
           <div
             onClick={this.filterCostMoreThan50}
             className={`${BASE_CLASS}__menu__button`}
           >
-            filter
+            {' '}
+            filter{' '}
           </div>
           <div
             onClick={this.saveOutfit}
@@ -87,14 +89,12 @@ class ClosetContainer extends Component {
           >
             save outfit
           </div>
-
           <div
             onClick={this.sortByCost}
             className={`${BASE_CLASS}__menu__button`}
           >
             sort
           </div>
-
           <Link to="/add">
             <div className={`${BASE_CLASS}__menu__button`}>add</div>
           </Link>
@@ -140,7 +140,6 @@ class ClosetContainer extends Component {
                     >
                       add to outfit
                     </div>
-
                     <div className={`${BASE_CLASS}__divider`} />
                     {/* <div
                       className={`${BASE_CLASS}__info__buttons__remove`}
