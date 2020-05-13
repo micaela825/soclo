@@ -118,3 +118,16 @@ router.post('/:dressId', async (req, res, next) => {
   //   next(err)
   // }
 })
+
+router.post('/:dressId', async (req, res, next) => {
+  const dressId = req.params.dressId
+
+  try {
+    const dressToUpdate = await Closet.increment('wearCount', {
+      where: {id: dressId}
+    })
+    res.send(dressToUpdate)
+  } catch (err) {
+    next(err)
+  }
+})
