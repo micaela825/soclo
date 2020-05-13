@@ -71,7 +71,6 @@ class ClosetContainer extends Component {
   }
 
   render() {
-    console.log('dresses in closet', this.state.closet.dresses)
     return (
       <div className={`${BASE_CLASS}`}>
         <div className={`${BASE_CLASS}__title`}>your wardrobe</div>
