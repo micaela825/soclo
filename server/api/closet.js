@@ -90,44 +90,18 @@ router.delete('/:dressId', (req, res) => {
     console.log(err)
   }
 })
-router.post('/:dressId', async (req, res, next) => {
+
+router.put('/:dressId', async (req, res, next) => {
   const dressId = req.params.dressId
-
   try {
-    const dressToUpdate = await Closet.increment('wearCount', {
-      where: {id: dressId}
-    })
-    // console
-    //   .log('dress to update BEFORE', dressToUpdate)
-    // await dressToUpdate.updateWear()
-    // Closet.prototype.updateWear(dressToUpdate)
-
-    // console.log('dress to update AFTER', dressToUpdate)
-
-    // console.log('CLOSET', Closet.prototype.updateWear(dressToUpdate))
-    res.send(dressToUpdate)
-  } catch (err) {
-    next(err)
-  }
-  // try {
-  //   const dressToUpdate = await Closet.findOne({
-  //     where: {id: dressId},
-  //   }).then(() => Closet.prototype.updateWear(dressToUpdate))
-  //   res.send(dressToUpdate)
-  // } catch (err) {
-  //   next(err)
-  // }
-})
-
-router.post('/:dressId', async (req, res, next) => {
-  const dressId = req.params.dressId
-
-  try {
-    const dressToUpdate = await Closet.increment('wearCount', {
-      where: {id: dressId}
+    let dressToUpdate = await Closet.findByPk(dressId)
+    let prevWearCount = dressToUpdate.dataValues.wearCount
+    dressToUpdate = await dressToUpdate.update({
+      wearCount: prevWearCount + 1,
+      latestWear: Date.now()
     })
     res.send(dressToUpdate)
   } catch (err) {
-    next(err)
+    console.error(err)
   }
 })

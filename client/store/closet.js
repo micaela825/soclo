@@ -81,7 +81,8 @@ export const updateDress = (dress, id) => {
 export const addWear = dressId => {
   return async (dispatch, getState) => {
     try {
-      const {data} = await axios.post(`/api/closet/${dressId}`, dressId)
+      // const {data} = await axios.post(`/api/closet/${dressId}`, dressId)
+      const {data} = await axios.put(`/api/closet/${dressId}`, dressId)
       dispatch(gotDressToIncrement(data))
     } catch (err) {
       console.error(err)
