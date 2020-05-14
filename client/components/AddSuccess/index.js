@@ -2,15 +2,20 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import './index.scss'
 
-const baseClass = 'add-success'
+const BASE_CLASS = 'add-success'
 
 class AddSuccess extends Component {
   render() {
     return (
-      <div className={`${baseClass}`}>
-        <h1>successfully submitted ✅ </h1>
-        <Link to="/closet">return to my closet</Link>
-        <Link to="/add"> add another</Link>
+      <div className={`${BASE_CLASS}`}>
+        <div className={`${BASE_CLASS}__title`}>successfully submitted ✅ </div>
+        <Link to="/closet" className={`${BASE_CLASS}__closeBtn`}>
+          return to my closet
+        </Link>
+        <Link to="/add" className={`${BASE_CLASS}__addBtn`}>
+          {' '}
+          add another
+        </Link>
       </div>
     )
   }

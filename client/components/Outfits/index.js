@@ -5,6 +5,7 @@ import store from '../../store'
 import {connect} from 'react-redux'
 const BASE_CLASS = 'outfits'
 import './index.scss'
+import RandomOutfit from './components/RandomOutfit'
 
 class Outfit extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class Outfit extends Component {
       isShuffleOpen: false
     }
     this.handleClick = this.handleClick.bind(this)
+    this.handleBtnClick = this.handleBtnClick.bind(this)
     this.newOutfit = {}
   }
   componentDidMount() {
@@ -26,6 +28,13 @@ class Outfit extends Component {
 
   getRandomInteger(max) {
     return Math.floor(Math.random() * Math.floor(max))
+  }
+
+  handleBtnClick() {
+    console.log('here! *******')
+    this.setState({
+      isShuffleOpen: false
+    })
   }
 
   handleClick() {
@@ -50,7 +59,8 @@ class Outfit extends Component {
     this.setState({
       randomTop: randomTop,
       randomBottom: randomBottom,
-      randomShoes: randomShoes
+      randomShoes: randomShoes,
+      isShuffleOpen: true
     })
   }
 
@@ -62,17 +72,21 @@ class Outfit extends Component {
         <button type="submit" onClick={this.handleClick}>
           surprise me! grab a few hangers
         </button>
-        <div>
-          {this.state.randomTop &&
-          this.state.randomBottom &&
-          this.state.randomShoes ? (
-            <div>
-              <img src={this.state.randomTop.imageURL} />
-              <img src={this.state.randomBottom.imageURL} />
-              <img src={this.state.randomShoes.imageURL} />
-            </div>
-          ) : null}
-        </div>
+        {this.state.isShuffleOpen ? (
+          <div>
+            {this.state.randomTop &&
+            this.state.randomBottom &&
+            this.state.randomShoes ? (
+              <RandomOutfit
+                top={this.state.randomTop.imageURL}
+                bottom={this.state.randomBottom.imageURL}
+                shoes={this.state.randomShoes.imageURL}
+                handleClick={this.handleClick}
+                handleBtnClick={this.handleBtnClick}
+              />
+            ) : null}
+          </div>
+        ) : null}
         <div className={`${BASE_CLASS}__title`}>your outfits</div>
         {this.state.outfit
           ? this.state.outfit.outfits.map((outfit, key) => (
