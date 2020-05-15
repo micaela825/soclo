@@ -3,9 +3,10 @@ import {getOutfits} from '../../store/outfit'
 import {getDresses} from '../../store/closet'
 import store from '../../store'
 import {connect} from 'react-redux'
+import RandomOutfit from './components/RandomOutfit'
+import getRandomOutfit from './utils/getRandomOutfit'
 const BASE_CLASS = 'outfits'
 import './index.scss'
-import RandomOutfit from './components/RandomOutfit'
 
 class Outfit extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class Outfit extends Component {
       randomTop: {},
       randomBottom: {},
       randomShoes: {},
+      randomDress: {},
       isShuffleOpen: false
     }
     this.handleClick = this.handleClick.bind(this)
@@ -24,6 +26,8 @@ class Outfit extends Component {
   componentDidMount() {
     store.dispatch(getOutfits())
     store.dispatch(getDresses())
+    // TODO: figure out what's going on here - why below line makes outfits appear on 1st render when they otherwise don't
+    this.unsubscribe = store.subscribe(() => this.setState(store.getState))
   }
 
   getRandomInteger(max) {
@@ -31,42 +35,25 @@ class Outfit extends Component {
   }
 
   handleBtnClick() {
-    console.log('here! *******')
     this.setState({
       isShuffleOpen: false
     })
   }
 
   handleClick() {
-    // figuere out way to proportionately designate dress vs other in randomization - ie if user has 10% dreses make sure dresses aren't returned 50% of the time
-    // 1) if either no pants or no tops, no outfits
-    // maybe use reducer ???? get ratio of dresses to pants -
-    const tops = this.state.closet.dresses.filter(
-      item => item.category === 'top'
+    const {randomDress, randomShoes, randomTop, randomBottom} = getRandomOutfit(
+      this.state.closet
     )
-    const bottoms = this.state.closet.dresses.filter(
-      item => item.category === 'bottom'
-    )
-    const shoes = this.state.closet.dresses.filter(
-      item => item.category === 'shoes'
-    )
-    const randomTopMaxVal = this.getRandomInteger(tops.length)
-    const randomBottomMaxVal = this.getRandomInteger(bottoms.length)
-    const randomShoesMaxVal = this.getRandomInteger(shoes.length)
-    const randomTop = tops[randomTopMaxVal]
-    const randomBottom = bottoms[randomBottomMaxVal]
-    const randomShoes = shoes[randomShoesMaxVal]
     this.setState({
       randomTop: randomTop,
       randomBottom: randomBottom,
       randomShoes: randomShoes,
+      randomDress: randomDress,
       isShuffleOpen: true
     })
   }
 
   render() {
-    // design for random toggle - have modal? have 'x' button close it out
-    // have tertiary to double check that there isn't a dress & top/bottom - ie, this.state.outfit.dressName? <return dress> / <return top and bottom>
     return (
       <div className={BASE_CLASS}>
         <button type="submit" onClick={this.handleClick}>
@@ -74,17 +61,16 @@ class Outfit extends Component {
         </button>
         {this.state.isShuffleOpen ? (
           <div>
-            {this.state.randomTop &&
-            this.state.randomBottom &&
-            this.state.randomShoes ? (
-              <RandomOutfit
-                top={this.state.randomTop.imageURL}
-                bottom={this.state.randomBottom.imageURL}
-                shoes={this.state.randomShoes.imageURL}
-                handleClick={this.handleClick}
-                handleBtnClick={this.handleBtnClick}
-              />
-            ) : null}
+            <RandomOutfit
+              top={this.state.randomTop && this.state.randomTop.imageURL}
+              bottom={
+                this.state.randomBottom && this.state.randomBottom.imageURL
+              }
+              shoes={this.state.randomShoes && this.state.randomShoes.imageURL}
+              dress={this.state.randomDress && this.state.randomDress.imageURL}
+              handleClick={this.handleClick}
+              handleBtnClick={this.handleBtnClick}
+            />
           </div>
         ) : null}
         <div className={`${BASE_CLASS}__title`}>your outfits</div>

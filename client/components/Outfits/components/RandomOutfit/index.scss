@@ -32,6 +32,12 @@
     grid-row: 2;
     margin: 30px;
   }
+  &__dress {
+    max-width: 200px;
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    margin: 30px;
+  }
   &__shuffleBtn {
     max-width: 200px;
     grid-column: 1;

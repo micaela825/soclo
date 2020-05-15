@@ -16,7 +16,12 @@ const BASE_CLASS = 'closet'
 class ClosetContainer extends Component {
   constructor(props) {
     super(props)
-    this.state = {...store.getState(), singleOutfit: []}
+    this.state = {
+      ...store.getState(),
+      singleOutfit: [],
+      isSubmitted: false,
+      showSuccessIcon: false
+    }
     this.filterCostMoreThan50 = this.filterCostMoreThan50.bind(this)
     this.sortByCost = this.sortByCost.bind(this)
     this.saveOutfit = this.saveOutfit.bind(this)
@@ -58,7 +63,14 @@ class ClosetContainer extends Component {
   }
 
   saveOutfit() {
+    this.setState({isSubmitted: false})
     store.dispatch(addOutfit(this.state.singleOutfit))
+    this.setState({isSubmitted: true})
+    setTimeout(
+      () => this.setState({isSubmitted: false, showSuccessIcon: true}),
+      2000
+    )
+    setTimeout(() => this.setState({showSuccessIcon: false}), 3000)
   }
 
   componentDidMount() {
@@ -71,6 +83,7 @@ class ClosetContainer extends Component {
   }
 
   render() {
+    console.log('is submitted', this.state.isSubmitted)
     return (
       <div className={`${BASE_CLASS}`}>
         <div className={`${BASE_CLASS}__title`}>your wardrobe</div>
@@ -87,7 +100,10 @@ class ClosetContainer extends Component {
             className={`${BASE_CLASS}__menu__button`}
           >
             save outfit
+            {this.state.isSubmitted ? <div>***</div> : null}
+            {this.state.showSuccessIcon ? <div>!!!!!</div> : null}
           </div>
+
           <div
             onClick={this.sortByCost}
             className={`${BASE_CLASS}__menu__button`}
