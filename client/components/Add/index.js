@@ -7,6 +7,7 @@ const BASE_CLASS = 'add-form'
 import classnames from 'classnames'
 import brands from './utils/brands'
 import categories from './utils/categories'
+import AddSuccess from '../AddSuccess'
 
 class AddContainer extends Component {
   constructor(props) {
@@ -112,7 +113,8 @@ class AddContainer extends Component {
     return (
       <div className={BASE_CLASS}>
         {this.state.submitted ? (
-          <Redirect to="/success" />
+          // <Redirect to="/success" />
+          <AddSuccess />
         ) : (
           <Fragment>
             <h1 className={`${BASE_CLASS}__header`}>add an item </h1>

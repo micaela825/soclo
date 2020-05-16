@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react'
+import React, {Component, useState, Fragment} from 'react'
 import {Link, Route} from 'react-router-dom'
 import axios from 'axios'
 import store from '../../store'
@@ -16,6 +16,7 @@ class ArticleContainer extends Component {
     super()
     this.state = store.getState()
     this.showModal = this.showModal.bind(this)
+    this.getCostPerWear = this.getCostPerWear.bind(this)
   }
 
   componentDidMount() {
@@ -43,29 +44,56 @@ class ArticleContainer extends Component {
     store.dispatch(setIsModalOpen(false))
   }
 
+  getCostPerWear() {
+    let dress = this.state.closet.dress[0]
+    return dress.cost && dress.wearCount
+      ? Math.round(dress.cost / dress.wearCount * 100) / 100
+      : null
+  }
+
   render() {
     const dress = this.state.closet.dress[0]
+    console.log('dress!', dress)
 
     if (dress) {
       return (
         <div className={BASE_CLASS} key="dress.id">
           <img className={`${BASE_CLASS}__image`} src={dress.imageURL} />
-
           <div className={`${BASE_CLASS}__title`}>{dress.name}</div>
           <div className={`${BASE_CLASS}__info`}>
-            <div className={`${BASE_CLASS}__info__title`}>original cost:</div>
-            <div className={`${BASE_CLASS}__info__figure`}>${dress.cost}</div>
-            <div className={`${BASE_CLASS}__info__title`}>wears:</div>
-            <div className={`${BASE_CLASS}__info__figure`}>
-              {dress.wearCount}{' '}
-            </div>
-            <div className={`${BASE_CLASS}__info__title`}>cost per wear:</div>
-            <div className={`${BASE_CLASS}__info__figure`}>
-              ${Math.round(dress.cost / dress.wearCount * 100) / 100}
-            </div>
+            {dress.cost > 0 && (
+              <Fragment>
+                <div className={`${BASE_CLASS}__info__title`}>
+                  original cost:
+                </div>
+                <div className={`${BASE_CLASS}__info__figure`}>
+                  ${dress.cost}
+                </div>
+              </Fragment>
+            )}
+
+            {dress.wearCount > 0 && (
+              <Fragment>
+                <div className={`${BASE_CLASS}__info__title`}>wears:</div>
+                <div className={`${BASE_CLASS}__info__figure`}>
+                  {dress.wearCount}{' '}
+                </div>
+              </Fragment>
+            )}
+
+            {dress.cost > 0 &&
+              dress.wearCount > 0 && (
+                <Fragment>
+                  <div className={`${BASE_CLASS}__info__title`}>
+                    cost per wear:
+                  </div>
+                  <div className={`${BASE_CLASS}__info__figure`}>
+                    {this.getCostPerWear()}
+                  </div>
+                </Fragment>
+              )}
           </div>
           <div className={`${BASE_CLASS}__buttons`}>
-            {/* <button className={`${BASE_CLASS}__info__buttons__button`}> */}
             <button
               className={classnames(
                 `${BASE_CLASS}__buttons__button`,
