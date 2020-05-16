@@ -9,6 +9,7 @@ import store from '../../store'
 import axios from 'axios'
 import EditIcon from '../../../public/editIcon'
 import AddIcon from '../../../public/addIcon'
+import Loader from '../atoms/Loader'
 import './index.scss'
 
 const BASE_CLASS = 'closet'
@@ -83,10 +84,10 @@ class ClosetContainer extends Component {
   }
 
   render() {
-    console.log('is submitted', this.state.isSubmitted)
     return (
       <div className={`${BASE_CLASS}`}>
         <div className={`${BASE_CLASS}__title`}>your wardrobe</div>
+        {/* <Loader /> */}
         <div className={`${BASE_CLASS}__menu`}>
           <div
             onClick={this.filterCostMoreThan50}
@@ -100,7 +101,7 @@ class ClosetContainer extends Component {
             className={`${BASE_CLASS}__menu__button`}
           >
             save outfit
-            {this.state.isSubmitted ? <div>***</div> : null}
+            {this.state.isSubmitted ? <Loader /> : null}
             {this.state.showSuccessIcon ? <div>!!!!!</div> : null}
           </div>
 

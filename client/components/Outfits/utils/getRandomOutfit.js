@@ -30,7 +30,7 @@ const getRandomOutfit = state => {
         }
       : {randomDress: randomDress, randomShoes: randomShoes}
   }
-
+  console.log(outfitTypeGenerator(), '********')
   return outfitTypeGenerator()
 }
 
