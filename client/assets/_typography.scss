@@ -1,5 +1,4 @@
 @mixin type-style-header {
-  // font-family: Futura PT;
   font-family: 'Playfair Display', serif;
   font-style: normal;
   font-weight: 500;
@@ -10,15 +9,16 @@
   }
 }
 
-// @mixin type-style-announcement {
-//   font-family: Futura PT;
-//   font-style: normal;
-//   font-weight: bold;
-//   font-size: 21px;
-//   @include mq($from: desktop) {
-//     font-size: 28px;
-//   }
-// }
+@mixin type-style-header-futura {
+  font-family: Futura PT, 'sans-serif';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28px;
+  @include mq($from: desktop) {
+    font-size: 32px;
+    line-height: 34px;
+  }
+}
 
 @mixin type-style-subheader {
   font-family: Futura PT;
@@ -77,5 +77,29 @@
   letter-spacing: 0.1em;
   @include mq($from: desktop) {
     font-size: 13px;
+  }
+}
+
+@mixin type-style-display-body {
+  font-family: 'Playfair Display', serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 22px;
+  letter-spacing: 0.1em;
+  @include mq($from: desktop) {
+    // font-size: 13px;
+  }
+}
+
+@mixin type-style-utility-bold {
+  font-family: Futura PT;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 22px;
+  letter-spacing: 0.1em;
+  @include mq($from: desktop) {
+    // font-size: 13px;
   }
 }

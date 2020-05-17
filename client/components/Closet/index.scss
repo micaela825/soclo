@@ -39,6 +39,7 @@
     }
     &__button {
       @include closet-main-toolbar-btn;
+
       padding-top: 8px;
     }
   }
@@ -100,9 +101,9 @@
     }
     &__buttons {
       display: grid;
-      grid: repeat(2, 1fr) / repeat(2, 1fr);
-      column-gap: 10px;
-      row-gap: 12px;
+      grid: repeat(2, 1fr) / repeat(2, auto);
+      column-gap: 7px;
+      row-gap: 7px;
       margin-top: 10px;
       justify-items: center;
       // width: 100%;
@@ -111,21 +112,26 @@
         grid-template-columns: repeat(2, auto);
         margin-top: 0;
         margin-bottom: 15px;
+        column-gap: 10px;
+        row-gap: 12px;
       }
 
       &__edit {
         @include closet-item-toolbar-btn;
+        font-size: 13px;
         grid-column: 1;
         grid-row: 1;
       }
 
       &__addwear {
         @include closet-item-toolbar-btn;
+        font-size: 13px;
         grid-column: 2;
         grid-row: 1;
       }
       &__addtooutfit {
         @include closet-item-toolbar-btn;
+        font-size: 13px;
         grid-column: 1 / span 2;
         grid-row: 2;
       }

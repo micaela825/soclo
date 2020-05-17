@@ -1,35 +1,63 @@
+@import '../../assets/main.scss';
+
 .account {
   display: grid;
   grid-template-columns: 1fr;
   justify-items: center;
-  margin: 80px;
+  transition: all ease-in;
+  grid-template-rows: repeat(2, auto);
+  margin: 0 22px;
+
+  @include mq($from: desktop) {
+    grid-template-rows: 120px 1fr;
+  }
 
   &__title {
-    font-size: 40px;
-    margin-bottom: 30px;
+    @include type-style-header;
+    grid-row: 1;
+    text-align: center;
+    align-self: center;
+    margin: 35px 0;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 22px;
+
+    @include mq($from: desktop) {
+      grid-template-columns: repeat(3, 1fr);
+      column-gap: 22px;
+    }
+
+    &__item {
+      background-color: #fcf8f5;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+      padding: 22px;
+      display: grid;
+      grid-template-columns: 1fr;
+      justify-items: center;
+    }
   }
 
   &__category {
     font-size: 18px;
     letter-spacing: 1px;
     text-transform: uppercase;
+    justify-self: left;
   }
 
   &__value {
     font-size: 36px;
     color: #5252d4;
+    margin-top: 15px;
   }
 
   &__divider {
     height: 3px;
     display: block;
     width: 70px;
-    margin: 30px;
-
-    &__light {
-      background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='15' height='15'><g fill='white'><circle cx='1' cy='1' r='1' /></g></svg>")
-        repeat;
-    }
+    margin: 10px;
     background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='15' height='15'><g fill='red'><circle cx='1' cy='1' r='1' /></g></svg>")
       repeat;
   }
