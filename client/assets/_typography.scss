@@ -1,20 +1,81 @@
-@mixin type-style-H1 {
-  /* H1: */
-  // color: map-get($colors, charcoal);
-  color: black;
-  background-color: blue !important;
-  font-family: 'EB Garamond', serif;
-  line-height: 32px;
-  font-size: 24px;
-  text-transform: none;
-  font-weight: normal;
+@mixin type-style-header {
+  // font-family: Futura PT;
+  font-family: 'Playfair Display', serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28px;
   @include mq($from: desktop) {
-    line-height: 50px;
-    font-size: 62px;
+    font-size: 32px;
+    line-height: 34px;
   }
 }
 
-@mixin blue {
-  color: yellow !important;
-  background-color: yellow !important;
+// @mixin type-style-announcement {
+//   font-family: Futura PT;
+//   font-style: normal;
+//   font-weight: bold;
+//   font-size: 21px;
+//   @include mq($from: desktop) {
+//     font-size: 28px;
+//   }
+// }
+
+@mixin type-style-subheader {
+  font-family: Futura PT;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 21px;
+}
+
+@mixin type-style-body {
+  font-family: Futura PT;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 26px;
+}
+
+@mixin type-style-nav {
+  font-family: Futura PT;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 26px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+@mixin type-style-utility {
+  font-family: Futura PT;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 21px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+@mixin type-style-utility-small {
+  font-family: Futura PT;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 17px;
+  letter-spacing: 0.1em;
+  @include mq($from: desktop) {
+    font-size: 13px;
+  }
+}
+
+@mixin type-style-display-header {
+  font-family: 'Playfair Display', serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 17px;
+  letter-spacing: 0.1em;
+  @include mq($from: desktop) {
+    font-size: 13px;
+  }
 }

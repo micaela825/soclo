@@ -41,10 +41,7 @@ const MobileHeader = ({handleClick}) => {
           <Link to="/closet" className={`${BASE_CLASS}__open-nav__item`}>
             closet
           </Link>
-          <Link
-            to="/closet/outfits"
-            className={`${BASE_CLASS}__open-nav__item`}
-          >
+          <Link to="/outfits" className={`${BASE_CLASS}__open-nav__item`}>
             outfits
           </Link>
           <Link to="/account" className={`${BASE_CLASS}__open-nav__item`}>

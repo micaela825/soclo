@@ -11,6 +11,10 @@ import EditIcon from '../../../public/editIcon'
 import AddIcon from '../../../public/addIcon'
 import Loader from '../atoms/Loader'
 import './index.scss'
+import classnames from 'classnames'
+import {useInView} from 'react-intersection-observer'
+
+// todo: make character limit in article name
 
 const BASE_CLASS = 'closet'
 
@@ -84,8 +88,18 @@ class ClosetContainer extends Component {
   }
 
   render() {
+    // const [ref, isInView] = useInView({
+    //   triggerOnce: true,
+    //   rootMargin: '-12%',
+    // })
     return (
-      <div className={`${BASE_CLASS}`}>
+      <div
+        // ref={ref}
+        className={classnames(`${BASE_CLASS}`, {
+          // [`${BASE_CLASS}--is-showing`]: isInView,
+          // [`${BASE_CLASS}--is-hidden`]: !isInView,
+        })}
+      >
         <div className={`${BASE_CLASS}__title`}>your wardrobe</div>
         {/* <Loader /> */}
         <div className={`${BASE_CLASS}__menu`}>
@@ -111,8 +125,8 @@ class ClosetContainer extends Component {
           >
             sort
           </div>
-          <Link to="/add">
-            <div className={`${BASE_CLASS}__menu__button`}>add</div>
+          <Link to="/add" className={`${BASE_CLASS}__menu__button`}>
+            add
           </Link>
         </div>
         <div className={`${BASE_CLASS}__table`}>
@@ -123,40 +137,45 @@ class ClosetContainer extends Component {
                     to={`/closet/${dress.id}`}
                     className={`${BASE_CLASS}__item__body`}
                   >
-                    <div className={`${BASE_CLASS}__item__body__wearcount`}>
-                      {dress.wearCount}
-                    </div>
-                    <img
-                      className={`${BASE_CLASS}__item__body__image`}
-                      src={dress.imageURL}
-                    />
                     <div className={`${BASE_CLASS}__item__body__name`}>
                       {dress.name}
                     </div>
+                    <div
+                      className={`${BASE_CLASS}__item__body__image-container`}
+                    >
+                      <div
+                        className={`${BASE_CLASS}__item__body__image-container__wearcount`}
+                      >
+                        {dress.wearCount}
+                      </div>
+                      <img
+                        className={`${BASE_CLASS}__item__body__image-container__image`}
+                        src={dress.imageURL}
+                      />
+                    </div>
                   </Link>
-                  <div className={`${BASE_CLASS}__buttons`}>
+                  <div className={`${BASE_CLASS}__item__buttons`}>
                     <Link
-                      className={`${BASE_CLASS}__buttons__edit`}
+                      className={`${BASE_CLASS}__item__buttons__edit`}
                       to={{pathname: `/closet/${dress.id}/edit`, state: dress}}
                     >
                       edit
                     </Link>
-                    {/* <EditIcon className={`${BASE_CLASS}__buttons__edit`} />
-                    <AddIcon className={`${BASE_CLASS}__buttons__add`} /> */}
+
                     <div
-                      className={`${BASE_CLASS}__buttons__add`}
+                      className={`${BASE_CLASS}__item__buttons__addwear`}
                       onClick={() => this.addWear(dress.id)}
                     >
                       {' '}
-                      +wear{' '}
+                      add wear{' '}
                     </div>
                     <div
-                      className={`${BASE_CLASS}__buttons__add`}
+                      className={`${BASE_CLASS}__item__buttons__addtooutfit`}
                       onClick={() => this.createOutfit(dress)}
                     >
                       add to outfit
                     </div>
-                    <div className={`${BASE_CLASS}__divider`} />
+
                     {/* <div
                       className={`${BASE_CLASS}__info__buttons__remove`}
                       onClick={() => this.showModal(dress.id)}
@@ -164,6 +183,7 @@ class ClosetContainer extends Component {
                       remove
                     </div> */}
                   </div>
+                  <div className={`${BASE_CLASS}__item__divider`} />
                   {this.state.utils.isModalOpen ? (
                     <RemoveConfirmationModal
                       handleCancel={this.handleCancel}

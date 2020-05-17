@@ -1,66 +1,113 @@
-@import '../../assets/colors.scss';
-@import '../../assets/mq.scss';
+@import '../../assets/main.scss';
 
 .outfits {
+  transition: all ease-in;
   display: grid;
   grid-template-columns: 1fr;
   justify-items: center;
-  &__title {
-    font-size: 28px;
-    margin: 85px 0 30px 0;
+  margin: 0 22px;
+
+  @include mq($from: desktop) {
+    grid-template-columns: 210px 1fr;
+    grid-template-rows: 120px 1fr;
   }
 
-  &__outfit {
-    grid-column: 1;
-    display: grid;
-    // grid: repeat(2, auto) / repeat(2, auto);
-    grid-template-columns: repeat(2, auto);
+  &__title {
+    @include type-style-header;
+    margin: 35px 0;
+    text-align: center;
+    align-self: center;
 
-    &__dress {
-      grid-column: 1;
-      grid-row: 1 / span 2;
-    }
-
-    &__top {
-      grid-column: 1;
-      grid-row: 1;
-    }
-    &__bottom {
-      grid-column: 1;
-      grid-row: 2;
-    }
-    &__outerwear {
-      grid-column: 2;
-      grid-row: 1;
-    }
-    &__shoes {
-      grid-column: 2;
-      grid-row: 2;
-    }
-
-    margin: 30px;
-    img {
-      max-height: 200px;
-    }
-
-    &__divider {
-      height: 3px;
-      display: block;
-      width: 70px;
+    @include mq($from: desktop) {
       grid-column: 1 / span 2;
-      margin: 20px auto;
-      align-self: center;
-      &__light {
-        background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='15' height='15'><g fill='white'><circle cx='1' cy='1' r='1' /></g></svg>")
-          repeat;
-      }
-      // &__dark {
-      background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='25' height='25'><g fill='turquoise'><circle cx='6' cy='6' r='6' /></g></svg>")
-        repeat;
-      // }
+      grid-row: 1;
+    }
+  }
+
+  &__menu {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    justify-content: center;
+    grid-column-gap: 13px;
+    margin-bottom: 40px;
+
+    @include mq($from: desktop) {
+      grid-column: 1;
+      grid-row: 2;
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(4, auto) 1fr;
+      row-gap: 30px;
+    }
+
+    &__button {
+      @include closet-main-toolbar-btn;
+      padding-top: 8px;
+      width: 90px;
+      height: 40px;
 
       @include mq($from: desktop) {
-        margin: 40px auto;
+        height: 55px;
+      }
+
+      &__shuffle {
+        color: #5252d4;
+      }
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    column-gap: 20px;
+
+    @include mq($from: desktop) {
+      grid-column: 2;
+      grid-row: 2;
+      grid-template-columns: repeat(3, auto);
+      margin-right: 200px;
+    }
+
+    &__outfit {
+      width: 100%;
+      background-color: #fcf8f5;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+      display: grid;
+      grid: repeat(2, auto) / repeat(2, auto);
+      align-items: center;
+      justify-items: center;
+      justify-content: center;
+
+      padding: 15px;
+      margin-bottom: 30px;
+      row-gap: 12px;
+      column-gap: 12px;
+
+      &__dress {
+        grid-column: 1;
+        grid-row: 1 / span 2;
+        max-height: 175px;
+      }
+
+      &__top {
+        grid-column: 1;
+        grid-row: 1;
+        max-height: 125px;
+      }
+      &__bottom {
+        grid-column: 1;
+        grid-row: 2;
+        max-height: 125px;
+      }
+      &__outerwear {
+        grid-column: 2;
+        grid-row: 1;
+        max-height: 175px;
+      }
+      &__shoes {
+        grid-column: 2;
+        grid-row: 2;
+        max-height: 125px;
       }
     }
   }

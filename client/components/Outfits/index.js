@@ -5,6 +5,8 @@ import store from '../../store'
 import {connect} from 'react-redux'
 import RandomOutfit from './components/RandomOutfit'
 import getRandomOutfit from './utils/getRandomOutfit'
+import classnames from 'classnames'
+
 const BASE_CLASS = 'outfits'
 import './index.scss'
 
@@ -56,9 +58,6 @@ class Outfit extends Component {
   render() {
     return (
       <div className={BASE_CLASS}>
-        <button type="submit" onClick={this.handleClick}>
-          surprise me! grab a few hangers
-        </button>
         {this.state.isShuffleOpen ? (
           <div>
             <RandomOutfit
@@ -74,38 +73,65 @@ class Outfit extends Component {
           </div>
         ) : null}
         <div className={`${BASE_CLASS}__title`}>your outfits</div>
-        {this.state.outfit
-          ? this.state.outfit.outfits.map((outfit, key) => (
-              <div key={key} className={`${BASE_CLASS}__outfit`}>
-                <img
-                  alt={outfit.dressName}
-                  src={outfit.dressImageURL}
-                  className={`${BASE_CLASS}__outfit__dress`}
-                />
-                <img
-                  alt={outfit.topName}
-                  src={outfit.topImageURL}
-                  className={`${BASE_CLASS}__outfit__top`}
-                />
-                <img
-                  alt={outfit.bottomName}
-                  src={outfit.bottomImageURL}
-                  className={`${BASE_CLASS}__outfit__bottom`}
-                />
-                <img
-                  alt={outfit.outerwearName}
-                  src={outfit.outerwearImageURL}
-                  className={`${BASE_CLASS}__outfit__outerwear`}
-                />
-                <img
-                  alt={outfit.shoesName}
-                  src={outfit.shoesImageURL}
-                  className={`${BASE_CLASS}__outfit__shoes`}
-                />
-                <div className={`${BASE_CLASS}__outfit__divider`} />
-              </div>
-            ))
-          : null}
+        <div className={`${BASE_CLASS}__menu`}>
+          <button
+            type="submit"
+            // onClick={this.handleClick}
+            className={`${BASE_CLASS}__menu__button`}
+          >
+            tops & bottoms
+          </button>
+          <button
+            type="submit"
+            // onClick={this.handleClick}
+            className={`${BASE_CLASS}__menu__button`}
+          >
+            dresses only
+          </button>
+          <button
+            type="submit"
+            onClick={this.handleClick}
+            className={classnames(
+              `${BASE_CLASS}__menu__button`,
+              `${BASE_CLASS}__menu__button__shuffle`
+            )}
+          >
+            shuffle my closet
+          </button>
+        </div>
+        <div className={`${BASE_CLASS}__grid`}>
+          {this.state.outfit
+            ? this.state.outfit.outfits.map((outfit, key) => (
+                <div key={key} className={`${BASE_CLASS}__grid__outfit`}>
+                  <img
+                    alt={outfit.dressName}
+                    src={outfit.dressImageURL}
+                    className={`${BASE_CLASS}__grid__outfit__dress`}
+                  />
+                  <img
+                    alt={outfit.topName}
+                    src={outfit.topImageURL}
+                    className={`${BASE_CLASS}__grid__outfit__top`}
+                  />
+                  <img
+                    alt={outfit.bottomName}
+                    src={outfit.bottomImageURL}
+                    className={`${BASE_CLASS}__grid__outfit__bottom`}
+                  />
+                  <img
+                    alt={outfit.outerwearName}
+                    src={outfit.outerwearImageURL}
+                    className={`${BASE_CLASS}__grid__outfit__outerwear`}
+                  />
+                  <img
+                    alt={outfit.shoesName}
+                    src={outfit.shoesImageURL}
+                    className={`${BASE_CLASS}__grid__outfit__shoes`}
+                  />
+                </div>
+              ))
+            : null}
+        </div>
       </div>
     )
   }
