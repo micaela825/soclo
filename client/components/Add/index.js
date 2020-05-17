@@ -96,7 +96,9 @@ class AddContainer extends Component {
       {
         cloudName: 'micaelascloud',
         uploadPreset: 'ahb8abmz',
-        showAdvancedOptions: true
+        showAdvancedOptions: true,
+        maxImageHeight: 1000,
+        maxImageWidth: 1000
       },
       (error, result) => {
         if (!error && result && result.event === 'success') {

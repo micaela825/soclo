@@ -53,7 +53,6 @@ class ArticleContainer extends Component {
 
   render() {
     const dress = this.state.closet.dress[0]
-    console.log('dress!', dress)
 
     if (dress) {
       return (
@@ -63,9 +62,7 @@ class ArticleContainer extends Component {
           <div className={`${BASE_CLASS}__info`}>
             {dress.cost > 0 && (
               <Fragment>
-                <div className={`${BASE_CLASS}__info__title`}>
-                  original cost:
-                </div>
+                <div className={`${BASE_CLASS}__info__title`}>cost</div>
                 <div className={`${BASE_CLASS}__info__figure`}>
                   ${dress.cost}
                 </div>
@@ -74,7 +71,7 @@ class ArticleContainer extends Component {
 
             {dress.wearCount > 0 && (
               <Fragment>
-                <div className={`${BASE_CLASS}__info__title`}>wears:</div>
+                <div className={`${BASE_CLASS}__info__title`}>wears</div>
                 <div className={`${BASE_CLASS}__info__figure`}>
                   {dress.wearCount}{' '}
                 </div>
@@ -85,16 +82,17 @@ class ArticleContainer extends Component {
               dress.wearCount > 0 && (
                 <Fragment>
                   <div className={`${BASE_CLASS}__info__title`}>
-                    cost per wear:
+                    cost per wear
                   </div>
                   <div className={`${BASE_CLASS}__info__figure`}>
-                    {this.getCostPerWear()}
+                    ${this.getCostPerWear()}
                   </div>
                 </Fragment>
               )}
           </div>
           <div className={`${BASE_CLASS}__buttons`}>
             <button
+              type="button"
               className={classnames(
                 `${BASE_CLASS}__buttons__button`,
                 `${BASE_CLASS}__buttons__button__add`
@@ -115,6 +113,7 @@ class ArticleContainer extends Component {
               edit
             </Link>
             <button
+              type="button"
               className={classnames(
                 `${BASE_CLASS}__buttons__button`,
                 `${BASE_CLASS}__buttons__button__remove`

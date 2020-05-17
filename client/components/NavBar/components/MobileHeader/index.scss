@@ -13,17 +13,17 @@
   }
 
   &__open-nav {
+    font-family: 'Playfair Display';
     height: 100vh;
     display: grid;
     padding-top: 85px;
-    grid: repeat(4, 100px) / 1fr;
+    grid: repeat(4, 70px) / 1fr;
     z-index: 9;
     background-color: #fcf8f5;
     align-items: center;
     justify-items: center;
     font-size: 26px;
     &__item {
-      // color: #eb1736;
       color: #222222;
       text-transform: lowercase;
 

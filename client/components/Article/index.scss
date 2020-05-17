@@ -1,26 +1,24 @@
-@import '../../assets/colors.scss';
-@import '../../assets/mq.scss';
+@import '../../assets/main.scss';
 
 .article {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(4, auto);
   justify-items: center;
+  margin: 0 50px;
 
   @include mq($from: desktop) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, auto);
     grid-template-rows: repeat(3, auto);
     align-items: center;
-    margin: 100px 200px 0 50px;
+    margin-top: 120px;
+    // margin: 100px 200px 0 50px;
   }
 
   &__title {
+    @include type-style-header-futura;
     grid-row: 1;
-    font-size: 28px;
-    letter-spacing: 1px;
-    font-family: futura-pt, sans-serif;
     margin: 60px 0 30px;
-    font-weight: 500;
 
     @include mq($from: desktop) {
       grid-column: 2;
@@ -46,33 +44,26 @@
   &__info {
     grid-row: 3;
     width: 100%;
-    padding: 30px 45px 30px;
+    margin: 40px auto;
     display: grid;
-    grid-template-columns: repeat(2, 50%);
-    font-family: futura-pt, sans-serif;
-    font-size: 24px;
-    margin: 30px 0 15px;
-    max-width: 300px;
+    grid-template-columns: repeat(2, auto);
+    row-gap: 7px;
 
     @include mq($from: desktop) {
       grid-row: 2;
       grid-column: 2;
       justify-self: start;
-      padding: 0;
     }
 
     &__title {
       grid-column: 1;
-      font-family: futura-pt, sans-serif;
-      letter-spacing: 2px;
-      font-size: 20px;
+      @include type-style-display-body;
     }
 
     &__figure {
+      @include type-style-utility-bold;
       grid-column: 2;
-      letter-spacing: 0.1em;
       justify-self: end;
-      font-weight: 400;
     }
   }
 
@@ -80,6 +71,7 @@
     grid-row: 4;
     display: grid;
     grid-template-columns: 1fr;
+    row-gap: 15px;
 
     @include mq($from: desktop) {
       grid-column: 2;
@@ -88,48 +80,20 @@
     }
 
     &__button {
-      // todo: add box shadow
+      @include closet-main-toolbar-btn;
       height: 45px;
       width: 235px;
-      border-radius: 3px;
       background-color: #fcf8f5;
-      text-align: center;
-      margin: 15px 0px;
-      border: none;
       text-transform: uppercase;
-      font-size: 18px;
-      letter-spacing: 2px;
-      font-weight: 500;
-      padding: 10px;
 
-      &:hover {
-        cursor: pointer;
-        opacity: 1;
-      }
       &__add {
-        color: red;
       }
 
       &__edit {
-        color: purple;
       }
 
       &__remove {
-        color: turquoise;
       }
     }
-  }
-  &__divider {
-    height: 3px;
-    display: block;
-    width: 70px;
-    &__light {
-      background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='15' height='15'><g fill='white'><circle cx='1' cy='1' r='1' /></g></svg>")
-        repeat;
-    }
-    // &__dark {
-    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='15' height='15'><circle cx='1' cy='1' r='1' /></svg>")
-      repeat;
-    // }
   }
 }
