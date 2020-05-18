@@ -19,10 +19,13 @@ class Outfit extends Component {
       randomBottom: {},
       randomShoes: {},
       randomDress: {},
-      isShuffleOpen: false
+      isShuffleOpen: false,
+      isHoverMenuOpen: false,
+      hoverIndex: ''
     }
     this.handleClick = this.handleClick.bind(this)
     this.handleBtnClick = this.handleBtnClick.bind(this)
+    this.handleHover = this.handleHover.bind(this)
     this.newOutfit = {}
   }
   componentDidMount() {
@@ -52,6 +55,13 @@ class Outfit extends Component {
       randomShoes: randomShoes,
       randomDress: randomDress,
       isShuffleOpen: true
+    })
+  }
+
+  handleHover(outfit, i) {
+    this.setState({
+      isHoverMenuOpen: true,
+      hoverIndex: i
     })
   }
 
@@ -101,8 +111,18 @@ class Outfit extends Component {
         </div>
         <div className={`${BASE_CLASS}__grid`}>
           {this.state.outfit
-            ? this.state.outfit.outfits.map((outfit, key) => (
-                <div key={key} className={`${BASE_CLASS}__grid__outfit`}>
+            ? this.state.outfit.outfits.map((outfit, i) => (
+                <div
+                  key={i}
+                  className={classnames(`${BASE_CLASS}__grid__outfit`, {
+                    // [`${BASE_CLASS}__grid__outfit__test`]:
+                    //   this.state.hover && this.state.hover[i],
+                  })}
+                  onMouseOver={() => this.handleHover(outfit, i)}
+                >
+                  {this.state.isHoverMenuOpen && this.state.hoverIndex === i ? (
+                    <h1>hi</h1>
+                  ) : null}
                   <img
                     alt={outfit.dressName}
                     src={outfit.dressImageURL}

@@ -18,6 +18,18 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+// router.delete('/', (req, res) => {
+//   try {
+//     Closet.destroy({
+//       where: {
+//         id: req.params.dressId
+//       }
+//     })
+//   } catch (err) {
+//     console.log(err)
+//   }
+// })
+
 router.post('/', async (req, res, next) => {
   let outerwearName,
     outerwearImageURL,
@@ -84,7 +96,8 @@ router.post('/', async (req, res, next) => {
       outerwearName: outerwearName,
       shoesId: shoesId,
       shoesImageURL: shoesImageURL,
-      shoesName: shoesName
+      shoesName: shoesName,
+      notes: req.body.notes
     })
   } catch (err) {
     console.error(err)

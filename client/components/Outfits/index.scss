@@ -83,6 +83,10 @@
       row-gap: 12px;
       column-gap: 12px;
 
+      &__test {
+        background-color: blue;
+      }
+
       &__dress {
         grid-column: 1;
         grid-row: 1 / span 2;

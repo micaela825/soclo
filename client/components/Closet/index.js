@@ -10,6 +10,7 @@ import axios from 'axios'
 import EditIcon from '../../../public/editIcon'
 import AddIcon from '../../../public/addIcon'
 import Loader from '../atoms/Loader'
+import AddNoteForm from '../modals/AddNoteForm'
 import './index.scss'
 import classnames from 'classnames'
 import {useInView} from 'react-intersection-observer'
@@ -25,12 +26,15 @@ class ClosetContainer extends Component {
       ...store.getState(),
       singleOutfit: [],
       isSubmitted: false,
-      showSuccessIcon: false
+      showSuccessIcon: false,
+      showNotesForm: false,
+      notes: ''
     }
     this.filterCostMoreThan50 = this.filterCostMoreThan50.bind(this)
     this.sortByCost = this.sortByCost.bind(this)
     this.saveOutfit = this.saveOutfit.bind(this)
     this.createOutfit = this.createOutfit.bind(this)
+    this.handleNoteSubmit = this.handleNoteSubmit.bind(this)
   }
 
   async addWear(dressId) {
@@ -67,8 +71,13 @@ class ClosetContainer extends Component {
     this.state.singleOutfit.push(dress)
   }
 
-  saveOutfit() {
-    this.setState({isSubmitted: false})
+  handleNoteSubmit(note) {
+    console.log('event in handle note submit!', note)
+    // this.setState({
+    //   notes: note,
+    // })
+    console.log('THIS STATE AFTER HANDLE SUBMIT', this.state)
+    this.setState({isSubmitted: false, notes: note})
     store.dispatch(addOutfit(this.state.singleOutfit))
     this.setState({isSubmitted: true})
     setTimeout(
@@ -76,6 +85,20 @@ class ClosetContainer extends Component {
       2000
     )
     setTimeout(() => this.setState({showSuccessIcon: false}), 3000)
+  }
+
+  saveOutfit() {
+    this.setState({
+      showNotesForm: true
+    })
+    // this.setState({isSubmitted: false})
+    // store.dispatch(addOutfit(this.state.singleOutfit))
+    // this.setState({isSubmitted: true})
+    // setTimeout(
+    //   () => this.setState({isSubmitted: false, showSuccessIcon: true}),
+    //   2000
+    // )
+    // setTimeout(() => this.setState({showSuccessIcon: false}), 3000)
   }
 
   componentDidMount() {
@@ -129,6 +152,9 @@ class ClosetContainer extends Component {
             add
           </Link>
         </div>
+        {this.state.showNotesForm ? (
+          <AddNoteForm handleNoteSubmit={this.handleNoteSubmit} />
+        ) : null}
         <div className={`${BASE_CLASS}__table`}>
           {this.state.closet.dresses
             ? this.state.closet.dresses.map((dress, i) => (

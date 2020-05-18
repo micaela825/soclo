@@ -1,0 +1,18 @@
+.add-note-form {
+  position: absolute;
+  background-color: pink;
+  top: 300px;
+  z-index: 5;
+  height: 400px;
+  width: 400px;
+
+  &__input {
+    height: 200px;
+    width: 300px;
+  }
+
+  &__submitBtn {
+    height: 40px;
+    width: 100px;
+  }
+}

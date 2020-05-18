@@ -44,8 +44,6 @@ class AddContainer extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    console.log('state in handle submit', this.state)
-
     if (!this.state.name && !this.state.imageURL) {
       this.setState({
         error: 'please enter an item name or image'
