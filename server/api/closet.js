@@ -33,7 +33,7 @@ router.get('/', async (req, res, next) => {
 router.get('/:dressId', async (req, res, next) => {
   const dressId = req.params.dressId
   try {
-    const dress = await Closet.findAll({
+    const dress = await Closet.findOne({
       where: {
         id: dressId
       }
