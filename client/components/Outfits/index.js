@@ -2,9 +2,12 @@ import React, {Component} from 'react'
 import {getOutfits} from '../../store/outfit'
 import {getDresses} from '../../store/closet'
 import store from '../../store'
+import axios from 'axios'
 import {connect} from 'react-redux'
 import RandomOutfit from './components/RandomOutfit'
 import getRandomOutfit from './utils/getRandomOutfit'
+import {setIsModalOpen} from '../../store/utils'
+import RemoveConfirmation from './components/RemoveConfirmation'
 import classnames from 'classnames'
 
 const BASE_CLASS = 'outfits'
@@ -27,6 +30,7 @@ class Outfit extends Component {
     this.handleBtnClick = this.handleBtnClick.bind(this)
     this.handleHover = this.handleHover.bind(this)
     this.newOutfit = {}
+    this.removeOutfit = this.removeOutfit.bind(this)
   }
   componentDidMount() {
     store.dispatch(getOutfits())
@@ -63,6 +67,19 @@ class Outfit extends Component {
       isHoverMenuOpen: true,
       hoverIndex: i
     })
+  }
+
+  removeOutfit(i, outfitId) {
+    store.dispatch(setIsModalOpen(true))
+  }
+
+  async handleAccept(outfitId) {
+    store.dispatch(setIsModalOpen(false))
+    await axios.delete(`/api/outfits/`, {data: {outfitId}})
+  }
+
+  handleCancel() {
+    store.dispatch(setIsModalOpen(false))
   }
 
   render() {
@@ -114,14 +131,26 @@ class Outfit extends Component {
             ? this.state.outfit.outfits.map((outfit, i) => (
                 <div
                   key={i}
-                  className={classnames(`${BASE_CLASS}__grid__outfit`, {
-                    // [`${BASE_CLASS}__grid__outfit__test`]:
-                    //   this.state.hover && this.state.hover[i],
-                  })}
+                  className={classnames(`${BASE_CLASS}__grid__outfit`, {})}
                   onMouseOver={() => this.handleHover(outfit, i)}
                 >
                   {this.state.isHoverMenuOpen && this.state.hoverIndex === i ? (
-                    <h1>hi</h1>
+                    <div>
+                      {this.state.utils.isModalOpen ? (
+                        <RemoveConfirmation
+                          handleCancel={this.handleCancel}
+                          handleAccept={this.handleAccept}
+                          outfitId={outfit.id}
+                        />
+                      ) : null}
+                      <div>{this.state.outfit.outfits[i].notes}</div>
+                      <button
+                        type="button"
+                        onClick={() => this.removeOutfit(i, outfit.id)}
+                      >
+                        remove outfit / icon
+                      </button>
+                    </div>
                   ) : null}
                   <img
                     alt={outfit.dressName}

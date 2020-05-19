@@ -18,17 +18,17 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-// router.delete('/', (req, res) => {
-//   try {
-//     Closet.destroy({
-//       where: {
-//         id: req.params.dressId
-//       }
-//     })
-//   } catch (err) {
-//     console.log(err)
-//   }
-// })
+router.delete('/', (req, res) => {
+  try {
+    Outfit.destroy({
+      where: {
+        id: req.body.outfitId
+      }
+    })
+  } catch (err) {
+    console.log(err)
+  }
+})
 
 router.post('/', async (req, res, next) => {
   let outerwearName,
@@ -45,9 +45,13 @@ router.post('/', async (req, res, next) => {
     dressName,
     shoesId,
     shoesImageURL,
-    shoesName
+    shoesName,
+    note
 
   req.body.map(item => {
+    if (item.notes) {
+      note = item.notes
+    }
     switch (item.category) {
       case 'outerwear':
         outerwearImageURL = item.imageURL
@@ -74,6 +78,7 @@ router.post('/', async (req, res, next) => {
         shoesId = item.id
         shoesName = item.name
         break
+
       default:
         return null
     }
@@ -97,7 +102,7 @@ router.post('/', async (req, res, next) => {
       shoesId: shoesId,
       shoesImageURL: shoesImageURL,
       shoesName: shoesName,
-      notes: req.body.notes
+      notes: note
     })
   } catch (err) {
     console.error(err)

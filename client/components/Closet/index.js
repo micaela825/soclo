@@ -7,8 +7,6 @@ import {setIsModalOpen} from '../../store/utils'
 import RemoveConfirmationModal from '../RemoveConfirmation'
 import store from '../../store'
 import axios from 'axios'
-import EditIcon from '../../../public/editIcon'
-import AddIcon from '../../../public/addIcon'
 import Loader from '../atoms/Loader'
 import AddNoteForm from '../modals/AddNoteForm'
 import './index.scss'
@@ -27,14 +25,15 @@ class ClosetContainer extends Component {
       singleOutfit: [],
       isSubmitted: false,
       showSuccessIcon: false,
-      showNotesForm: false,
-      notes: ''
+      showNotesForm: false
+      // notes: '',
     }
     this.filterCostMoreThan50 = this.filterCostMoreThan50.bind(this)
     this.sortByCost = this.sortByCost.bind(this)
-    this.saveOutfit = this.saveOutfit.bind(this)
-    this.createOutfit = this.createOutfit.bind(this)
+    this.handleSaveOutfit = this.handleSaveOutfit.bind(this)
+    this.addToOutfit = this.addToOutfit.bind(this)
     this.handleNoteSubmit = this.handleNoteSubmit.bind(this)
+    this.createOutfit = this.createOutfit.bind(this)
   }
 
   async addWear(dressId) {
@@ -67,17 +66,12 @@ class ClosetContainer extends Component {
     await this.state.closet.dresses.filter(dress => dress.cost > 50)
   }
 
-  createOutfit(dress) {
+  addToOutfit(dress) {
     this.state.singleOutfit.push(dress)
   }
 
-  handleNoteSubmit(note) {
-    console.log('event in handle note submit!', note)
-    // this.setState({
-    //   notes: note,
-    // })
-    console.log('THIS STATE AFTER HANDLE SUBMIT', this.state)
-    this.setState({isSubmitted: false, notes: note})
+  createOutfit() {
+    this.setState({isSubmitted: false, showNotesForm: false})
     store.dispatch(addOutfit(this.state.singleOutfit))
     this.setState({isSubmitted: true})
     setTimeout(
@@ -87,18 +81,16 @@ class ClosetContainer extends Component {
     setTimeout(() => this.setState({showSuccessIcon: false}), 3000)
   }
 
-  saveOutfit() {
+  handleNoteSubmit(e, note) {
+    e.preventDefault()
+    this.state.singleOutfit.push({notes: note})
+    this.createOutfit()
+  }
+
+  handleSaveOutfit() {
     this.setState({
       showNotesForm: true
     })
-    // this.setState({isSubmitted: false})
-    // store.dispatch(addOutfit(this.state.singleOutfit))
-    // this.setState({isSubmitted: true})
-    // setTimeout(
-    //   () => this.setState({isSubmitted: false, showSuccessIcon: true}),
-    //   2000
-    // )
-    // setTimeout(() => this.setState({showSuccessIcon: false}), 3000)
   }
 
   componentDidMount() {
@@ -124,7 +116,6 @@ class ClosetContainer extends Component {
         })}
       >
         <div className={`${BASE_CLASS}__title`}>your wardrobe</div>
-        {/* <Loader /> */}
         <div className={`${BASE_CLASS}__menu`}>
           <div
             onClick={this.filterCostMoreThan50}
@@ -134,7 +125,7 @@ class ClosetContainer extends Component {
             filter{' '}
           </div>
           <div
-            onClick={this.saveOutfit}
+            onClick={this.handleSaveOutfit}
             className={`${BASE_CLASS}__menu__button`}
           >
             save outfit
@@ -153,7 +144,10 @@ class ClosetContainer extends Component {
           </Link>
         </div>
         {this.state.showNotesForm ? (
-          <AddNoteForm handleNoteSubmit={this.handleNoteSubmit} />
+          <AddNoteForm
+            handleNoteSubmit={this.handleNoteSubmit}
+            createOutfit={this.createOutfit}
+          />
         ) : null}
         <div className={`${BASE_CLASS}__table`}>
           {this.state.closet.dresses
@@ -197,7 +191,7 @@ class ClosetContainer extends Component {
                     </div>
                     <div
                       className={`${BASE_CLASS}__item__buttons__addtooutfit`}
-                      onClick={() => this.createOutfit(dress)}
+                      onClick={() => this.addToOutfit(dress)}
                     >
                       add to outfit
                     </div>
