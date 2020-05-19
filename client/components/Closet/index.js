@@ -26,7 +26,6 @@ class ClosetContainer extends Component {
       isSubmitted: false,
       showSuccessIcon: false,
       showNotesForm: false
-      // notes: '',
     }
     this.filterCostMoreThan50 = this.filterCostMoreThan50.bind(this)
     this.sortByCost = this.sortByCost.bind(this)

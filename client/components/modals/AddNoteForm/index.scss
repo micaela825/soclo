@@ -1,10 +1,29 @@
+@import '../../../assets/main.scss';
 .add-note-form {
   position: absolute;
-  background-color: pink;
-  top: 300px;
+  background-color: white;
   z-index: 5;
-  height: 400px;
+  height: 500px;
   width: 400px;
+  display: grid;
+  grid: repeat(3, auto) / 1fr;
+  justify-items: center;
+  position: absolute;
+  top: 200px;
+  left: calc(50% - 200px);
+  border: 2px solid #222222;
+  text-align: center;
+
+  &__title {
+    grid-row: 1;
+    margin: 10px 20px;
+  }
+
+  &__form {
+    display: grid;
+    grid: repeat(2, auto) / 1fr;
+    justify-items: center;
+  }
 
   &__input {
     height: 200px;
@@ -12,6 +31,15 @@
   }
 
   &__submitBtn {
+    @include closet-main-toolbar-btn;
+    width: fit-content !important;
+    height: 40px;
+    width: 100px;
+  }
+
+  &__saveBtn {
+    @include closet-main-toolbar-btn;
+    width: fit-content !important;
     height: 40px;
     width: 100px;
   }

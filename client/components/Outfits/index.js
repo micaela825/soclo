@@ -73,12 +73,12 @@ class Outfit extends Component {
     store.dispatch(setIsModalOpen(true))
   }
 
-  async handleAccept(outfitId) {
+  async handleDeleteOutfitAccept(outfitId) {
     store.dispatch(setIsModalOpen(false))
     await axios.delete(`/api/outfits/`, {data: {outfitId}})
   }
 
-  handleCancel() {
+  handleDeleteOutfitCancel() {
     store.dispatch(setIsModalOpen(false))
   }
 
@@ -101,18 +101,10 @@ class Outfit extends Component {
         ) : null}
         <div className={`${BASE_CLASS}__title`}>your outfits</div>
         <div className={`${BASE_CLASS}__menu`}>
-          <button
-            type="submit"
-            // onClick={this.handleClick}
-            className={`${BASE_CLASS}__menu__button`}
-          >
+          <button type="submit" className={`${BASE_CLASS}__menu__button`}>
             tops & bottoms
           </button>
-          <button
-            type="submit"
-            // onClick={this.handleClick}
-            className={`${BASE_CLASS}__menu__button`}
-          >
+          <button type="submit" className={`${BASE_CLASS}__menu__button`}>
             dresses only
           </button>
           <button
@@ -131,24 +123,34 @@ class Outfit extends Component {
             ? this.state.outfit.outfits.map((outfit, i) => (
                 <div
                   key={i}
-                  className={classnames(`${BASE_CLASS}__grid__outfit`, {})}
+                  className={classnames(`${BASE_CLASS}__grid__outfit`)}
                   onMouseOver={() => this.handleHover(outfit, i)}
                 >
                   {this.state.isHoverMenuOpen && this.state.hoverIndex === i ? (
-                    <div>
+                    <div
+                      className={classnames(
+                        `${BASE_CLASS}__grid__hoverMenu`,
+                        {}
+                      )}
+                    >
                       {this.state.utils.isModalOpen ? (
                         <RemoveConfirmation
-                          handleCancel={this.handleCancel}
-                          handleAccept={this.handleAccept}
+                          handleDeleteOutfitCancel={
+                            this.handleDeleteOutfitCancel
+                          }
+                          handleDeleteOutfitAccept={
+                            this.handleDeleteOutfitAccept
+                          }
                           outfitId={outfit.id}
                         />
                       ) : null}
                       <div>{this.state.outfit.outfits[i].notes}</div>
                       <button
                         type="button"
+                        className={`${BASE_CLASS}__grid__hoverMenu__removeBtn`}
                         onClick={() => this.removeOutfit(i, outfit.id)}
                       >
-                        remove outfit / icon
+                        remove outfit
                       </button>
                     </div>
                   ) : null}

@@ -1,5 +1,4 @@
 import React from 'react'
-import {Link, Redirect} from 'react-router-dom'
 // import './index.scss'
 const BASE_CLASS = 'remove-confirmation-modal'
 
@@ -18,7 +17,7 @@ class RemoveConfirmation extends React.Component {
             type="button"
             className={`${BASE_CLASS}__buttons__button`}
             onClick={() => {
-              this.props.handleAccept(this.props.outfitId)
+              this.props.handleDeleteOutfitAccept(this.props.outfitId)
               window.location.href = '/outfits'
             }}
           >
@@ -27,7 +26,7 @@ class RemoveConfirmation extends React.Component {
           <button
             type="button"
             className={`${BASE_CLASS}__buttons__button`}
-            onClick={this.props.handleCancel}
+            onClick={this.props.handleDeleteOutfitCancel}
           >
             cancel
           </button>

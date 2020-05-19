@@ -21,11 +21,16 @@ export default class AddNoteForm extends Component {
   render() {
     return (
       <div className={BASE_CLASS}>
-        <h1>TESTING!!!!</h1>
-        <form onSubmit={e => this.props.handleNoteSubmit(e, this.state.note)}>
+        <h2 className={`${BASE_CLASS}__title`}>
+          do you want to add a note to this outfit?
+        </h2>
+        <form
+          onSubmit={e => this.props.handleNoteSubmit(e, this.state.note)}
+          className={`${BASE_CLASS}__form`}
+        >
           <input
             type="textarea"
-            placeholder="must wear with pearls!"
+            placeholder="e.g.must wear with pearls!"
             className={`${BASE_CLASS}__input`}
             name="note"
             value={this.state.note}
@@ -45,7 +50,7 @@ export default class AddNoteForm extends Component {
           className={`${BASE_CLASS}__saveBtn`}
           onClick={this.props.createOutfit}
         >
-          save outfit
+          continue to save outfit
         </button>
       </div>
     )
