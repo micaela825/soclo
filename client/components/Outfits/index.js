@@ -2,9 +2,12 @@ import React, {Component} from 'react'
 import {getOutfits} from '../../store/outfit'
 import {getDresses} from '../../store/closet'
 import store from '../../store'
+import axios from 'axios'
 import {connect} from 'react-redux'
 import RandomOutfit from './components/RandomOutfit'
 import getRandomOutfit from './utils/getRandomOutfit'
+import {setIsModalOpen} from '../../store/utils'
+import RemoveConfirmation from './components/RemoveConfirmation'
 import classnames from 'classnames'
 
 const BASE_CLASS = 'outfits'
@@ -19,11 +22,15 @@ class Outfit extends Component {
       randomBottom: {},
       randomShoes: {},
       randomDress: {},
-      isShuffleOpen: false
+      isShuffleOpen: false,
+      isHoverMenuOpen: false,
+      hoverIndex: ''
     }
     this.handleClick = this.handleClick.bind(this)
     this.handleBtnClick = this.handleBtnClick.bind(this)
+    this.handleHover = this.handleHover.bind(this)
     this.newOutfit = {}
+    this.removeOutfit = this.removeOutfit.bind(this)
   }
   componentDidMount() {
     store.dispatch(getOutfits())
@@ -55,6 +62,26 @@ class Outfit extends Component {
     })
   }
 
+  handleHover(outfit, i) {
+    this.setState({
+      isHoverMenuOpen: true,
+      hoverIndex: i
+    })
+  }
+
+  removeOutfit(i, outfitId) {
+    store.dispatch(setIsModalOpen(true))
+  }
+
+  async handleDeleteOutfitAccept(outfitId) {
+    store.dispatch(setIsModalOpen(false))
+    await axios.delete(`/api/outfits/`, {data: {outfitId}})
+  }
+
+  handleDeleteOutfitCancel() {
+    store.dispatch(setIsModalOpen(false))
+  }
+
   render() {
     return (
       <div className={BASE_CLASS}>
@@ -74,18 +101,10 @@ class Outfit extends Component {
         ) : null}
         <div className={`${BASE_CLASS}__title`}>your outfits</div>
         <div className={`${BASE_CLASS}__menu`}>
-          <button
-            type="submit"
-            // onClick={this.handleClick}
-            className={`${BASE_CLASS}__menu__button`}
-          >
+          <button type="submit" className={`${BASE_CLASS}__menu__button`}>
             tops & bottoms
           </button>
-          <button
-            type="submit"
-            // onClick={this.handleClick}
-            className={`${BASE_CLASS}__menu__button`}
-          >
+          <button type="submit" className={`${BASE_CLASS}__menu__button`}>
             dresses only
           </button>
           <button
@@ -101,8 +120,40 @@ class Outfit extends Component {
         </div>
         <div className={`${BASE_CLASS}__grid`}>
           {this.state.outfit
-            ? this.state.outfit.outfits.map((outfit, key) => (
-                <div key={key} className={`${BASE_CLASS}__grid__outfit`}>
+            ? this.state.outfit.outfits.map((outfit, i) => (
+                <div
+                  key={i}
+                  className={classnames(`${BASE_CLASS}__grid__outfit`)}
+                  onMouseOver={() => this.handleHover(outfit, i)}
+                >
+                  {this.state.isHoverMenuOpen && this.state.hoverIndex === i ? (
+                    <div
+                      className={classnames(
+                        `${BASE_CLASS}__grid__hoverMenu`,
+                        {}
+                      )}
+                    >
+                      {this.state.utils.isModalOpen ? (
+                        <RemoveConfirmation
+                          handleDeleteOutfitCancel={
+                            this.handleDeleteOutfitCancel
+                          }
+                          handleDeleteOutfitAccept={
+                            this.handleDeleteOutfitAccept
+                          }
+                          outfitId={outfit.id}
+                        />
+                      ) : null}
+                      <div>{this.state.outfit.outfits[i].notes}</div>
+                      <button
+                        type="button"
+                        className={`${BASE_CLASS}__grid__hoverMenu__removeBtn`}
+                        onClick={() => this.removeOutfit(i, outfit.id)}
+                      >
+                        remove outfit
+                      </button>
+                    </div>
+                  ) : null}
                   <img
                     alt={outfit.dressName}
                     src={outfit.dressImageURL}

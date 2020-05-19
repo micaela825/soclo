@@ -31,7 +31,6 @@ export const addOutfit = articles => {
   return async (dispatch, getState) => {
     try {
       const {data} = await axios.post(`/api/outfits`, articles)
-      console.log('data ***', data)
       dispatch(gotAddedOutfit(data))
     } catch (err) {
       console.error(err)

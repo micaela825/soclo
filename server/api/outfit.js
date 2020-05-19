@@ -18,6 +18,18 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.delete('/', (req, res) => {
+  try {
+    Outfit.destroy({
+      where: {
+        id: req.body.outfitId
+      }
+    })
+  } catch (err) {
+    console.log(err)
+  }
+})
+
 router.post('/', async (req, res, next) => {
   let outerwearName,
     outerwearImageURL,
@@ -33,9 +45,13 @@ router.post('/', async (req, res, next) => {
     dressName,
     shoesId,
     shoesImageURL,
-    shoesName
+    shoesName,
+    note
 
   req.body.map(item => {
+    if (item.notes) {
+      note = item.notes
+    }
     switch (item.category) {
       case 'outerwear':
         outerwearImageURL = item.imageURL
@@ -62,6 +78,7 @@ router.post('/', async (req, res, next) => {
         shoesId = item.id
         shoesName = item.name
         break
+
       default:
         return null
     }
@@ -84,7 +101,8 @@ router.post('/', async (req, res, next) => {
       outerwearName: outerwearName,
       shoesId: shoesId,
       shoesImageURL: shoesImageURL,
-      shoesName: shoesName
+      shoesName: shoesName,
+      notes: note
     })
   } catch (err) {
     console.error(err)

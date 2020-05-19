@@ -46,6 +46,9 @@ const Outfit = db.define('outfit', {
   },
   outerwearId: {
     type: Sequelize.INTEGER
+  },
+  notes: {
+    type: Sequelize.TEXT
   }
 })
 
