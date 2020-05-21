@@ -55,14 +55,18 @@ class ClosetContainer extends Component {
     store.dispatch(setIsModalOpen(false))
   }
 
-  async sortByCost() {
-    await this.state.closet.dresses.sort(function(a, b) {
+  sortByCost() {
+    const sortedDresses = this.state.closet.dresses.sort(function(a, b) {
       return a.cost - b.cost
+    })
+    this.setState({
+      ...this.state,
+      dresses: sortedDresses
     })
   }
 
-  async filterCostMoreThan50() {
-    await this.state.closet.dresses.filter(dress => dress.cost > 50)
+  filterCostMoreThan50() {
+    this.state.closet.dresses.filter(dress => dress.cost > 50)
   }
 
   addToOutfit(dress) {
@@ -102,6 +106,7 @@ class ClosetContainer extends Component {
   }
 
   render() {
+    console.log('this.state in RENDER', this.state.closet)
     // const [ref, isInView] = useInView({
     //   triggerOnce: true,
     //   rootMargin: '-12%',

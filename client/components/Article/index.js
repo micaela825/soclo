@@ -31,7 +31,7 @@ class ArticleContainer extends Component {
 
   async addWear(dressId) {
     store.dispatch(addWear(dressId))
-    const dressToAddWear = await this.state.closet.dress[0]
+    const dressToAddWear = await this.state.closet.dress
     dressToAddWear.wearCount += 1
   }
 
@@ -45,14 +45,14 @@ class ArticleContainer extends Component {
   }
 
   getCostPerWear() {
-    let dress = this.state.closet.dress[0]
+    let dress = this.state.closet.dress
     return dress.cost && dress.wearCount
       ? Math.round(dress.cost / dress.wearCount * 100) / 100
       : null
   }
 
   render() {
-    const dress = this.state.closet.dress[0]
+    const dress = this.state.closet.dress
 
     if (dress) {
       return (
