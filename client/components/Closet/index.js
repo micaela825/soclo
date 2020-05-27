@@ -11,7 +11,6 @@ import Loader from '../atoms/Loader'
 import AddNoteForm from '../modals/AddNoteForm'
 import './index.scss'
 import classnames from 'classnames'
-import {useInView} from 'react-intersection-observer'
 
 // todo: make character limit in article name
 
