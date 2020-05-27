@@ -24,18 +24,14 @@ async function seed() {
     Outfit.create({
       userId: 1,
       dressName: 'Hot Pink Scoopneck Dress',
-      dressId: 2,
-      dressImageURL:
-        'http://res.cloudinary.com/micaelascloud/image/upload/v1589312680/jutui1mtgvw6uymtdv8n.jpg'
+      dressId: 2
     }),
     Outfit.create({
       topName: 'Joie Colorblock Short Sleeve',
-      topImageURL:
-        'http://res.cloudinary.com/micaelascloud/image/upload/v1589311274/mtsnlcisdgrwz9tjrpol.png',
+
       topId: 1,
       bottomName: 'White Skinny Jeans',
-      bottomImageURL:
-        'http://res.cloudinary.com/micaelascloud/image/upload/v1589299603/qekfsynsynh1nlbjkpwb.png',
+
       bottomId: 2,
       userId: 1
     })
@@ -43,8 +39,6 @@ async function seed() {
 
   const closets = await Promise.all([
     Closet.create({
-      imageURL:
-        'http://res.cloudinary.com/micaelascloud/image/upload/v1589311444/qhyj0bcgnaxqpinwlecb.png',
       name: 'Velvet sleeveless top',
       userId: 1,
       wearCount: 2,
@@ -53,8 +47,6 @@ async function seed() {
       latestWear: Date.now()
     }),
     Closet.create({
-      imageURL:
-        'http://res.cloudinary.com/micaelascloud/image/upload/v1589299529/rlnmtzdtyhzceaqwohga.png',
       name: 'Black Floral Blouse',
       userId: 1,
       wearCount: 7,
@@ -64,8 +56,6 @@ async function seed() {
       latestWear: Date.now()
     }),
     Closet.create({
-      imageURL:
-        'http://res.cloudinary.com/micaelascloud/image/upload/v1589311155/rxp8z2uc2bnw1y96s2do.png',
       name: 'Animal print top',
       userId: 1,
       wearCount: 2,
@@ -75,8 +65,6 @@ async function seed() {
       latestWear: Date.now()
     }),
     Closet.create({
-      imageURL:
-        'http://res.cloudinary.com/micaelascloud/image/upload/v1589311274/mtsnlcisdgrwz9tjrpol.png',
       name: 'Joie Colorblock Short Sleeve',
       userId: 1,
       wearCount: 3,
@@ -86,8 +74,6 @@ async function seed() {
     }),
 
     Closet.create({
-      imageURL:
-        'http://res.cloudinary.com/micaelascloud/image/upload/v1589299603/qekfsynsynh1nlbjkpwb.png',
       name: 'White Skinny Jeans',
       category: 'bottom',
       userId: 1,
@@ -96,8 +82,6 @@ async function seed() {
       brand: 'Madewell'
     }),
     Closet.create({
-      imageURL:
-        'http://res.cloudinary.com/micaelascloud/image/upload/v1589311859/zvarrouuaho9kiq8deli.png',
       name: 'JCrew periwinkle pants',
       userId: 1,
       wearCount: 3,
@@ -106,8 +90,6 @@ async function seed() {
       brand: 'J.Crew'
     }),
     Closet.create({
-      imageURL:
-        'http://res.cloudinary.com/micaelascloud/image/upload/v1589311945/ii2vgwmbshls9lqkruoy.png',
       name: 'Grey Tuxedo Pants',
       userId: 1,
       wearCount: 3,
@@ -117,8 +99,6 @@ async function seed() {
     }),
 
     Closet.create({
-      imageURL:
-        'http://res.cloudinary.com/micaelascloud/image/upload/v1589299632/pgcu4tklltog2kl2sytr.png',
       name: 'Pink pattern moccassins',
       userId: 1,
       wearCount: 3,
@@ -127,8 +107,6 @@ async function seed() {
       brand: 'J.Crew'
     }),
     Closet.create({
-      imageURL:
-        'http://res.cloudinary.com/micaelascloud/image/upload/v1589312196/pkhk504jlsllohttfav8.png',
       name: 'Beige criss cross sandals',
       userId: 1,
       wearCount: 19,
@@ -137,8 +115,6 @@ async function seed() {
       brand: 'Aldo'
     }),
     Closet.create({
-      imageURL:
-        'http://res.cloudinary.com/micaelascloud/image/upload/v1589299682/wq72juvhjlrtjxpqnjwk.png',
       name: 'Long Grey Wool Coat',
       userId: 1,
       wearCount: 59,
@@ -147,8 +123,6 @@ async function seed() {
       brand: 'Cos'
     }),
     Closet.create({
-      imageURL:
-        'http://res.cloudinary.com/micaelascloud/image/upload/v1589312388/qspzc8pmwcrw54irymda.png',
       name: 'White Blazer',
       userId: 1,
       wearCount: 14,
@@ -157,8 +131,6 @@ async function seed() {
       brand: 'Parker'
     }),
     Closet.create({
-      imageURL:
-        'http://res.cloudinary.com/micaelascloud/image/upload/v1589299682/wq72juvhjlrtjxpqnjwk.png',
       name: 'Long Grey Wool Coat',
       userId: 1,
       wearCount: 59,
@@ -168,8 +140,6 @@ async function seed() {
     }),
 
     Closet.create({
-      imageURL:
-        'http://res.cloudinary.com/micaelascloud/image/upload/v1589312547/q5zpuvfdmq7dumuh59ep.jpg',
       name: 'Green Sequin Dress',
       userId: 1,
       wearCount: 2,
@@ -178,8 +148,6 @@ async function seed() {
       brand: 'Bagdley Mischka'
     }),
     Closet.create({
-      imageURL:
-        'http://res.cloudinary.com/micaelascloud/image/upload/v1589312680/jutui1mtgvw6uymtdv8n.jpg',
       name: 'Hot Pink Scoopneck Dress',
       userId: 1,
       wearCount: 4,
