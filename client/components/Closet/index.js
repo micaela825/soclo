@@ -27,12 +27,12 @@ class ClosetContainer extends Component {
       showSuccessIcon: false,
       showNotesForm: false
     }
-    this.filterCostMoreThan50 = this.filterCostMoreThan50.bind(this)
     this.sortByCost = this.sortByCost.bind(this)
     this.handleSaveOutfit = this.handleSaveOutfit.bind(this)
     this.addToOutfit = this.addToOutfit.bind(this)
     this.handleNoteSubmit = this.handleNoteSubmit.bind(this)
     this.createOutfit = this.createOutfit.bind(this)
+    this.handleSortByCategory = this.handleSortByCategory.bind(this)
   }
 
   async addWear(dressId) {
@@ -53,20 +53,6 @@ class ClosetContainer extends Component {
 
   handleCancel() {
     store.dispatch(setIsModalOpen(false))
-  }
-
-  sortByCost() {
-    const sortedDresses = this.state.closet.dresses.sort(function(a, b) {
-      return a.cost - b.cost
-    })
-    this.setState({
-      ...this.state,
-      dresses: sortedDresses
-    })
-  }
-
-  filterCostMoreThan50() {
-    this.state.closet.dresses.filter(dress => dress.cost > 50)
   }
 
   addToOutfit(dress) {
@@ -105,8 +91,33 @@ class ClosetContainer extends Component {
     this.unsubscribe()
   }
 
+  handleSortByCategory(event) {
+    // filter doesn't work on second time b/c its filtering among current state which is only one category - figure out a way to fully repopulate dresses at each call or add local state array of dresses ... and filter through them in render if they exist ?
+    let category = event.target.value
+    const filteredDresses = this.state.closet.dresses.filter(
+      dress => dress.category == category
+    )
+
+    this.setState({
+      ...this.state,
+      closet: {
+        dresses: filteredDresses
+      }
+    })
+  }
+
+  sortByCost() {
+    const sortedDresses = this.state.closet.dresses.sort(function(a, b) {
+      return a.cost - b.cost
+    })
+    this.setState({
+      ...this.state,
+      dresses: sortedDresses
+    })
+  }
+
   render() {
-    console.log('this.state in RENDER', this.state.closet)
+    console.log('this.state in RENDER', this.state)
     // const [ref, isInView] = useInView({
     //   triggerOnce: true,
     //   rootMargin: '-12%',
@@ -121,13 +132,19 @@ class ClosetContainer extends Component {
       >
         <div className={`${BASE_CLASS}__title`}>your wardrobe</div>
         <div className={`${BASE_CLASS}__menu`}>
-          <div
-            onClick={this.filterCostMoreThan50}
+          <select
             className={`${BASE_CLASS}__menu__button`}
+            onChange={this.handleSortByCategory}
           >
-            {' '}
-            filter{' '}
-          </div>
+            <option selected value="category">
+              Category
+            </option>
+            <option value="top">Tops</option>
+            <option value="bottom">Bottoms</option>
+            <option value="shoes">Shoes</option>
+            <option value="dress">Dresses</option>
+            <option value="outerwear">Outerwear</option>
+          </select>
           <div
             onClick={this.handleSaveOutfit}
             className={`${BASE_CLASS}__menu__button`}
@@ -226,7 +243,7 @@ class ClosetContainer extends Component {
 
 const mapState = state => {
   return {
-    dresses: state.closet.dresses
+    // dresses: state.closet.dresses,
   }
 }
 
