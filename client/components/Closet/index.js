@@ -24,7 +24,8 @@ class ClosetContainer extends Component {
       singleOutfit: [],
       isSubmitted: false,
       showSuccessIcon: false,
-      showNotesForm: false
+      showNotesForm: false,
+      filteredDresses: ''
     }
     this.sortByCost = this.sortByCost.bind(this)
     this.handleSaveOutfit = this.handleSaveOutfit.bind(this)
@@ -86,10 +87,6 @@ class ClosetContainer extends Component {
     this.unsubscribe = store.subscribe(() => this.setState(store.getState))
   }
 
-  componentWillUnmount() {
-    this.unsubscribe()
-  }
-
   handleSortByCategory(event) {
     // filter doesn't work on second time b/c its filtering among current state which is only one category - figure out a way to fully repopulate dresses at each call or add local state array of dresses ... and filter through them in render if they exist ?
     let category = event.target.value
@@ -99,9 +96,10 @@ class ClosetContainer extends Component {
 
     this.setState({
       ...this.state,
-      closet: {
-        dresses: filteredDresses
-      }
+      // closet: {
+      //   dresses: filteredDresses,
+      // },
+      filteredDresses: filteredDresses
     })
   }
 
@@ -116,7 +114,10 @@ class ClosetContainer extends Component {
   }
 
   render() {
-    console.log('this.state in RENDER', this.state)
+    const dresses = this.state.filteredDresses
+      ? this.state.filteredDresses
+      : this.state.closet.dresses
+    console.log('dresses!', dresses)
     // const [ref, isInView] = useInView({
     //   triggerOnce: true,
     //   rootMargin: '-12%',
@@ -170,8 +171,8 @@ class ClosetContainer extends Component {
           />
         ) : null}
         <div className={`${BASE_CLASS}__table`}>
-          {this.state.closet.dresses
-            ? this.state.closet.dresses.map((dress, i) => (
+          {dresses
+            ? dresses.map((dress, i) => (
                 <div className={`${BASE_CLASS}__item`} key={i}>
                   <Link
                     to={`/closet/${dress.id}`}
