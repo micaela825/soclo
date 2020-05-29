@@ -18,9 +18,9 @@ before_script:
 
 # before_deploy:
   - npm run build-client # make the bundle
-#   - rm -rf node_modules # omit from the tarball, since we skip cleanup
+ - rm -rf node_modules # omit from the tarball, since we skip cleanup
 # deploy:
-#   skip_cleanup: true # prevents travis from deleting the build
+skip_cleanup: true # prevents travis from deleting the build
    provider: heroku
    app: social-closet # see README
 #   api_key:
