@@ -42,7 +42,7 @@ async function seed() {
       name: 'Velvet sleeveless top',
       userId: 1,
       wearCount: 2,
-      cost: 50.99,
+      cost: 50,
       category: 'top',
       latestWear: Date.now()
     }),
