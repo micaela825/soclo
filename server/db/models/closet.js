@@ -5,8 +5,6 @@ const User = require('./user')
 const Closet = db.define('closet', {
   imageURL: {
     type: Sequelize.STRING
-    // unique: true,
-    //allowNull: false
   },
   name: {
     type: Sequelize.STRING
