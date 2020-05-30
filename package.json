@@ -37,7 +37,7 @@
   "author": "Fullstack Academy of Code",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.15.3",
+    "axios": "^0.18.1",
     "classnames": "^2.2.6",
     "compression": "^1.7.4",
     "connect-session-sequelize": "^6.1.1",
