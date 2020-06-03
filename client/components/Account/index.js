@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import store from '../../store'
 import {getDresses} from '../../store/closet'
+import SimplePieChart from './d3/index'
 import './index.scss'
 
 const BASE_CLASS = 'account'
@@ -160,6 +161,13 @@ class AccountContainer extends Component {
             <div className={`${BASE_CLASS}__value`}>
               {this.getMostWornItem()}
             </div>
+            <div className={`${BASE_CLASS}__divider`} />
+          </div>
+          <div className={`${BASE_CLASS}__grid__item`}>
+            <div className={`${BASE_CLASS}__category`}>
+              percentage of your wardrobe you've worn:
+            </div>
+            <SimplePieChart percentage={this.getPercentageOfWardrobeWorn()} />
             <div className={`${BASE_CLASS}__divider`} />
           </div>
         </div>
